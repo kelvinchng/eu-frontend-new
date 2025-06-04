@@ -1,15 +1,17 @@
 "use client";
 import React from "react";
 import Navbar from "../nav";
+import "./style.css";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col min-w-[350px] bg-background">
-      {/* Top Bar */}
-      <div className="w-full bg-background items-center flex">
-        <Navbar/>
+      {/* Top Bar - Changed to fixed */}
+      <div className="w-full items-center flex fixed top-0 left-0 z-50">
+        <Navbar />
       </div>
-      {/* Main  */}
+
+      {/* Main Content */}
       <div className="w-full bg-background">{children}</div>
 
       {/* Footer */}

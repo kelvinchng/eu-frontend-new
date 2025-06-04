@@ -1,19 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Menu, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
+import "./style.css"
 
 // Constants
-const menuItems = [
-  "Plan Your Journey",
-  "Trending",
-  "Deals",
-  "About Us",
-  "Our Brand",
-];
-
 const MENU_ITEMS = [
   "Plan Your Journey",
   "Trending",
@@ -138,9 +132,9 @@ const menuData: MenuData = {
               ],
               "East Asia": ["Japan"],
               "South Asia": [],
-              Temples: ["Thailand", "Cambodia", "Japan"],
-              Beaches: ["Thailand", "Malaysia", "Indonesia", "Philippines"],
-              Cities: ["Japan", "Singapore", "Malaysia"],
+              "Temples": ["Thailand", "Cambodia", "Japan"],
+              "Beaches": ["Thailand", "Malaysia", "Indonesia", "Philippines"],
+              "Cities": ["Japan", "Singapore", "Malaysia"],
             },
           },
           {
@@ -236,7 +230,7 @@ const menuData: MenuData = {
               "Amsterdam",
               "Prague",
               "Vienna",
-              "Berlin",
+           
             ],
             filters: [
               "All Cities",
@@ -255,7 +249,7 @@ const menuData: MenuData = {
                 "Amsterdam",
                 "Prague",
                 "Vienna",
-                "Berlin",
+          
               ],
               "Capital Cities": [
                 "Paris",
@@ -264,7 +258,6 @@ const menuData: MenuData = {
                 "Amsterdam",
                 "Prague",
                 "Vienna",
-                "Berlin",
               ],
               "Historic Cities": ["Rome", "Prague", "Vienna"],
               "Modern Cities": ["London", "Amsterdam", "Berlin"],
@@ -991,19 +984,16 @@ const menuData: MenuData = {
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [hoveredMenuItem, setHoveredMenuItem] = useState("");
-  const [lastHoveredItem, setLastHoveredItem] = useState("");
+  const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(
+    null
+  );
   const [activeTab, setActiveTab] = useState("");
   const [expandedRegion, setExpandedRegion] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("All");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const currentMenuItem = hoveredMenuItem || lastHoveredItem;
-  const currentMenuData = currentMenuItem
-    ? menuData[currentMenuItem as keyof typeof menuData]
-    : null;
+  const currentMenuData = selectedMenuItem ? menuData[selectedMenuItem] : null;
   const availableTabs = currentMenuData
     ? Object.keys(currentMenuData.tabs)
     : [];
@@ -1055,14 +1045,14 @@ export default function Navbar() {
       return selectedRegionData.countries;
     } else {
       // Show all countries from all regions when no region is selected
-      return currentTabData.regions
-        .flatMap((region) => region.countries)
-        .slice(0, 12);
+      return currentTabData.regions.flatMap((region) => region.countries);
     }
   };
 
   const availableFilters = getAvailableFilters();
   const filteredCountries = getFilteredCountries();
+
+  console.log("filterCounties", filteredCountries)
 
   const handleRegionClick = (regionName: string) => {
     const newExpandedRegion = expandedRegion === regionName ? "" : regionName;
@@ -1093,63 +1083,20 @@ export default function Navbar() {
     setSelectedFilter(filter);
   };
 
-  const handleMenuItemHover = (item: string) => {
-    // Clear any pending close timeout
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-
-    setHoveredMenuItem(item);
-    setLastHoveredItem(item);
+  const handleMenuItemClick = (item: MenuItem) => {
+    setSelectedMenuItem(item === selectedMenuItem ? null : item);
     setExpandedRegion(""); // Reset expanded region when switching menu items
     setActiveTab(""); // Reset active tab when switching menu items
     setSelectedFilter("All"); // Reset filter when switching menu items
   };
 
-  const handleMenuItemLeave = () => {
-    setHoveredMenuItem("");
-    // Don't immediately close - set a timeout to allow moving to content area
-    closeTimeoutRef.current = setTimeout(() => {
-      setLastHoveredItem("");
-      setExpandedRegion("");
-      setActiveTab("");
-      setSelectedFilter("All");
-    }, 300); // 300ms delay
+  const handleToggleClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+      setSelectedMenuItem(null);
+    
   };
 
-  const handleContentMouseEnter = () => {
-    // Clear the close timeout when entering content area
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-  };
-
-  const handleContentMouseLeave = () => {
-    // Close immediately when leaving content area
-    setHoveredMenuItem("");
-    setLastHoveredItem("");
-    setExpandedRegion("");
-    setActiveTab("");
-    setSelectedFilter("All");
-  };
-
-  const handleDropdownMouseLeave = () => {
-    setHoveredMenuItem("");
-    // Set a longer timeout for dropdown leave to allow moving to content
-    closeTimeoutRef.current = setTimeout(() => {
-      if (!hoveredMenuItem) {
-        // Only close if not hovering over content
-        setLastHoveredItem("");
-        setExpandedRegion("");
-        setActiveTab("");
-        setSelectedFilter("All");
-      }
-    }, 500); // 500ms delay for dropdown leave
-  };
-
-  // Close dropdown when clicking outside - Fixed version
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -1158,42 +1105,38 @@ export default function Navbar() {
 
       if (!isClickInsideDropdown && !isClickInsideContent) {
         setIsDropdownOpen(false);
-        setHoveredMenuItem("");
-        setLastHoveredItem("");
+        setSelectedMenuItem(null);
         setExpandedRegion("");
         setActiveTab("");
         setSelectedFilter("All");
-        if (closeTimeoutRef.current) {
-          clearTimeout(closeTimeoutRef.current);
-          closeTimeoutRef.current = null;
-        }
       }
     };
 
-    if (isDropdownOpen) {
+    if (isDropdownOpen || selectedMenuItem) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      if (closeTimeoutRef.current) {
-        clearTimeout(closeTimeoutRef.current);
-      }
     };
-  }, [isDropdownOpen, hoveredMenuItem]);
+  }, [isDropdownOpen, selectedMenuItem]);
 
   return (
     <>
       {/* Navigation Bar */}
-      <nav className=" bg-navbar w-full text-white px-8 py-1 relative font-thunder">
+      <nav
+        className={`w-full text-white px-8 py-1 relative font-thunder ${
+          isDropdownOpen || selectedMenuItem ? "bg-navbar" : "bg-transparent"
+        } transition-colors duration-300`}
+      >
         <div className="flex items-center justify-between">
           {/* Left - Menu Button */}
           <div className="relative" ref={dropdownRef}>
             <Button
               variant="ghost"
               size="sm"
-              className="text-white hover:bg-transparent hover:text-white/80  text-xl  cursor-pointer"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="text-white hover:bg-transparent hover:text-white/80 text-xl cursor-pointer"
+              onClick={handleToggleClick}
             >
               Menu
               <Menu className="h-5 w-5 mr-2" />
@@ -1201,19 +1144,24 @@ export default function Navbar() {
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div
-                className="absolute top-full left-0 mt-5 w-52 p-4 bg-navbar border border-navbar/30 rounded-md shadow-lg z-50"
-                onMouseLeave={handleDropdownMouseLeave}
-              >
+              <div className="absolute top-full left-0 mt-5 w-52 p-4 bg-navbar border border-navbar/30 rounded-md shadow-lg z-50">
                 <div className="py-2">
-                  {menuItems.map((item) => (
+                  {MENU_ITEMS.map((item) => (
                     <button
                       key={item}
-                      onMouseEnter={() => handleMenuItemHover(item)}
-                      className="flex items-center justify-between w-full p-3 text-left text-white hover:bg-black/10 transition-colors"
+                      onClick={() => handleMenuItemClick(item)}
+                      className={`flex items-center justify-between w-full p-3 text-left transition-colors ${
+                        selectedMenuItem === item
+                          ? "text-white bg-black/20"
+                          : "text-white hover:bg-black/10"
+                      }`}
                     >
                       <span className="text-base">{item}</span>
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRight
+                        className={`h-4 w-4 ${
+                          selectedMenuItem === item && "rotate-90"
+                        }`}
+                      />
                     </button>
                   ))}
                 </div>
@@ -1233,23 +1181,24 @@ export default function Navbar() {
 
           {/* Right - Links */}
           <div className="flex items-center space-x-6 text-xl">
-            <a href="#" className=" hover:text-white/80 transition-colors">
-              Travel Essentials
-            </a>
-            <a href="#" className="hover:text-white/80 transition-colors">
-              Travel Club
-            </a>
+            {RIGHT_LINKS.map((link) => (
+              <Link
+                key={link}
+                href="#"
+                className="hover:text-white/80 transition-colors"
+              >
+                {link}
+              </Link>
+            ))}
           </div>
         </div>
       </nav>
 
-      {/* Content Layout - Appears beside dropdown with larger gap */}
-      {(hoveredMenuItem || lastHoveredItem) && currentTabData && (
+      {/* Content Layout - Appears when a menu item is selected */}
+      {selectedMenuItem && currentTabData && (
         <div
           ref={contentRef}
-          className="absolute left-[241px] top-[68px] bg-white rounded-md font-thunder shadow-2xl border border-gray-200 w-[calc(100vw-320px)] h-auto z-40"
-          onMouseEnter={handleContentMouseEnter}
-          onMouseLeave={handleContentMouseLeave}
+          className="absolute left-[241px] top-[68px] bg-white rounded-md font-thunder shadow-2xl border border-gray-200 w-[calc(100vw-320px)] h-auto max-h-[500px] z-40"
         >
           {/* Content Header */}
           <div className="px-6 py-3">
@@ -1258,23 +1207,27 @@ export default function Navbar() {
                 <button
                   key={tab}
                   onClick={() => handleTabClick(tab)}
-                  className={` transition-colors text-xl ${
+                  className={`transition-colors text-xl ${
                     currentTabKey === tab
-                      ? " text-black"
+                      ? "text-black"
                       : "text-black/50 hover:text-black/70"
                   }`}
                 >
                   {tab}
-                  <ChevronDown className="inline h-4 w-4 ml-1" />
+                  <ChevronRight
+                    className={`inline h-4 w-4 ml-1 ${
+                      currentTabKey === tab && "rotate-90"
+                    }`}
+                  />
                 </button>
               ))}
             </div>
           </div>
 
           {/* Content Body */}
-          <div className="flex h-full font-thunder">
+          <div className="flex h-full max-h-[350px] font-thunder">
             {/* Left Sidebar - Regions */}
-            <div className="w-56 overflow-y-auto">
+            <div className="w-56 overflow-y-auto scrollbar">
               <div className="p-4">
                 <h3 className="px-1 text-xl text-black">
                   {currentTabData.main_title}
@@ -1291,7 +1244,11 @@ export default function Navbar() {
                         }`}
                       >
                         <span className="text-md">{region.name}</span>
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight
+                          className={`h-4 w-4 ${
+                            expandedRegion === region.name && "rotate-90"
+                          }`}
+                        />
                       </button>
                     </div>
                   ))}
@@ -1300,7 +1257,7 @@ export default function Navbar() {
             </div>
 
             {/* Right Content - Countries/Items */}
-            <div className="flex-1 px-4 py-4 overflow-y-auto">
+            <div className="flex-1 px-4 py-4 overflow-y-auto scrollbar">
               <div className="mb-6">
                 {/* Dynamic Filters based on selected region */}
                 <div className="flex flex-wrap mb-2">
@@ -1308,10 +1265,10 @@ export default function Navbar() {
                     <button
                       key={filter}
                       onClick={() => handleFilterClick(filter)}
-                      className={` py-1 cursor-pointer px-2 rounded-full text-md transition-colors ${
+                      className={`py-1 cursor-pointer px-2 rounded-full text-md transition-colors ${
                         filter.includes(selectedFilter)
                           ? "text-black"
-                          : " text-black/50 hover:text-black/70"
+                          : "text-black/50 hover:text-black/70"
                       }`}
                     >
                       {filter}
@@ -1324,7 +1281,7 @@ export default function Navbar() {
                 </h3>
 
                 {/* Filtered Items Grid */}
-                <div className="flex flex-wrap gap-3 w-5/6 ">
+                <div className="flex flex-wrap gap-3 w-5/6">
                   {filteredCountries.map((item) => (
                     <button
                       key={item}

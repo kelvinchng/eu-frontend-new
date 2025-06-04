@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Onest } from "next/font/google";
 import "./globals.css";
+import { Container } from "@/components/common/container";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const onest = Onest({
+  variable: "--font-onest",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const thunder = localFont({
+  src: "./../../public/fonts/Thunder-LC.ttf",
+  display: "swap",
+  variable: "--font-thunder",
 });
 
 export const metadata: Metadata = {
@@ -23,12 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${onest.variable} ${thunder.variable}  antialiased`}
+        cz-shortcut-listen="true"
       >
-        {children}
+        <Container>{children}</Container>
       </body>
     </html>
   );
 }
+

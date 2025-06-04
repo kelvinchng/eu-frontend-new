@@ -1125,17 +1125,17 @@ export default function Navbar() {
     <>
       {/* Navigation Bar */}
       <nav
-        className={`w-full text-white px-8 py-1 relative font-thunder ${
+        className={`w-full text-white py-1 min-w-[400px] relative font-thunder ${
           isDropdownOpen || selectedMenuItem ? "bg-navbar" : "bg-transparent"
         } transition-colors duration-300`}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mx-8 min-[1900px]:mx-[200px]">
           {/* Left - Menu Button */}
           <div className="relative" ref={dropdownRef}>
             <Button
               variant="ghost"
               size="sm"
-              className="text-white hover:bg-transparent hover:text-white/80 text-xl cursor-pointer"
+              className="text-white hover:bg-transparent hover:text-white/80 text-xl  min-[1900px]:text-2xl cursor-pointer"
               onClick={handleToggleClick}
             >
               Menu
@@ -1144,19 +1144,21 @@ export default function Navbar() {
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute top-full left-0 mt-5 w-52 p-4 bg-navbar border border-navbar/30 rounded-md shadow-lg z-50">
-                <div className="py-2">
+              <div className="absolute top-full left-0 mt-5  min-[1900px]:mt-8 w-auto  min-[800px]:min-w-52  min-[800px]:w-52  min-[800px]:p-4 bg-navbar border border-navbar/30 rounded-md shadow-lg z-50">
+                <div className="py-2 flex w-auto   min-[800px]:flex-col gap-2">
                   {MENU_ITEMS.map((item) => (
                     <button
                       key={item}
                       onClick={() => handleMenuItemClick(item)}
-                      className={`flex items-center justify-between w-full p-3 text-left transition-colors ${
+                      className={`flex items-center text-nowrap justify-between w-full p-3 text-left transition-colors ${
                         selectedMenuItem === item
                           ? "text-white bg-black/20"
                           : "text-white hover:bg-black/10"
                       }`}
                     >
-                      <span className="text-base">{item}</span>
+                      <span className="text-base  min-[1900px]:text-lg">
+                        {item}
+                      </span>
                       <ChevronRight
                         className={`h-4 w-4 ${
                           selectedMenuItem === item && "rotate-90"
@@ -1175,12 +1177,13 @@ export default function Navbar() {
               src={"/assets/eulogo.png"}
               width={80}
               height={80}
+              className=" min-[1900px]:w-[114px] "
               alt="eulogo"
             />
           </div>
 
           {/* Right - Links */}
-          <div className="flex items-center space-x-6 text-xl">
+          <div className="flex items-center space-x-6 text-xl  min-[1900px]:text-2xl">
             {RIGHT_LINKS.map((link) => (
               <Link
                 key={link}
@@ -1198,7 +1201,7 @@ export default function Navbar() {
       {selectedMenuItem && currentTabData && (
         <div
           ref={contentRef}
-          className="absolute left-[241px] top-[68px] bg-white rounded-md font-thunder shadow-2xl border border-gray-200 w-[calc(100vw-320px)] h-auto max-h-[500px] z-40"
+          className="absolute left-8 min-[1900px]:left-[410px] min-[800px]:left-[241px] top-[133px] min-[1900px]:top-[92px] min-[800px]:top-[68px] bg-white rounded-md font-thunder shadow-2xl border border-gray-200 w-[calc(100vw-72px)] min-[1900px]:w-[calc(100vw-600px)] min-[800px]:w-[calc(100vw-320px)] h-auto max-h-[500px] z-40"
         >
           {/* Content Header */}
           <div className="px-6 py-3">
@@ -1207,7 +1210,7 @@ export default function Navbar() {
                 <button
                   key={tab}
                   onClick={() => handleTabClick(tab)}
-                  className={`transition-colors text-xl ${
+                  className={`transition-colors text-xl  min-[1900px]:text-2xl ${
                     currentTabKey === tab
                       ? "text-black"
                       : "text-black/50 hover:text-black/70"
@@ -1229,7 +1232,7 @@ export default function Navbar() {
             {/* Left Sidebar - Regions */}
             <div className="w-56 overflow-y-auto scrollbar">
               <div className="p-4">
-                <h3 className="px-1 text-xl text-black">
+                <h3 className="px-1 text-xl  min-[1900px]:text-2xl text-black">
                   {currentTabData.main_title}
                 </h3>
                 <div className="space-y-1">
@@ -1243,7 +1246,9 @@ export default function Navbar() {
                             : "hover:bg-gray-200"
                         }`}
                       >
-                        <span className="text-md">{region.name}</span>
+                        <span className="text-md  min-[1900px]:text-lg">
+                          {region.name}
+                        </span>
                         <ChevronRight
                           className={`h-4 w-4 ${
                             expandedRegion === region.name && "rotate-90"
@@ -1265,7 +1270,7 @@ export default function Navbar() {
                     <button
                       key={filter}
                       onClick={() => handleFilterClick(filter)}
-                      className={`py-1 cursor-pointer px-2 rounded-full text-md transition-colors ${
+                      className={`py-1 cursor-pointer px-2 rounded-full text-md  min-[1900px]:text-lg transition-colors ${
                         filter.includes(selectedFilter)
                           ? "text-black"
                           : "text-black/50 hover:text-black/70"
@@ -1276,7 +1281,7 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                <h3 className="text-lg px-2 text-black/80 mb-3">
+                <h3 className="text-lg  min-[1900px]:text-xl px-2 text-black/80 mb-3">
                   {currentTabData.title} ({filteredCountries.length})
                 </h3>
 
@@ -1285,7 +1290,7 @@ export default function Navbar() {
                   {filteredCountries.map((item) => (
                     <button
                       key={item}
-                      className="text-left py-1 px-2 w-[150px] hover:bg-navbar hover:text-white rounded transition-colors text-md"
+                      className="text-left py-1 px-2 w-[150px] hover:bg-navbar hover:text-white rounded transition-colors text-md  min-[1900px]:text-lg"
                     >
                       {item}
                     </button>

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import "./style.css";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+
 
 // Constants
 const MENU_ITEMS = [
@@ -990,6 +992,21 @@ export default function Navbar() {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const prevScrollY = useRef(0);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 10) {
+      // Scrolling up past 10px
+      setIsScrolled(true);
+    } else {
+      // At top or scrolling down
+      setIsScrolled(false);
+    }
+    prevScrollY.current = latest;
+  });
+
 
   const currentMenuData = selectedMenuItem ? menuData[selectedMenuItem] : null;
   const availableTabs = currentMenuData
@@ -1122,10 +1139,16 @@ export default function Navbar() {
   return (
     <>
       {/* Navigation Bar */}
-      <nav
+      <motion.nav
+        initial={{ backgroundColor: "rgba(0,0,0,0)" }}
+        animate={{
+          backgroundColor: isScrolled ? "rgba(36, 36, 36, 1)" : "",
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className={`w-full text-white py-1 min-w-[400px] relative font-thunder ${
-          isDropdownOpen || selectedMenuItem ? "bg-navbar" : "bg-transparent"
-        } transition-colors duration-300`}
+          !isScrolled && "hover:bg-navbar"
+        } ${
+          isDropdownOpen || selectedMenuItem ? "bg-navbar" : "bg-transparent"} transition-colors duration-300`}
       >
         <div className="flex items-center justify-between mx-8 ">
           {/* Left - Menu Button */}
@@ -1193,7 +1216,7 @@ export default function Navbar() {
             ))}
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Content Layout - Appears when a menu item is selected */}
       {selectedMenuItem && currentTabData && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Menu,
   X,
@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { menuData } from "../nav";
 import Link from "next/link";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
 import "./../nav/style.css";
 
@@ -31,6 +32,21 @@ export default function MobileNavbar() {
     [key: string]: boolean;
   }>({});
 
+  const [isScrolled, setIsScrolled] = useState(false);
+  const prevScrollY = useRef(0);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 10 ) {
+      // Scrolling up past 10px
+      setIsScrolled(true);
+    } else  {
+      // At top or scrolling down
+      setIsScrolled(false);
+    }
+    prevScrollY.current = latest;
+  });
+
   const toggleSection = (sectionName: string) => {
     setExpandedSections((prev) => ({
       ...prev,
@@ -49,26 +65,19 @@ export default function MobileNavbar() {
 
   return (
     <>
-      <nav
-        className={`w-full text-white py-1 min-w-[400px] relative font-thunder hover:bg-navbar bg-transparent
-        } transition-colors duration-300`}
+      <motion.nav
+        initial={{ backgroundColor: "rgba(0,0,0,0)" }}
+        animate={{
+          backgroundColor: isScrolled ? "rgba(36, 36, 36, 1)" : "rgba(0,0,0,0)",
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className={`w-full text-white py-2 min-w-[400px] relative font-thunder ${
+          !isScrolled && "hover:bg-navbar"
+        }`}
       >
-        <div className="flex items-center justify-between mx-8 ">
-          {/* Left - Menu Button */}
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-white hover:bg-transparent hover:text-white/80 text-xl cursor-pointer"
-              onClick={openMobileMenu}
-            >
-              Menu
-              <Menu className="h-5 w-5 mr-2" />
-            </Button>
-          </div>
-
+        <div className="flex justify-between items-center mx-8 ">
           {/* Center - Logo */}
-          <div className="flex-1 flex justify-center">
+          <div className="justify-center">
             <Image
               src={"/assets/eulogo.png"}
               width={80}
@@ -77,17 +86,16 @@ export default function MobileNavbar() {
             />
           </div>
 
-          {/* Right - Links */}
-          <div className="flex items-center space-x-6 text-xl">
-            {RIGHT_LINKS.map((link) => (
-              <Link
-                key={link}
-                href="#"
-                className="hover:text-white/80 transition-colors"
-              >
-                {link}
-              </Link>
-            ))}
+          {/* Left - Menu Button */}
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-transparent hover:text-white/80 text-xl cursor-pointer"
+              onClick={openMobileMenu}
+            >
+              <Menu  size={20} />
+            </Button>
           </div>
         </div>
 
@@ -234,7 +242,7 @@ export default function MobileNavbar() {
             </div>
           </div>
         )}
-      </nav>
+      </motion.nav>
     </>
   );
 }

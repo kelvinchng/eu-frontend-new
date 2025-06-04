@@ -19,7 +19,7 @@ export function DatePicker({ label }: DatePickerProps) {
 
   return (
     <div className="flex flex-col gap-1 min-w-[100px] flex-1">
-      <span className="font-bold text-tiny lg:text-xs text-gray-600 uppercase tracking-wide">
+      <span className="font-bold text-tiny lg:text-xs xl:text-md text-gray-600 uppercase tracking-wide">
         {label}
       </span>
       <Popover>
@@ -31,8 +31,14 @@ export function DatePicker({ label }: DatePickerProps) {
               !date && "text-muted-foreground"
             )}
           >
-            <CalendarIcon className="mr-2 size-4 text-tiny lg:text-xs" />
-            {date ? format(date, "PPP") : <span>Pick a date</span>}
+            <CalendarIcon className="mr-2 size-4" />
+            {date ? (
+              format(date, "PPP")
+            ) : (
+              <span className="text-tiny lg:text-xs xl:text-md">
+                Pick a date
+              </span>
+            )}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">

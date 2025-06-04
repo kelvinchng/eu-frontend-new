@@ -35,7 +35,7 @@ type TabData = {
 type MenuData = Record<MenuItem, { tabs: Record<string, TabData> }>;
 
 // Different data for each menu option and tab
-const menuData: MenuData = {
+export const menuData: MenuData = {
   "Plan Your Journey": {
     tabs: {
       "Group Holidays": {
@@ -1117,6 +1117,7 @@ export default function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isDropdownOpen, selectedMenuItem]);
+
 
   return (
     <>

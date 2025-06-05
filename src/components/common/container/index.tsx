@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import Navbar from "../nav";
-import "./style.css"
+import "./style.css";
 import ResponsiveNavbar from "../responsive-nav";
 import Footer from "../footer";
 

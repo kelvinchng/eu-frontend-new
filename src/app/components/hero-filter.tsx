@@ -34,12 +34,12 @@ export default function HeroFilter() {
       <div className="p-4 md:p-6 lg:p-8">
         <div className="grid grid-cols-1 sm:grid-cols-5 w-full sm:items-center gap-2">
           <div className="flex flex-col gap-1 w-full sm:w-auto sm:min-w-[100px]">
-            <span className="font-bold text-tiny lg:text-xs text-gray-600 uppercase tracking-wide sm:tracking-normal">
+            <span className="font-bold text-tiny lg:text-xs xl:text-base text-gray-600 uppercase tracking-wide sm:tracking-normal">
               I want to travel to...
             </span>
             <div className="flex items-center h-10 gap-2 p-3 border rounded-md bg-gray-50">
               <MapPin className="size-4 text-gray-500 shrink-0" />
-              <span className="text-tiny lg:text-xs font-medium">
+              <span className="text-tiny lg:text-xs xl:text-md font-medium">
                 Bali, Indonesia
               </span>
             </div>
@@ -62,10 +62,10 @@ export default function HeroFilter() {
 
           {/* Actions - Clear and Search */}
           <div className="flex flex-col gap-1">
-            <span className="hidden sm:block font-bold text-tiny lg:text-xs text-gray-600 uppercase tracking-wide sm:tracking-normal">
+            <span className="hidden sm:block font-bold text-tiny lg:text-xs xl:text-md text-gray-600 uppercase tracking-wide sm:tracking-normal">
               Clear Filters
             </span>
-            <Button className="py-5">
+            <Button className="py-5 text-tiny lg:text-xs xl:text-md text-white">
               <Search className="mr-2 h-4 w-4" />
               Search
             </Button>

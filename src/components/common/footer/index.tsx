@@ -76,7 +76,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-[#5C5C5C] my-8"></div>
+        <div className="border-t border-[#5C5C5C] my-8 min-sm:mx-10"></div>
 
         {/* Copyright */}
         <div className="text-base font-onest leading-[30px] text-center min-[640px]:text-left text-white px-0 min-[640px]:px-8">

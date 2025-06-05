@@ -1,4 +1,5 @@
 import BannerCarousel from "./components/banner";
+import HeroFooter from "./components/hero-footer";
 import { TourSection } from "./components/tour-section";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div className="flex flex-col w-full gap-10">
       <BannerCarousel />
       <TourSection />
+      <HeroFooter/>
     </div>
   );
 }

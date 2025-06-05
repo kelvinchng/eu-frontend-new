@@ -6,6 +6,8 @@
 @theme inline {
   --font-onest: var(--font-onest);
   --font-thunder : var(--font-thunder);
+  --font-pp : var(--font-pp);
+
   --color-navbar: var(--navbar);
 
   --color-background: var(--background);

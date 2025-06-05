@@ -1,0 +1,44 @@
+{
+    "columns": [
+      {
+        "title": "Links",
+        "links": [
+          { "title": "Home", "url": "/" },
+          { "title": "Our Story", "url": "/our-story" },
+          { "title": "Press & Media", "url": "/press" },
+          { "title": "Our Partners", "url": "/partners" },
+          { "title": "Careers", "url": "/careers" },
+          { "title": "Contact Us", "url": "/contact" }
+        ]
+      },
+      {
+        "title": "Explore",
+        "links": [
+          { "title": "Trending Destinations", "url": "/destinations" },
+          { "title": "Themed Journeys", "url": "/journeys" },
+          { "title": "Cruises", "url": "/cruises" },
+          { "title": "Last-Minute Deals", "url": "/deals" }
+        ]
+      },
+      {
+        "title": "Policies",
+        "links": [
+          { "title": "Terms and Conditions", "url": "/terms" },
+          { "title": "Cancellation and Refunds", "url": "/refunds" },
+          { "title": "Privacy Policy", "url": "/privacy" }
+        ]
+      }
+    ],
+    "contactInfo": {
+      "phone": "+65 6958 8888",
+      "address": "1 Raffles Blvd, Level 2 Crescent 2, 039593",
+      "hours": "Monday to Sunday, 11AM to 8PM",
+      "socialMedia": [
+        { "name": "Instagram", "url": "https://instagram.com", "icon": "instagram" },
+        { "name": "Facebook", "url": "https://facebook.com", "icon": "facebook" },
+        { "name": "YouTube", "url": "https://youtube.com", "icon": "youtube" }
+      ]
+    },
+    "copyright": "© 2025 EU Holidays Pte Ltd. All rights reserved."
+  }
+  

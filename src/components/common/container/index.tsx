@@ -3,11 +3,12 @@ import React from "react";
 import Navbar from "../nav";
 import "./style.css"
 import ResponsiveNavbar from "../responsive-nav";
+import Footer from "../footer";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col min-w-[400px] bg-background">
-      {/* Top Bar - Changed to fixed */}
+      {/* Nav Bar */}
       <div className="w-full items-center flex fixed top-0 left-0 z-50">
         <ResponsiveNavbar />
       </div>
@@ -16,9 +17,7 @@ export const Container = ({ children }: { children: React.ReactNode }) => {
       <div className="w-full bg-background">{children}</div>
 
       {/* Footer */}
-      <div className="w-full bg-background h-[8rem] items-center flex">
-        <p>Footer</p>
-      </div>
+      <Footer />
     </div>
   );
 };

@@ -94,7 +94,7 @@ export default function MobileNavbar() {
               className="text-white hover:bg-transparent hover:text-white/80 text-xl cursor-pointer"
               onClick={openMobileMenu}
             >
-              <Menu  size={20} />
+              <Menu size={20} />
             </Button>
           </div>
         </div>
@@ -120,7 +120,9 @@ export default function MobileNavbar() {
                     onClick={() => item.hasDropdown && toggleSection(item.name)}
                     className="flex items-center justify-between w-full text-left text-white py-4 px-8 hover:bg-black/10 transition-colors border-b border-white/10 cursor-pointer"
                   >
-                    <span className="text-md font-normal">{item.name}</span>
+                    <span className="text-base font-onest font-normal">
+                      {item.name}
+                    </span>
                     {item.hasDropdown && (
                       <ChevronDown
                         className={`h-4 w-4 transition-transform ${
@@ -146,7 +148,9 @@ export default function MobileNavbar() {
                                 }
                                 className="flex items-center justify-between w-full text-left text-white py-4 pl-14 pr-8 border-b border-white/10 hover:bg-black/10 cursor-pointer"
                               >
-                                <span className="text-base">{tab}</span>
+                                <span className="text-base font-onest font-extralight">
+                                  {tab}
+                                </span>
                                 <ChevronRight
                                   className={`h-4 w-4 transition-transform ${
                                     expandedSections[`tab-${item.name}-${tab}`]
@@ -172,7 +176,7 @@ export default function MobileNavbar() {
                                         }
                                         className="flex items-center justify-between w-full text-left text-white py-4 pl-20 pr-8 hover:bg-black/10 border-b border-white/10 cursor-pointer"
                                       >
-                                        <span className="text-base">
+                                        <span className="text-base font-onest font-extralight">
                                           {region.name}
                                         </span>
                                         <ChevronRight
@@ -193,7 +197,7 @@ export default function MobileNavbar() {
                                           {region.countries.map((country) => (
                                             <button
                                               key={country}
-                                              className="block w-full text-left text-white py-4 border-b border-white/10 pl-26 px-8 hover:bg-black/10 text-sm cursor-pointer"
+                                              className="block w-full text-left text-white py-4 border-b border-white/10 pl-26 px-8 hover:bg-black/10 text-base font-onest font-extralight cursor-pointer"
                                             >
                                               {country}
                                             </button>

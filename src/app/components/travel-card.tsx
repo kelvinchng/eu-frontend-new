@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -13,7 +14,7 @@ export const TravelCard = ({ tour }: TravelCardProps) => {
   const [viewMore, setViewMore] = useState(false);
   return (
     <div
-      className="w-[265px] sm:w-[295] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[420px] xl:min-h-[643px]
+      className="w-[265px] sm:w-[295] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[440px] xl:min-h-[643px]
       min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
     >
       {/* IMAGE PART  */}
@@ -29,16 +30,20 @@ export const TravelCard = ({ tour }: TravelCardProps) => {
         />
       </div>
       {/* CONTENT PART (Example structure) */}
-      <div className="flex flex-col px-6 pt-2 xl:pt-4 xl:text-xl font-onest flex-grow">
-        <h4 className="text-base xl:text-xl font-[700] min-h-[50px] 2xl:min-h-[70px]">
+      <div className="flex flex-col px-6 pt-2 xl:pt-4 xl:text-xl 2xl:text-3xl font-onest flex-grow">
+        <h4 className="text-base xl:text-xl 2xl:text-[25px] font-[700] min-h-[50px] 2xl:min-h-[80px]">
           {tour.title}
         </h4>
-        <span className="text-xs xl:text-lg font-[500] mb-2">{tour.price}</span>
-        <span className="text-sm xl:text-lg font-[400] xl:min-h-[200px]">
+        <span className="text-xs xl:text-lg 2xl:text-xl font-[500] mb-2">
+          {tour.price}
+        </span>
+        <span className="text-sm xl:text-lg 2xl:text-xl font-[400] xl:min-h-[200px]">
           {tour.descriptions}
         </span>
         <Button
-          className={`w-full justify-start items-center ${viewMore && "mb-2"}`}
+          className={`w-full justify-start items-center mt-2 ${
+            viewMore && "mb-2"
+          }`}
           variant={"outline"}
         >
           <Image
@@ -48,7 +53,9 @@ export const TravelCard = ({ tour }: TravelCardProps) => {
             height={20}
             className="self-start mr-2"
           />
-          <span className={`font-xs font-[400]`}>1-for-1</span>
+          <span className={`text-sm xl:text-lg 2xl:text-xl font-[400]`}>
+            1-for-1
+          </span>
         </Button>
         {viewMore && (
           <div className="flex flex-col gap-2">
@@ -63,7 +70,9 @@ export const TravelCard = ({ tour }: TravelCardProps) => {
                 height={20}
                 className="self-start mr-2"
               />
-              <span className="font-xs font-[400]">1-for-1</span>
+              <span className="text-sm xl:text-lg 2xl:text-xl font-[400]">
+                1-for-1
+              </span>
             </Button>
             <Button
               className="w-full justify-start items-center"
@@ -76,14 +85,16 @@ export const TravelCard = ({ tour }: TravelCardProps) => {
                 height={20}
                 className="self-start mr-2"
               />
-              <span className="font-xs font-[400]">1-for-1</span>
+              <span className="text-sm xl:text-lg 2xl:text-xl font-[400]">
+                1-for-1
+              </span>
             </Button>
           </div>
         )}
         <Button
           onClick={() => setViewMore((prev) => !prev)}
           variant={"ghost"}
-          className="w-full self-center xl:mt-2"
+          className="w-full self-center xl:mt-2 text-sm xl:text-lg 2xl:text-xl font-normal lg:pt-6 xl:pb-2 xl:my-4"
         >
           View More <ChevronDown className="ml-2" />
         </Button>

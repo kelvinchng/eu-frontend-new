@@ -19,7 +19,7 @@ export function DatePicker({ label }: DatePickerProps) {
 
   return (
     <div className="flex flex-col gap-1 min-w-[100px] flex-1">
-      <span className="font-bold text-tiny lg:text-xs xl:text-md text-gray-600 uppercase tracking-wide">
+      <span className="font-bold text-tiny lg:text-xs xl:text-md 2xl:text-lg text-gray-600 uppercase tracking-wide">
         {label}
       </span>
       <Popover>
@@ -35,7 +35,7 @@ export function DatePicker({ label }: DatePickerProps) {
             {date ? (
               format(date, "PPP")
             ) : (
-              <span className="text-tiny lg:text-xs xl:text-md">
+              <span className="text-tiny lg:text-xs xl:text-md 2xl:text-lg">
                 Pick a date
               </span>
             )}

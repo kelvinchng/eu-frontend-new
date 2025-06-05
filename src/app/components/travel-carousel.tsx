@@ -2,14 +2,11 @@
 
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { TravelCard } from "./travel-card";
-import { TourOption } from "./tour";
-
 interface TravelCarousel {
-  tours: TourOption[];
+  children: React.ReactNode;
 }
 
-export default function TravelCarousel({ tours }: TravelCarousel) {
+export default function TravelCarousel({ children }: TravelCarousel) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: false,
@@ -45,11 +42,7 @@ export default function TravelCarousel({ tours }: TravelCarousel) {
         ref={emblaRef}
         className="overflow-hidden rounded-xl min-h-[450px] sm:min-h-[480px]"
       >
-        <div className="flex gap-2 md:gap-4">
-          {tours.map((tour) => (
-            <TravelCard tour={tour} key={tour.id} />
-          ))}
-        </div>
+        {children}
       </div>
       {scrollSnaps.length > 1 && (
         <div className="flex justify-center gap-2 mt-4 xl:mt-8">

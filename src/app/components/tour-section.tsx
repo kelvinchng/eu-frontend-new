@@ -1,7 +1,7 @@
 import React from "react";
 import { Tour, TourOption } from "./tour";
-import TravelCarousel from "./travel-carousel";
-import Destination from "./destination";
+import { TravelCard } from "./travel-card";
+import { DestinationCard } from "./destination-card";
 
 const promotionsTours: TourOption[] = [
   {
@@ -126,18 +126,23 @@ const destinations = [
 
 export const TourSection = () => {
   return (
-    <div className="flex flex-col gap-10 lg:gap-20">
+    <div className="flex flex-col gap-10 lg:gap-20 md:mb-6 lg:mb-10 2xl:my-10">
       <Tour title="Seasonal Deals + Promotions">
-        <TravelCarousel tours={promotionsTours} />
+        <div className="flex gap-2 md:gap-4">
+          {promotionsTours.map((tour) => (
+            <TravelCard tour={tour} key={tour.id} />
+          ))}
+        </div>
       </Tour>
       <Tour title="Featured Tours">
-        <TravelCarousel tours={featureTours} />
+        <div className="flex gap-2 md:gap-4">
+          {featureTours.map((tour) => (
+            <TravelCard tour={tour} key={tour.id} />
+          ))}
+        </div>
       </Tour>
       <Tour title="Explore Tours By Destinations">
-        <Destination destinations={destinations} />
-      </Tour>
-      <Tour title="Explore Tours By Destinations">
-        <Destination destinations={destinations} />
+        <DestinationCard destinations={destinations} />
       </Tour>
     </div>
   );

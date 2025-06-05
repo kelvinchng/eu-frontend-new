@@ -2,6 +2,11 @@ import React from "react";
 import { Tour, TourOption } from "./tour";
 import { TravelCard } from "./travel-card";
 import { DestinationCard } from "./destination-card";
+import { TourByTheme } from "./tour-by-theme";
+import TravelWithEuSection from "./traveleu-section";
+import { Link, Ship, Snowflake, TrendingUp } from "lucide-react";
+import { Adventure } from "./adventure";
+import { Promotion } from "./promotion";
 
 const promotionsTours: TourOption[] = [
   {
@@ -117,11 +122,73 @@ const featureTours = [
   },
 ];
 
-const destinations = [
+export const destinations = [
   { id: 1, title: "Explore Japan.", image: "/assets/japan.png" },
   { id: 2, title: "Explore Korea.", image: "/assets/korea.png" },
   { id: 3, title: "Explore Taiwan.", image: "/assets/taiwan.png" },
   { id: 4, title: "Explore China.", image: "/assets/china.png" },
+];
+
+const themeOptions = [
+  {
+    id: 1,
+    title: "Luxury Experiences",
+    descriptions: "Exquisite moments await.",
+    image: "/assets/bed.png",
+  },
+  {
+    id: 2,
+    title: "Family Friendly",
+    descriptions: "Designed for families.",
+    image: "/assets/family.png",
+  },
+  {
+    id: 3,
+    title: "Seasonal Tours",
+    descriptions: "Tours for every season.",
+    image: "/assets/winter.png",
+  },
+  {
+    id: 4,
+    title: "Cultural & Historical",
+    descriptions: "Stories of time and heritage.",
+    image: "/assets/cultural.png",
+  },
+];
+
+const adventureOptions = [
+  {
+    id: 1,
+    title: "Trending Now",
+    icon: <TrendingUp />,
+    image: "/assets/bridge.png",
+  },
+  {
+    id: 2,
+    title: "Travel Deals",
+    icon: <Link />,
+    image: "/assets/bridge1.png",
+  },
+  {
+    id: 3,
+    title: "Themed Journeys",
+    icon: <Snowflake />,
+    image: "/assets/sea.png",
+  },
+  { id: 4, title: "Cruises", icon: <Ship />, image: "/assets/cruise.png" },
+];
+
+const promotionImages = [
+  "/assets/promo1.png",
+  "/assets/promo2.png",
+  "/assets/promo3.png",
+  "/assets/promo4.png",
+  "/assets/promo5.png",
+  "/assets/promo6.png",
+  "/assets/promo7.png",
+  "/assets/promo8.png",
+  "/assets/promo9.png",
+  "/assets/promo10.png",
 ];
 
 export const TourSection = () => {
@@ -144,6 +211,30 @@ export const TourSection = () => {
       <Tour title="Explore Tours By Destinations">
         <DestinationCard destinations={destinations} />
       </Tour>
+      {/* THEME SECTION  */}
+      <div className="sm:bg-[#EFEFEF] py-4 md:py-6 lg:py-10 w-full flex flex-col sm:items-center 2xl:py-20 ">
+        <Tour
+          title="Explore Tours By Themes"
+          subTitleClassName="justify-center"
+          titleClassName="items-center"
+        >
+          <TourByTheme themes={themeOptions} />
+        </Tour>
+      </div>
+
+      {/* EU SECTION  */}
+      <TravelWithEuSection />
+
+      {/* ADVENTURE SECTION  */}
+      <Tour
+        title="Explore Tours By Themes"
+        subTitle="Join thousands of happy travellers who trust EU Holidays to make their journey unforgettable."
+      >
+        <Adventure adventures={adventureOptions} />
+      </Tour>
+
+      {/* PROMOTION SECTION  */}
+      <Promotion promotionImages={promotionImages} />
     </div>
   );
 };

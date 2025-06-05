@@ -6,7 +6,7 @@ import Footer from "../footer";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex flex-col min-w-[400px] bg-background">
+    <div className="flex flex-col min-w-[375px] bg-background">
       {/* Nav Bar */}
       <div className="w-full items-center flex fixed top-0 left-0 z-50">
         <ResponsiveNavbar />

@@ -7,7 +7,7 @@ export default function Home() {
     <div className="flex flex-col w-full gap-10">
       <BannerCarousel />
       <TourSection />
-      <HeroFooter/>
+      <HeroFooter />
     </div>
   );
 }

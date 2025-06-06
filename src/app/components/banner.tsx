@@ -69,7 +69,7 @@ export default function BannerCarousel() {
   )`;
 
   return (
-    <div className="relative h-[605px] xl:h-[800px] 2xl:h-[1000px]  w-full overflow-hidden">
+    <div className="relative h-[605px] xl:h-[800px]  w-full overflow-hidden">
       {/* Embla Carousel Container */}
       <div className="h-full" ref={emblaRef}>
         <div className="flex flex-col h-full">

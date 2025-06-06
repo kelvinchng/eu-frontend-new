@@ -88,7 +88,7 @@ export default function BannerCarousel() {
 
       {/* Filter */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 w-full px-4 flex justify-center xl:mb-10">
-        <div className="flex flex-col gap-5 sm:gap-6">
+        <div className="flex flex-col gap-5 sm:gap-0">
           <div className="flex items-baseline ms-1.5 md:ms-2 w-[200px] sm:w-[530px] md:w-[620px] lg:w-[780px] xl:w-[900px] 2xl:w-[1350px] relative font-thunder">
             <h3 className="text-white text-[40px] font-[400] tracking-normal sm:text-[60px] md:text-[70px] lg:text-[90px] xl:text-[100px] 2xl:text-[150px]">
               Book the best travel deals{" "}

@@ -34,10 +34,10 @@ export default function HeroFilter() {
       <div className="p-4 md:p-6 lg:p-8">
         <div className="grid grid-cols-1 sm:grid-cols-5 w-full xl:py-5 sm:items-center gap-2">
           <div className="flex flex-col gap-1 w-full sm:w-auto sm:min-w-[100px]">
-            <span className=" text-tiny lg:text-xs xl:text-base 2xl:text-lg text-gray-600 uppercase tracking-wide sm:tracking-normal lg:font-[600] font-extrabold">
+            <span className="text-tiny lg:text-xs xl:text-base 2xl:text-lg text-gray-600 uppercase tracking-wide sm:tracking-normal lg:font-[600] font-extrabold">
               I want to travel to...
             </span>
-            <div className="flex items-center h-10 gap-2 p-3 rounded-md bg-transparent">
+            <div className="flex items-center h-10 gap-2 p-3 rounded-md bg-transparent sm:-ms-3">
               <MapPin className="size-4 text-gray-500 shrink-0" />
               <span className="text-tiny lg:text-xs xl:text-md 2xl:text-lg font-medium">
                 Bali, Indonesia

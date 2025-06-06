@@ -30,7 +30,7 @@ const holidayTypes = [
 
 export default function HeroFilter() {
   return (
-    <div className="bg-white backdrop-blur-sm rounded-lg shadow-lg pointer-events-auto xl:w-[1000px] 2xl:w-[1350px]">
+    <div className="bg-white backdrop-blur-sm rounded-lg xl:rounded-2xl shadow-lg pointer-events-auto xl:w-[1000px] 2xl:w-[1350px] font-onest">
       <div className="p-4 md:p-6 lg:p-8">
         <div className="grid grid-cols-1 sm:grid-cols-5 w-full xl:py-5 sm:items-center gap-2">
           <div className="flex flex-col gap-1 w-full sm:w-auto sm:min-w-[100px]">

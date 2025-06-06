@@ -89,7 +89,7 @@ export default function TravelWithEuSection() {
       </div>
 
       {/* Mobile View: All sections displayed vertically */}
-      <div className="sm:hidden space-y-10">
+      <div className="sm:hidden space-y-10 pr-6">
         {tabData.map((tab) => (
           <div key={`mobile-${tab.id}`} className="space-y-10">
             <button

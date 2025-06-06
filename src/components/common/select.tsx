@@ -21,12 +21,12 @@ export function Dropdown({ label, options, placeholder }: DropdownProps) {
   return (
     <div className="flex flex-col gap-1 w-full h-full flex-1">
       {label && (
-        <span className="font-bold text-tiny lg:text-xs xl:text-md 2xl:text-lg text-gray-600 uppercase tracking-wide">
+        <span className="font-extrabold text-tiny lg:text-xs xl:text-md 2xl:text-lg text-gray-600 uppercase tracking-wide font-onest">
           {label}
         </span>
       )}
       <Select>
-        <SelectTrigger className="h-14 w-full data-[size=default]:h-10 lg:data-[placeholder]:text-md 2xl:data-[placeholder]:text-lg">
+        <SelectTrigger className="h-14 w-full data-[size=default]:h-10 lg:data-[placeholder]:text-md 2xl:data-[placeholder]:text-lg border-none shadow-none">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>

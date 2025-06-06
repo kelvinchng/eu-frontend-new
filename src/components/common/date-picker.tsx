@@ -19,7 +19,7 @@ export function DatePicker({ label }: DatePickerProps) {
 
   return (
     <div className="flex flex-col gap-1 min-w-[100px] flex-1">
-      <span className="font-bold text-tiny lg:text-xs xl:text-md 2xl:text-lg text-gray-600 uppercase tracking-wide">
+      <span className="font-extrabold text-tiny lg:text-xs xl:text-md 2xl:text-lg text-gray-600 uppercase tracking-wide lg:font-[600]">
         {label}
       </span>
       <Popover>
@@ -27,7 +27,7 @@ export function DatePicker({ label }: DatePickerProps) {
           <Button
             variant={"outline"}
             className={cn(
-              "justify-start text-left font-normal h-10 px-3",
+              "justify-start text-left font-normal h-10 px-3 border-none shadow-none 2xl:-ms-4 ",
               !date && "text-muted-foreground"
             )}
           >

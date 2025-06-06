@@ -19,7 +19,10 @@ export function DatePicker({ label }: DatePickerProps) {
 
   return (
     <div className="flex flex-col gap-1 min-w-[100px] flex-1">
-      <span className="font-extrabold text-tiny lg:text-xs xl:text-md 2xl:text-lg text-gray-600 uppercase tracking-wide lg:font-[600]">
+      <span
+        className=" text-tiny lg:text-xs xl:text-md 2xl:text-lg text-navbar uppercase tracking-wide font-semibold"
+        style={{ letterSpacing: "-2.5%" }}
+      >
         {label}
       </span>
       <Popover>
@@ -31,11 +34,11 @@ export function DatePicker({ label }: DatePickerProps) {
               !date && "text-muted-foreground"
             )}
           >
-            <CalendarIcon className="mr-2 size-4" />
+            <CalendarIcon className="mr-2 size-4 text-navbar" />
             {date ? (
               format(date, "PPP")
             ) : (
-              <span className="text-tiny lg:text-xs xl:text-md 2xl:text-lg">
+              <span className="text-tiny lg:text-xs xl:text-md 2xl:text-lg text-navbar">
                 Pick a date
               </span>
             )}

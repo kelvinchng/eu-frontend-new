@@ -87,15 +87,17 @@ export default function BannerCarousel() {
       </div>
 
       {/* Filter */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 w-full px-4 flex justify-center xl:mb-10">
+      <div className="absolute bottom-8 left-1/2 w-full transform -translate-x-1/2 z-20 px-4 flex justify-center xl:mb-10">
         <div className="flex flex-col gap-5 sm:gap-0">
-          <div className="flex items-baseline ms-1.5 md:ms-2 w-[340px] sm:w-[530px] md:w-[620px] lg:w-[780px] xl:w-[900px] 2xl:w-[1350px] relative font-thunder">
-            <h3 className="text-white text-[53px] font-[400] tracking-normal sm:text-[50px] md:text-[70px] lg:text-[90px] xl:text-[100px] 2xl:text-[150px] max-sm:max-w-[300px]">
+          <div className="flex items-baseline ms-1.5 md:ms-2 w-[340px] sm:w-[530px] md:w-[620px] lg:w-[780px] xl:w-[900px] 2xl:w-[1350px] relative font-thunder ">
+            <h3 className="text-white text-[53px] font-[400] tracking-normal sm:text-[50px] md:text-[70px] lg:text-[90px] xl:text-[100px] 2xl:text-[150px] max-sm:max-w-[300px] max-[400px]:mx-0 max-[500px]:-mx-4 ">
               Book the best travel deals{" "}
             </h3>
             <ArrowUpRight className="size-[53px] sm:size-[60px] md:size-[70px] lg:size-[90px] xl:size-[100px] 2xl:size-[150px] text-white absolute right-24 bottom-4 sm:bottom-4 sm:right-4 md:right-0 md:bottom-5 lg:right-0 xl:right-5 xl:bottom-6 2xl:bottom-10 2xl:right-10" />
           </div>
-          <HeroFilter />
+          <div className="max-[400px]:mx-0 max-[500px]:-mx-4 ">
+            <HeroFilter />
+          </div>
         </div>
       </div>
 

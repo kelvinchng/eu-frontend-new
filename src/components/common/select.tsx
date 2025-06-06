@@ -29,7 +29,7 @@ export function Dropdown({ label, options, placeholder }: DropdownProps) {
         <SelectTrigger className="h-14 w-full data-[size=default]:h-10 lg:data-[placeholder]:text-md 2xl:data-[placeholder]:text-lg border-none shadow-none">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="">
           {options?.map((option) => (
             <SelectItem value={option.value} key={option.value}>
               {option.label}

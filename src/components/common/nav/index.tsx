@@ -18,7 +18,7 @@ const MENU_ITEMS = [
   "Our Brand",
 ] as const;
 const LOGO_TEXT = "Boo";
-const RIGHT_LINKS = ["Travel Essentials", "EU Elites"];
+const RIGHT_LINKS = ["Travel Essentials", "Travel Club"];
 
 // Types
 type MenuItem = (typeof MENU_ITEMS)[number];
@@ -1153,7 +1153,7 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between mx-8 ">
           {/* Left - Menu Button */}
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative w-[186.93px] min-2xl:w-[268.39px]" ref={dropdownRef}>
             <Button
               variant="ghost"
               size="sm"
@@ -1192,7 +1192,7 @@ export default function Navbar() {
           </div>
 
           {/* Center - Logo */}
-          <div className="flex-1 flex justify-center">
+          <div className=" flex justify-center">
             <Image
               src={"/assets/eulogo.png"}
               width={80}
@@ -1203,7 +1203,10 @@ export default function Navbar() {
           </div>
 
           {/* Right - Links */}
-          <div className="flex items-center space-x-6 text-xl tracking-widest  min-2xl:text-3xl">
+          <div
+            className="flex items-center space-x-6 text-xl  font-normal  min-2xl:text-3xl"
+            style={{ letterSpacing: "3%" }}
+          >
             {RIGHT_LINKS.map((link) => (
               <Link
                 key={link}

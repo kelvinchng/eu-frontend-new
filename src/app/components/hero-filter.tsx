@@ -35,14 +35,14 @@ export default function HeroFilter() {
         <div className="grid grid-cols-1 sm:grid-cols-5 w-full xl:py-5 sm:items-center gap-2">
           <div className="flex flex-col gap-1 w-full sm:w-auto sm:min-w-[100px]">
             <span
-              className="text-tiny lg:text-xs xl:text-base 2xl:text-lg text-navbar uppercase lg:font-[600] font-semibold"
+              className="text-base 2xl:text-lg font-onest text-navbar uppercase font-semibold text-ellipsis text-nowrap overflow-hidden"
               style={{ letterSpacing: "-2.5%" }}
             >
               I want to travel to...
             </span>
             <div className="flex items-center h-10 gap-2 p-3 rounded-md bg-transparent -ms-3">
               <MapPin className="size-4 text-navbar shrink-0" />
-              <span className="text-tiny lg:text-xs xl:text-md 2xl:text-lg font-normal">
+              <span className="text-base 2xl:text-lg font-onest text-navbar uppercase font-normal">
                 Bali, Indonesia
               </span>
             </div>

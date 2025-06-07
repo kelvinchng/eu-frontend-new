@@ -22,7 +22,7 @@ export function Dropdown({ label, options, placeholder }: DropdownProps) {
     <div className="flex flex-col gap-1 w-full h-full flex-1">
       {label && (
         <span
-          className="font-semibold text-tiny lg:text-xs xl:text-md 2xl:text-lg text-navbar uppercase  font-onest"
+          className="text-base 2xl:text-lg font-onest text-navbar uppercase font-semibold"
           style={{ letterSpacing: "-2.5%" }}
         >
           {label}
@@ -34,7 +34,11 @@ export function Dropdown({ label, options, placeholder }: DropdownProps) {
         </SelectTrigger>
         <SelectContent className=" text-navbar">
           {options?.map((option) => (
-            <SelectItem value={option.value} key={option.value} className=" text-navbar font-onset">
+            <SelectItem
+              value={option.value}
+              key={option.value}
+              className=" text-navbar font-onset"
+            >
               {option.label}
             </SelectItem>
           ))}

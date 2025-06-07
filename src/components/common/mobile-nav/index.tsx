@@ -1,12 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  ChevronRight,
-} from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { menuData } from "../nav";
 import Link from "next/link";
@@ -25,7 +20,6 @@ const menuItems = [
 ];
 const RIGHT_LINKS = ["Travel Essentials", "Travel Club"];
 
-
 export default function MobileNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState<{
@@ -37,10 +31,10 @@ export default function MobileNavbar() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 10 ) {
+    if (latest > 10) {
       // Scrolling up past 10px
       setIsScrolled(true);
-    } else  {
+    } else {
       // At top or scrolling down
       setIsScrolled(false);
     }
@@ -71,7 +65,7 @@ export default function MobileNavbar() {
           backgroundColor: isScrolled ? "rgba(36, 36, 36, 1)" : "rgba(0,0,0,0)",
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`w-full text-white py-2 min-w-[400px] relative font-thunder ${
+        className={`w-full pt-[39px] text-white py-2 min-w-[400px] relative font-thunder ${
           !isScrolled && "hover:bg-navbar"
         }`}
       >
@@ -88,14 +82,14 @@ export default function MobileNavbar() {
 
           {/* Left - Menu Button */}
           <div className="relative">
-            <Button
+            {/* <Button
               variant="ghost"
-              size="icon"
+              size="default"
               className="text-white hover:bg-transparent hover:text-white/80 text-xl cursor-pointer"
               onClick={openMobileMenu}
-            >
-              <Menu size={20} />
-            </Button>
+            > */}
+            <Menu size={30} onClick={openMobileMenu} />
+            {/* </Button> */}
           </div>
         </div>
 

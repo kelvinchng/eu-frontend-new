@@ -20,7 +20,7 @@ export function DatePicker({ label }: DatePickerProps) {
   return (
     <div className="flex flex-col gap-1 min-w-[100px] flex-1">
       <span
-        className=" text-tiny lg:text-xs xl:text-md 2xl:text-lg text-navbar uppercase tracking-wide font-semibold"
+        className="text-base 2xl:text-lg font-onest text-navbar uppercase font-semibold"
         style={{ letterSpacing: "-2.5%" }}
       >
         {label}

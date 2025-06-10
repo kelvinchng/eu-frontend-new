@@ -8,14 +8,21 @@ import { TourOption } from "./tour";
 
 interface TravelCardProps {
   tour: TourOption;
+  customMobileWidth?: number;
 }
 
-export const TravelCard = ({ tour }: TravelCardProps) => {
+export const TravelCard = ({ tour , customMobileWidth}: TravelCardProps) => {
   const [viewMore, setViewMore] = useState(false);
   return (
     <div
-      className="w-[265px] sm:w-[295] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[440px] xl:min-h-[643px]
-      min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
+      style={
+        { "--mobile-width": `${customMobileWidth}px` } as React.CSSProperties
+      }
+      className={
+        customMobileWidth
+          ? "[width:var(--mobile-width)] sm:w-[295px] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[440px] xl:min-h-[643px] min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
+          : "w-[265px] sm:w-[295px] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[440px] xl:min-h-[643px] min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
+      }
     >
       {/* IMAGE PART  */}
       <div className="relative w-full h-[172px] xl:h-[280px] rounded-xl">

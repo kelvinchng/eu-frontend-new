@@ -3,7 +3,7 @@ import Image from "next/image";
 import { TravelCard } from "../../components/travel-card";
 import { Button } from "@/components/ui/button";
 
-const essentialDetails = {
+const exploreDetails = {
   tourImage: "/assets/lake.jpg",
   mainTitle: " Explore Switzerland",
   history: {
@@ -128,8 +128,8 @@ const Explore = () => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src={essentialDetails.tourImage}
-            alt={essentialDetails.mainTitle}
+            src={exploreDetails.tourImage}
+            alt={exploreDetails.mainTitle}
             fill
             className="object-cover"
             priority
@@ -142,7 +142,7 @@ const Explore = () => {
         <div className="absolute bottom-8 w-full transform  z-20  px-10 lg:px-12 xl:px-26">
           <div className="mx-auto max-w-[1500px] relative font-thunder ">
             <span className="text-white text-[46px] font-[400] tracking-normal sm:text-[56px] md:text-[70px] lg:text-[90px] xl:text-[100px] 2xl:text-[110px] max-sm:max-w-[300px] max-[400px]:mx-0 max-[500px]:-mx-4 leading-[100%] sm:leading-normal">
-              {essentialDetails.mainTitle}
+              {exploreDetails.mainTitle}
             </span>
           </div>
         </div>
@@ -155,18 +155,18 @@ const Explore = () => {
             {/* Left Column - Text Content */}
             <div className=" space-y-3 bg-[#EFEFEF] px-8 py-10 lg:p-16  max-[1024px]:rounded-b-2xl lg:rounded-l-2xl">
               <h2 className="text-3xl font-thunder font-normal text-navbar ">
-                {essentialDetails.history.title}
+                {exploreDetails.history.title}
               </h2>
               <div className="font-onest text-lg font-normal text-navbar leading-[30px] h-auto overflow-auto">
-                <p>{essentialDetails.history.body}</p>
+                <p>{exploreDetails.history.body}</p>
               </div>
             </div>
 
             {/* Right Column - Image */}
             <div className="relative  max-[1024px]:rounded-t-2xl lg:rounded-r-xl">
               <Image
-                src={essentialDetails.history.image}
-                alt={essentialDetails.history.title}
+                src={exploreDetails.history.image}
+                alt={exploreDetails.history.title}
                 width={600}
                 height={400}
                 className="h-full w-full object-cover  max-[1024px]:rounded-t-2xl lg:rounded-r-2xl"
@@ -179,11 +179,11 @@ const Explore = () => {
       <div className="bg-white px-6 pb-16 lg:px-12 xl:px-26">
         <div className="mx-auto max-w-[1500px] space-y-5">
           <h1 className=" font-thunder font-medium text-4xl md:text-[50px] text-navbar">
-            {essentialDetails.tourTitle}
+            {exploreDetails.tourTitle}
           </h1>
-          <div className="flex flex-wrap gap-14 justify-center lg:justify-between">
-            {essentialDetails.featureTours.map((tour) => (
-              <TravelCard tour={tour} key={tour.id} />
+          <div className="flex flex-wrap gap-14  justify-center 2xl:justify-between ">
+            {exploreDetails.featureTours.map((tour) => (
+              <TravelCard tour={tour} key={tour.id} customMobileWidth={325} />
             ))}
           </div>
           {/* View All Button */}
@@ -211,7 +211,7 @@ const Explore = () => {
 
             {/* Countries Grid */}
             <div className="grid grid-cols-3 gap-8 sm:grid-cols-4 lg:gap-12 ">
-              {essentialDetails.moreCountries.map((country) => (
+              {exploreDetails.moreCountries.map((country) => (
                 <div className="text-center" key={country.id}>
                   <div className="mx-auto mb-4 w-[93px] h-[93px]  2xl:h-[200px] 2xl:w-[200px] overflow-hidden rounded-full lg:h-40 lg:w-40">
                     <Image

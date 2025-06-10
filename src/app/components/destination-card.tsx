@@ -25,7 +25,7 @@ export const DestinationCard = ({ destinations }: DestinationCardProps) => {
   return (
     <div className="flex gap-2 md:gap-4">
       {destinations.map((destination) => (
-        <Link key={destination.id} href={`/${destination.title}`}>
+        <Link key={destination.id} href={`/explore/${destination.title}`}>
           <div
             className="w-[265px] sm:w-[295] md:w-[345px] lg:w-[285px] xl:w-[275px] 2xl:w-[325px] xl:min-h-[499px] 2xl:min-h-[510px] min-h-[427px] rounded-xl flex flex-col flex-shrink-0 gap-2 border border-gray-200"
             style={{

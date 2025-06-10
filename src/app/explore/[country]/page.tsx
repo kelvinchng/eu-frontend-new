@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { TravelCard } from "../components/travel-card";
+import { TravelCard } from "../../components/travel-card";
 import { Button } from "@/components/ui/button";
 
 const essentialDetails = {
@@ -120,7 +120,7 @@ const essentialDetails = {
   ],
 };
 
-const Essential = () => {
+const Explore = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Navigation */}
@@ -238,4 +238,4 @@ const Essential = () => {
   );
 };
 
-export default Essential;
+export default Explore;

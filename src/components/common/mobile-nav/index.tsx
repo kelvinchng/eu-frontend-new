@@ -73,7 +73,7 @@ export default function MobileNavbar() {
           {/* Center - Logo */}
           <div className="justify-center">
             <Image
-              src={"/assets/eulogo1.png"}
+              src={"/assets/EU_Logo.svg"}
               width={80}
               height={80}
               alt="eulogo"

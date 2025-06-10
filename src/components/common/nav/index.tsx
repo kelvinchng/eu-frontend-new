@@ -1153,7 +1153,10 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between mx-8 ">
           {/* Left - Menu Button */}
-          <div className="relative w-[186.93px] min-2xl:w-[268.39px]" ref={dropdownRef}>
+          <div
+            className="relative w-[186.93px] min-2xl:w-[268.39px]"
+            ref={dropdownRef}
+          >
             <Button
               variant="ghost"
               size="sm"
@@ -1194,7 +1197,7 @@ export default function Navbar() {
           {/* Center - Logo */}
           <div className=" flex justify-center">
             <Image
-              src={"/assets/eulogo1.png"}
+              src={"/assets/EU_Logo.svg"}
               width={80}
               height={80}
               className="  min-2xl:w-[145px] "

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { TravelCard } from "../components/travel-card";
 import FilterForm from "./components/filter-form";
 import Pagination from "@/components/common/pagination";
@@ -65,11 +64,8 @@ const tourList = {
     },
   ],
 };
- 
-
 
 const Tours = () => {
-
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 15;
 

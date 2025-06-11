@@ -33,7 +33,7 @@ const TourTabs = () => {
                 sm:text-sm rounded-none sm:rounded-md
                 px-2 py-2 sm:px-4 sm:py-2.5
                 focus-visible:ring-0 focus-visible:ring-offset-0 
-                data-[state=active]:shadow-none font-onest  text-base mt-6 sm:border sm:border-[#242424]
+                data-[state=active]:shadow-none font-onest  text-base mt-6 sm:border sm:border-[#242424] 
                 
                 // Mobile styles (bottom border for active)
                 text-gray-500 data-[state=active]:text-black data-[state=active]:font-[700] font-[400] border-b-2 border-transparent

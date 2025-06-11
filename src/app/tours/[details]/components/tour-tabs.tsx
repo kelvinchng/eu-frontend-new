@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import TourHighlights from "./tour-highlight";
+import TourReviews from "./reviews";
+import DayByDayItinerary from "./day-by-day";
 
 const tabItems = [
   { value: "itinerary", label: "Itinerary" },
@@ -11,6 +13,7 @@ const tabItems = [
 
 const TourTabs = () => {
   const [activeTab, setActiveTab] = useState(tabItems[0].value);
+  console.log("activeTab", activeTab);
   return (
     <div className="flex flex-col h-full">
       <div className="w-full">
@@ -49,7 +52,7 @@ const TourTabs = () => {
             ))}
           </TabsList>
           {/* Optional: Add TabsContent for each tab if needed */}
-          {tabItems.map((tab) => (
+          {/* {tabItems.map((tab) => (
             <TabsContent
               key={`${tab.value}-content`}
               value={tab.value}
@@ -57,7 +60,14 @@ const TourTabs = () => {
             >
               <TourHighlights />
             </TabsContent>
-          ))}
+          ))} */}
+          <TabsContent value="itinerary">
+            <TourHighlights />
+            <DayByDayItinerary />
+          </TabsContent>
+          <TabsContent value="testimonials">
+            <TourReviews />
+          </TabsContent>
         </Tabs>
       </div>
     </div>

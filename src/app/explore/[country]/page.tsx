@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { TravelCard } from "../../components/travel-card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const exploreDetails = {
   tourImage: "/assets/lake.jpg",
@@ -188,9 +189,11 @@ const Explore = () => {
           </div>
           {/* View All Button */}
           <div className="mt-16 text-center">
+            <Link href="/tours">
             <Button className="bg-navbar hover:black/10 text-white px-6 py-2 font-onest font-normal text-lg">
               View All
-            </Button>
+              </Button>
+              </Link>
           </div>
         </div>
       </div>

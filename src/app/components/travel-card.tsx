@@ -20,7 +20,7 @@ export const TravelCard = ({ tour , customMobileWidth}: TravelCardProps) => {
       }
       className={
         customMobileWidth
-          ? "[width:var(--mobile-width)] sm:w-[295px] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[440px] xl:min-h-[643px] min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
+          ? "[width:var(--mobile-width)] min-[640px]:w-[295px] min-[768px]:w-[345px] min-[1024px]:w-[285px] min-[1536px]:w-[400px] min-[1800px]:w-[460px] xl:min-h-[643px] min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
           : "w-[265px] sm:w-[295px] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[440px] xl:min-h-[643px] min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
       }
     >

@@ -161,7 +161,7 @@ export default function FilterForm() {
             : "max-h-[2000px] opacity-100"
         )}
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mx-2">
           {/* Top row */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="space-y-2">

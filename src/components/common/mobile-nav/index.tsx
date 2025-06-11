@@ -72,12 +72,14 @@ export default function MobileNavbar() {
         <div className="flex justify-between items-center mx-8 ">
           {/* Center - Logo */}
           <div className="justify-center">
-            <Image
-              src={"/assets/EU_Logo.svg"}
-              width={80}
-              height={80}
-              alt="eulogo"
-            />
+            <Link href="/">
+              <Image
+                src={"/assets/EU_Logo.svg"}
+                width={80}
+                height={80}
+                alt="eulogo"
+              />
+            </Link>
           </div>
 
           {/* Left - Menu Button */}

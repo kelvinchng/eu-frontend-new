@@ -1,8 +1,10 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { TravelCard } from "../components/travel-card";
 import FilterForm from "./components/filter-form";
+import Pagination from "@/components/common/pagination";
 
 const tourList = {
   count: 87,
@@ -67,6 +69,16 @@ const tourList = {
 
 
 const Explore = () => {
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 15;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    console.log("Page changed to:", page);
+    // Here you would typically fetch new data based on the page
+  };
+
   return (
     <div className="min-h-screen">
       {/* Tour Section */}
@@ -96,7 +108,7 @@ const Explore = () => {
 
       {/* Content Section */}
       <div className="bg-white px-6 py-16 lg:px-12 xl:px-26">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-7xl px-2">
           <FilterForm />
         </div>
       </div>
@@ -110,6 +122,14 @@ const Explore = () => {
             {tourList.tours.map((tour) => (
               <TravelCard tour={tour} key={tour.id} customMobileWidth={325} />
             ))}
+          </div>
+          <div className="flex justify-end mt-10 font-onest font-normal text-lg text-navbar">
+            {/* Pagination below content */}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </div>

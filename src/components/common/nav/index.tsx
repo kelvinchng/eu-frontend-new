@@ -1196,13 +1196,15 @@ export default function Navbar() {
 
           {/* Center - Logo */}
           <div className=" flex justify-center">
-            <Image
-              src={"/assets/EU_Logo.svg"}
-              width={80}
-              height={80}
-              className="  min-2xl:w-[145px] "
-              alt="eulogo"
-            />
+            <Link href="/">
+              <Image
+                src={"/assets/EU_Logo.svg"}
+                width={80}
+                height={80}
+                className="  min-2xl:w-[145px] "
+                alt="eulogo"
+              />
+            </Link>
           </div>
 
           {/* Right - Links */}

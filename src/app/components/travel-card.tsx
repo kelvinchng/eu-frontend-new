@@ -9,10 +9,18 @@ import { TourOption } from "./tour";
 interface TravelCardProps {
   tour: TourOption;
   customMobileWidth?: number;
+  href?: string;
 }
 
-export const TravelCard = ({ tour , customMobileWidth}: TravelCardProps) => {
+export const TravelCard = ({ tour , customMobileWidth, href=""}: TravelCardProps) => {
   const [viewMore, setViewMore] = useState(false);
+
+  const handleViewMoreClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent the card click from triggering
+    setViewMore((prev) => !prev);
+  };
+
+
   return (
     <div
       style={
@@ -23,6 +31,7 @@ export const TravelCard = ({ tour , customMobileWidth}: TravelCardProps) => {
           ? "[width:var(--mobile-width)] min-[640px]:w-[295px] min-[768px]:w-[345px] min-[1024px]:w-[285px] min-[1536px]:w-[400px] min-[1800px]:w-[460px] xl:min-h-[643px] min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
           : "w-[265px] sm:w-[295px] md:w-[345px] lg:w-[285px] xl:w-[370px] 2xl:w-[440px] xl:min-h-[643px] min-h-[450px] rounded-xl flex flex-col flex-shrink-0 gap-2 bg-white border border-gray-200"
       }
+      onClick={() => (window.location.href = href)}
     >
       {/* IMAGE PART  */}
       <div className="relative w-full h-[172px] xl:h-[280px] rounded-xl">
@@ -47,64 +56,66 @@ export const TravelCard = ({ tour , customMobileWidth}: TravelCardProps) => {
         <span className="text-sm xl:text-lg 2xl:text-xl font-[400] xl:min-h-[200px]">
           {tour.descriptions}
         </span>
-        <Button
-          className={`w-full justify-start items-center mt-2 ${
-            viewMore && "mb-2"
-          }`}
-          variant={"outline"}
-        >
-          <Image
-            src={"/bag.svg"}
-            alt="bag"
-            width={20}
-            height={20}
-            className="self-start mr-2"
-          />
-          <span className={`text-sm xl:text-lg 2xl:text-xl font-[400]`}>
-            1-for-1
-          </span>
-        </Button>
-        {viewMore && (
-          <div className="flex flex-col gap-2">
-            <Button
-              className="w-full justify-start items-center"
-              variant={"outline"}
-            >
-              <Image
-                src={"/bag.svg"}
-                alt="bag"
-                width={20}
-                height={20}
-                className="self-start mr-2"
-              />
-              <span className="text-sm xl:text-lg 2xl:text-xl font-[400]">
-                1-for-1
-              </span>
-            </Button>
-            <Button
-              className="w-full justify-start items-center"
-              variant={"outline"}
-            >
-              <Image
-                src={"/bag.svg"}
-                alt="bag"
-                width={20}
-                height={20}
-                className="self-start mr-2"
-              />
-              <span className="text-sm xl:text-lg 2xl:text-xl font-[400]">
-                1-for-1
-              </span>
-            </Button>
-          </div>
-        )}
-        <Button
-          onClick={() => setViewMore((prev) => !prev)}
-          variant={"ghost"}
-          className="w-full self-center xl:mt-2 text-sm xl:text-lg 2xl:text-xl font-normal lg:pt-6 xl:pb-2 xl:my-4"
-        >
-          View More <ChevronDown className="ml-2" />
-        </Button>
+        <div onClick={(e) => e.stopPropagation()}>
+          <Button
+            className={`w-full justify-start items-center mt-2 ${
+              viewMore && "mb-2"
+            }`}
+            variant={"outline"}
+          >
+            <Image
+              src={"/bag.svg"}
+              alt="bag"
+              width={20}
+              height={20}
+              className="self-start mr-2"
+            />
+            <span className={`text-sm xl:text-lg 2xl:text-xl font-[400]`}>
+              1-for-1
+            </span>
+          </Button>
+          {viewMore && (
+            <div className="flex flex-col gap-2">
+              <Button
+                className="w-full justify-start items-center"
+                variant={"outline"}
+              >
+                <Image
+                  src={"/bag.svg"}
+                  alt="bag"
+                  width={20}
+                  height={20}
+                  className="self-start mr-2"
+                />
+                <span className="text-sm xl:text-lg 2xl:text-xl font-[400]">
+                  1-for-1
+                </span>
+              </Button>
+              <Button
+                className="w-full justify-start items-center"
+                variant={"outline"}
+              >
+                <Image
+                  src={"/bag.svg"}
+                  alt="bag"
+                  width={20}
+                  height={20}
+                  className="self-start mr-2"
+                />
+                <span className="text-sm xl:text-lg 2xl:text-xl font-[400]">
+                  1-for-1
+                </span>
+              </Button>
+            </div>
+          )}
+          <Button
+            onClick={handleViewMoreClick}
+            variant={"ghost"}
+            className="w-full self-center xl:mt-2 text-sm xl:text-lg 2xl:text-xl font-normal my-4"
+          >
+            View More <ChevronDown className="ml-2" />
+          </Button>
+        </div>
       </div>
     </div>
   );

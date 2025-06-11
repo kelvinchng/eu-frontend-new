@@ -194,21 +194,21 @@ const promotionImages = [
 export const TourSection = () => {
   return (
     <div className="flex flex-col gap-10 lg:gap-20 md:mb-6 lg:mb-10 2xl:my-10">
-      <Tour title="Seasonal Deals + Promotions">
+      <Tour title="Seasonal Deals + Promotions" link="/deals">
         <div className="flex gap-2 md:gap-4">
           {promotionsTours.map((tour) => (
-            <TravelCard tour={tour} key={tour.id} />
+            <TravelCard tour={tour} key={tour.id} href={`/tours/${tour.id}`} />
           ))}
         </div>
       </Tour>
-      <Tour title="Featured Tours">
+      <Tour title="Featured Tours" link="/tours">
         <div className="flex gap-2 md:gap-4">
           {featureTours.map((tour) => (
-            <TravelCard tour={tour} key={tour.id} />
+            <TravelCard tour={tour} key={tour.id} href={`/tours/${tour.id}`} />
           ))}
         </div>
       </Tour>
-      <Tour title="Explore Tours By Destinations">
+      <Tour title="Explore Tours By Destinations" link="/tours">
         <DestinationCard destinations={destinations} />
       </Tour>
       {/* THEME SECTION  */}
@@ -217,6 +217,7 @@ export const TourSection = () => {
           title="Explore Tours By Themes"
           subTitleClassName="justify-center"
           titleClassName="items-center"
+          link="/theme_jurneys"
         >
           <TourByTheme themes={themeOptions} />
         </Tour>
@@ -229,6 +230,7 @@ export const TourSection = () => {
       <Tour
         title="Explore Tours By Themes"
         subTitle="Join thousands of happy travellers who trust EU Holidays to make their journey unforgettable."
+        link="/theme_jurneys"
       >
         <Adventure adventures={adventureOptions} />
       </Tour>

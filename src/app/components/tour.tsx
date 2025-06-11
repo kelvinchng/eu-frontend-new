@@ -18,6 +18,7 @@ interface ToursProps {
   children: React.ReactNode;
   subTitle?: string;
   subTitleClassName?: string;
+  link?: string;
 }
 
 export const Tour = ({
@@ -26,6 +27,7 @@ export const Tour = ({
   children,
   subTitle,
   subTitleClassName,
+  link,
 }: ToursProps) => {
   return (
     <div className="h-full ps-5 sm:ps-0 sm:mx-auto space-y-6">
@@ -41,7 +43,7 @@ export const Tour = ({
           </span>
         ) : (
           <Link
-            href={"#"}
+            href={link||""}
             className={`flex items-center gap-2 text-sm md:text-lg xl:text-xl 2xl:text-3xl tracking-[1px] font-onest ${subTitleClassName}`}
           >
             View all here <ArrowRight className="size-4 2xl:size-6" />

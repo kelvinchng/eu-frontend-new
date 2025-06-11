@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
+import TourDetails from "./components/tour-details";
 
-const TourDetails = () => {
-  return <div>TourDetails</div>;
-}
+const page = () => {
+  return <TourDetails />;
+};
 
-export default TourDetails
+export default page;

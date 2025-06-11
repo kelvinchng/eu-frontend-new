@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { TravelCard } from "../components/travel-card";
-import FilterForm from "./components/filter-form";
 import Pagination from "@/components/common/pagination";
 
 const tourList = {
@@ -65,20 +64,8 @@ const tourList = {
     },
   ],
 };
- 
 
-
-const Tours = () => {
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 15;
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    console.log("Page changed to:", page);
-    // Here you would typically fetch new data based on the page
-  };
-
+const ThemeJurneys = () => {
   return (
     <div className="min-h-screen">
       {/* Tour Section */}
@@ -100,18 +87,61 @@ const Tours = () => {
         <div className="absolute bottom-8 w-full transform  z-20  px-10 lg:px-12 xl:px-26">
           <div className="mx-auto max-w-[1500px] relative font-thunder ">
             <span className="text-white text-[46px] font-[400] tracking-normal sm:text-[56px] md:text-[70px] lg:text-[90px] xl:text-[100px] 2xl:text-[110px] max-sm:max-w-[300px] max-[400px]:mx-0 max-[500px]:-mx-4 leading-[100%] sm:leading-normal">
-              {"Tours"}
+              {"Theme Jurneys"}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Content Section */}
+      {/* Hero Section */}
       <div className="bg-white px-6 py-16 lg:px-12 xl:px-26">
-        <div className="mx-auto max-w-7xl px-2">
-          <FilterForm />
+        <div className="max-w-[1500px] mx-auto">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16">
+            {/* Text Content */}
+            <div className="lg:max-w-3xl">
+              <h1 className="text-3xl lg:text-5xl text-navbar font-thunder font-normal mb-6">
+                Explore the World The Way You Want It
+              </h1>
+              <p className="text-navbar text-sm lg:text-lg font-normal font-onest">
+                From exotic destinations to unique city visits, travel
+                experiences designed around your passions. Whether you're
+                traveling with family, seeking thrills, or chasing the seasons,
+                we've curated a travel for you.
+              </p>
+            </div>
+
+            {/* Profile Images */}
+            <div className="flex justify-center lg:justify-end items-center gap-4 lg:flex-shrink-0">
+              <div className="w-[102px] h-[102px] md:w-[130px] md:h-[130px] xl:w-[200px] xl:h-[200px] rounded-full overflow-hidden border-3 border-white shadow-lg">
+                <Image
+                  src="/placeholder.svg?height=80&width=80"
+                  alt="Traveler 1"
+                  fill
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-[102px] h-[102px] md:w-[130px] md:h-[130px] xl:w-[200px] xl:h-[200px] rounded-full overflow-hidden border-3 border-white shadow-lg">
+                <Image
+                  src="/placeholder.svg?height=80&width=80"
+                  alt="Traveler 2"
+                  fill
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-[102px] h-[102px] md:w-[130px] md:h-[130px] xl:w-[200px] xl:h-[200px] rounded-full overflow-hidden border-3 border-white shadow-lg">
+                <Image
+                  src="/placeholder.svg?height=80&width=80"
+                  alt="Traveler 3"
+                  fill
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Content Section */}
 
       <div className="bg-white px-6 pb-16 lg:px-12 xl:px-26">
         <div className="mx-auto max-w-[1500px] space-y-5">
@@ -123,18 +153,10 @@ const Tours = () => {
               <TravelCard tour={tour} key={tour.id} customMobileWidth={325} />
             ))}
           </div>
-          <div className="flex justify-end mt-10 font-onest font-normal text-lg text-navbar">
-            {/* Pagination below content */}
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Tours;
+export default ThemeJurneys;

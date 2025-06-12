@@ -1,181 +1,186 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --font-onest: var(--font-onest);
-  --font-thunder : var(--font-thunder);
-  --font-pp : var(--font-pp);
-
-  --color-navbar: var(--navbar);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-
-  /* ----- border radius ----- */
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  /* ----- Typography ----- */
-  --text-7xl: var(--text-7xl);
-  --text-6xl: var(--text-6xl);
-  --text-5xl: var(--text-5xl);
-  --text-4xl: var(--text-4xl);
-  --text-3xl: var(--text-3xl);
-  --text-2xl: var(--text-2xl);
-  --text-xl: var(--text-xl);
-  --text-lg: var(--text-lg);
-  --text-md: var(--text-md);
-  --text-base: var(--text-base);
-  --text-sm: var(--text-sm);
-  --text-xs: var(--text-xs);
-  --text-tiny: var(--text-tiny);
-
-  /* ----- border radius ----- */
-  --radius-full: var(--border-radius-full);
-  --radius-3xl: var(--border-radius-3xl);
-  --radius-2xl: var(--border-radius-2xl);
-  --radius-xl: var(--border-radius-xl);
-  --radius-lg: var(--border-radius-lg);
-  --radius-md: var(--border-radius-md);
-  --radius-sm: var(--border-radius-sm);
-  --radius-xs: var(--border-radius-xs);
+/* Custom fonts */
+@font-face {
+  font-family: 'Thunder';
+  src: url('/fonts/Thunder-LC.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --navbar: oklch(0.2603 0 0);
-
-  /* ----- Typography ----- */
-  --text-7xl: 135px;
-  --text-6xl: 53px;
-  --text-5xl: 50px;
-  --text-4xl: 32px;
-  --text-3xl: 30px;
-  --text-2xl: 27px;
-  --text-xl: 20px;
-  --text-lg: 18px;
-  --text-md: 16px;
-  --text-base: 14px;
-  --text-sm: 13px;
-  --text-xs: 12px;
-  --text-tiny: 10px;
-
-  /* ----- border radius ----- */
-  --border-radius-full: 100px;
-  --border-radius-3xl: 12px;
-  --border-radius-2xl: 11px;
-  --border-radius-xl: 9px;
-  --border-radius-lg: 8px;
-  --border-radius-md: 6px;
-  --border-radius-sm: 7px;
-  --border-radius-xs: 4px;
+@font-face {
+  font-family: 'Thunder';
+  src: url('/fonts/Thunder-LightLC.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-  --navbar: oklch(0.2603 0 0);
-
+@font-face {
+  font-family: 'PP Formula';
+  src: url('/fonts/PPFormula-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+/* Theme customization */
+@theme {
+  /* Font families - proper Tailwind v4 syntax */
+  --font-thunder: 'Thunder', sans-serif;
+  --font-onest: 'Onest', sans-serif;
+  --font-ppformula: 'PP Formula', sans-serif;
+  
+  /* Colors */
+  --color-primary: #242424;
+  --color-secondary: #EEEEEE;
+  --color-border-custom: #E8E8E8;
+  --color-muted: #5C5C5C;
+  --color-background: #EFEFEF;
+  
+  /* Radix UI Select component variables */
+  --color-border: #E8E8E8;
+  --color-input: #E8E8E8;
+  --color-ring: #242424;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #242424;
+  --color-muted-foreground: #5C5C5C;
+  --color-accent: #f5f5f5;
+  --color-accent-foreground: #242424;
+  
+  /* Font sizes - Scaled proportionally from 1920px design */
+  /* 
+    Design specs: 135px at 1920px = 7.03125% of viewport width
+    Line height: 124px (0.918 ratio)
+    
+    Scaling calculation: (viewport_width / 1920) * 135
+    - 3xl (1920px): 135px (100%)
+    - 2xl (1536px): 108px (80%)
+    - xl (1280px): 90px (66.67%)
+    - lg (1024px): 72px (53.33%)
+    - md (768px): 54px (40%)
+    - sm (640px): 45px (33.33%)
+    - base (< 640px): 36px (26.67%)
+  */
+  --font-size-hero: 135px; /* 1920px design */
+  --font-size-hero-3xl: 135px; /* 1920px: 135px */
+  --font-size-hero-2xl: 108px; /* 1536px: (1536/1920) * 135 = 108px */
+  --font-size-hero-xl: 90px;   /* 1280px: (1280/1920) * 135 = 90px */
+  --font-size-hero-lg: 72px;   /* 1024px: (1024/1920) * 135 = 72px */
+  --font-size-hero-md: 54px;   /* 768px:  (768/1920) * 135 = 54px */
+  --font-size-hero-sm: 45px;   /* 640px:  (640/1920) * 135 = 45px */
+  --font-size-hero-xs: 36px;   /* mobile: (480/1920) * 135 = 33.75px ≈ 36px */
+  
+  /* Line heights */
+  --line-height-hero: 0.918; /* 124px / 135px from design */
+  
+  /* Letter spacing */
+  --letter-spacing-hero: 0.01em;
+  
+  /* Custom dimensions for utilities - also scale proportionally */
+  --width-hero-icon: 73px;
+  --height-hero-icon: 66px;
+  
+  /* Custom breakpoints */
+  --breakpoint-3xl: 1920px;
+}
+
+/* Remove the heading reset since Tailwind Preflight already handles this */
+
+/* Custom utilities for line-height and letter-spacing which aren't auto-generated */
+@utility leading-hero {
+  line-height: var(--line-height-hero);
+}
+
+@utility tracking-hero {
+  letter-spacing: var(--letter-spacing-hero);
+}
+
+/* Custom width/height utilities */
+@utility w-hero-icon {
+  width: var(--width-hero-icon);
+}
+
+@utility h-hero-icon {
+  height: var(--height-hero-icon);
+}
+
+/* Ensure text utilities work on headings by adding !important during development */
+@layer utilities {
+  .text-hero { font-size: var(--font-size-hero) !important; }
+  .text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+  .text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+  .text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+  .text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+  .text-hero-md { font-size: var(--font-size-hero-md) !important; }
+  .text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+  .text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
+  
+  /* Add responsive variants manually for now */
+  @media (min-width: 640px) {
+    .sm\:text-hero { font-size: var(--font-size-hero) !important; }
+    .sm\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+    .sm\:text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+    .sm\:text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+    .sm\:text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+    .sm\:text-hero-md { font-size: var(--font-size-hero-md) !important; }
+    .sm\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+    .sm\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
   }
-  body {
-    @apply bg-background text-foreground;
+  
+  @media (min-width: 768px) {
+    .md\:text-hero { font-size: var(--font-size-hero) !important; }
+    .md\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+    .md\:text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+    .md\:text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+    .md\:text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+    .md\:text-hero-md { font-size: var(--font-size-hero-md) !important; }
+    .md\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+    .md\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
+  }
+  
+  @media (min-width: 1024px) {
+    .lg\:text-hero { font-size: var(--font-size-hero) !important; }
+    .lg\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+    .lg\:text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+    .lg\:text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+    .lg\:text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+    .lg\:text-hero-md { font-size: var(--font-size-hero-md) !important; }
+    .lg\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+    .lg\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
+  }
+  
+  @media (min-width: 1280px) {
+    .xl\:text-hero { font-size: var(--font-size-hero) !important; }
+    .xl\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+    .xl\:text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+    .xl\:text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+    .xl\:text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+    .xl\:text-hero-md { font-size: var(--font-size-hero-md) !important; }
+    .xl\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+    .xl\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
+  }
+  
+  @media (min-width: 1536px) {
+    .\2xl\:text-hero { font-size: var(--font-size-hero) !important; }
+    .\2xl\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+    .\2xl\:text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+    .\2xl\:text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+    .\2xl\:text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+    .\2xl\:text-hero-md { font-size: var(--font-size-hero-md) !important; }
+    .\2xl\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+    .\2xl\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
+  }
+  
+  @media (min-width: 1920px) {
+    .\3xl\:text-hero { font-size: var(--font-size-hero) !important; }
+    .\3xl\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+    .\3xl\:text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+    .\3xl\:text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+    .\3xl\:text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+    .\3xl\:text-hero-md { font-size: var(--font-size-hero-md) !important; }
+    .\3xl\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+    .\3xl\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
   }
 }

@@ -1,0 +1,150 @@
+# EU Holidays Frontend - Cursor Rules
+
+## Project Context
+This is a Next.js 15 travel booking frontend with TypeScript, Tailwind CSS v4, and a Figma-first responsive design approach.
+
+## Critical Design Rules
+
+### 1. Figma to Code Conversion (MANDATORY)
+- ALL Figma designs are at 1920px width (3xl breakpoint)
+- ALWAYS convert Figma pixels using: `(figma_value / 1920) * 100`
+- NEVER use absolute pixel values from Figma directly
+- ALWAYS check `/product-management/responsive-scaling-guide.md` for conversion guidelines
+
+### 2. Responsive Implementation Process
+When implementing ANY component from Figma:
+1. Get exact measurements from Figma (1920px baseline)
+2. Calculate percentage values: `(figma_px / 1920) * 100`
+3. Use responsive utilities from `/src/lib/responsive-utils.ts`
+4. Apply scaling across ALL breakpoints
+5. Test at: 320px, 640px, 768px, 1024px, 1280px, 1536px, 1920px
+
+### 3. Required Imports for Responsive Work
+```typescript
+import { 
+  figmaToResponsive, 
+  getFigmaTextSize, 
+  getScaledValue,
+  figmaClamp,
+  getFigmaSpacing 
+} from '@/lib/responsive-utils'
+```
+
+### 4. Hero Component Specific Rules
+**CRITICAL: Mobile uses completely different components**
+- **Desktop (lg: 1024px and above)**:
+  - Height: `h-[100vh]` full viewport
+  - Title: Bottom-aligned, responsive 35-38%
+  - Search: Horizontal grid layout
+  - Padding: 220px = 11.46%
+- **Mobile (below lg: < 1024px)**:
+  - Height: Fixed `h-[643px]`
+  - Title: Top-positioned at 162px
+  - Search: Vertical stack layout
+  - Padding: 25px fixed
+  - Different component structure entirely
+
+### 5. Breakpoint System
+```
+xs: 320px   (0.167x scale)
+sm: 640px   (0.333x scale)
+md: 768px   (0.4x scale)
+lg: 1024px  (0.533x scale)
+xl: 1280px  (0.667x scale)
+2xl: 1536px (0.8x scale)
+3xl: 1920px (1x scale - Figma baseline)
+```
+
+### 6. Typography Scaling
+ALWAYS use clamp() for text:
+```css
+/* Example: 135px in Figma */
+font-size: clamp(1.375rem, 7.03vw, 8.4375rem);
+```
+
+### 7. Container Strategy
+```jsx
+// Standard container padding
+className="px-4 sm:px-8 md:px-[5.73vw] lg:px-[7.64vw] xl:px-[9.17vw] 2xl:px-[11.46vw] 3xl:px-[220px]"
+
+// Max width wrapper
+className="max-w-[1920px] mx-auto"
+```
+
+### 8. Component Structure
+- Page components: `/app/[route]/page.tsx`
+- Route components: `/app/[route]/components/`
+- Shared UI: `/components/ui/` (shadcn/ui)
+- Common components: `/components/common/`
+
+### 9. File Organization
+- Markdown docs: `/product-management/` ONLY
+- Design system docs: `/product-management/`
+- Component styles: Use Tailwind classes, no separate CSS
+
+### 10. Development Commands
+```bash
+npm run dev    # Start dev server
+npm run build  # Build production
+npm run lint   # Run ESLint
+```
+
+## Code Style Rules
+
+### TypeScript
+- ALWAYS use proper types, avoid `any`
+- Define interfaces for all props
+- Use type inference where possible
+
+### React Components
+- Use functional components with TypeScript
+- Extract types/interfaces above component
+- Use `cn()` utility for conditional classes
+
+### Tailwind CSS
+- Use Tailwind v4 syntax
+- Prefer responsive utility classes
+- Use arbitrary values for exact Figma conversions
+- NEVER use inline styles unless required
+
+### Example Component Pattern
+```typescript
+interface ComponentProps {
+  className?: string
+  // other props
+}
+
+export function Component({ className }: ComponentProps) {
+  return (
+    <div className={cn(
+      "base-classes",
+      "responsive-classes",
+      className
+    )}>
+      {/* content */}
+    </div>
+  )
+}
+```
+
+## Common Pitfalls to Avoid
+1. Using Figma pixel values directly without conversion
+2. Forgetting to test responsive behavior
+3. Not using the responsive utility functions
+4. Creating new MD files outside `/product-management/`
+5. Using fixed heights instead of responsive units
+6. Not checking existing components before creating new ones
+
+## Testing Checklist
+- [ ] Component scales properly at all breakpoints
+- [ ] Text remains readable at all sizes
+- [ ] Touch targets are minimum 44px
+- [ ] No horizontal scroll at any viewport
+- [ ] Proportions match Figma at 1920px
+- [ ] Performance is optimized (images, fonts)
+
+## Resources
+- Figma links: `/product-management/figma-all-pages-links.md`
+- Responsive guide: `/product-management/responsive-scaling-guide.md`
+- Design system: `/DESIGN-SYSTEM-TODO.md`
+- Component examples: `/components/common/hero/`

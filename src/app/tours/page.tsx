@@ -1,136 +1,86 @@
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import { TravelCard } from "../components/travel-card";
-import FilterForm from "./components/filter-form";
-import Pagination from "@/components/common/pagination";
+import React from 'react'
+import { ToursPageClient } from './tours-page-client'
 
-const tourList = {
-  count: 87,
-  tours: [
-    {
-      id: 1,
-      image: "/assets/flowerfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-    {
-      id: 2,
-      image: "/assets/carfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: true,
-    },
-    {
-      id: 3,
-      image: "/assets/mountainfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-    {
-      id: 4,
-      image: "/assets/flowerfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-    {
-      id: 5,
-      image: "/assets/carfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: true,
-    },
-    {
-      id: 6,
-      image: "/assets/mountainfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-  ],
-};
+// Mock tours data - in a real app, this would come from an API
+const mockTours = [
+  {
+    id: 'ecsbts',
+    title: '11D8N Switzerland Dream (APR - OCT)',
+    description: 'Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.',
+    price: 'fr $4,288/pax',
+    imageUrl: '/assets/tour-1.jpg',
+    tags: ['Best Seller', 'Early Bird', 'Limited Seats'],
+    badge: 'Best Seller'
+  },
+  {
+    id: 'ecfrit',
+    title: '10D8N France & Italy Highlights',
+    description: 'Experience the best of France and Italy in one amazing journey. From the romantic streets of Paris to the ancient ruins of Rome, discover Europe\'s most iconic destinations.',
+    price: 'fr $3,888/pax',
+    imageUrl: '/assets/tour-2.jpg',
+    badge: 'Popular',
+    tags: ['1-for-1', 'Multi-Country']
+  },
+  {
+    id: 'ecgrat',
+    title: '12D10N Germany & Austria',
+    description: 'Journey through the heart of Central Europe, from fairy-tale castles to stunning Alpine landscapes. Experience the rich culture, history, and natural beauty of Germany and Austria.',
+    price: 'fr $4,188/pax',
+    imageUrl: '/assets/tour-3.jpg',
+    tags: ['Limited Seats', 'Castle Tours']
+  },
+  {
+    id: 'ecnord',
+    title: '14D12N Scandinavian Capitals',
+    description: 'Discover the natural wonders and vibrant cities of Scandinavia. From the Northern Lights to magnificent fjords, experience the best of Norway, Sweden, Denmark and Finland.',
+    price: 'fr $5,888/pax',
+    imageUrl: '/assets/tour-4.jpg',
+    tags: ['Early Bird', 'Northern Lights']
+  },
+  {
+    id: 'ecparis',
+    title: '8D6N Paris & Surroundings',
+    description: 'Immerse yourself in the City of Light and its enchanting surroundings. Visit Versailles, Loire Valley castles, and experience the essence of French culture and cuisine.',
+    price: 'fr $2,988/pax',
+    imageUrl: '/assets/tour-france-1.jpg',
+    tags: ['City Break', 'Cultural']
+  },
+  {
+    id: 'ecrome',
+    title: '9D7N Classic Italy',
+    description: 'From Rome to Venice, experience Italy\'s most treasured cities. Indulge in world-class art, architecture, cuisine and wine in this comprehensive Italian adventure.',
+    price: 'fr $3,388/pax',
+    imageUrl: '/assets/tour-italy-1.jpg',
+    badge: 'Food & Wine',
+    tags: ['Food Tours', 'Art & Culture']
+  },
+  {
+    id: 'ecamst',
+    title: '7D5N Netherlands Tulip Special',
+    description: 'Experience the Netherlands during the spectacular tulip season. Visit Keukenhof gardens, explore Amsterdam\'s canals, and discover traditional Dutch villages.',
+    price: 'fr $2,688/pax',
+    imageUrl: '/assets/tour-netherlands-1.jpg',
+    tags: ['Seasonal', 'Limited Period']
+  },
+  {
+    id: 'ecspan',
+    title: '10D8N Spain & Portugal',
+    description: 'Discover the Iberian Peninsula\'s rich history and vibrant culture. From Barcelona\'s architecture to Lisbon\'s charm, experience the best of Spain and Portugal.',
+    price: 'fr $3,788/pax',
+    imageUrl: '/assets/tour-spain-1.jpg',
+    badge: 'New',
+    tags: ['Multi-Country', 'Beach & Culture']
+  },
+  {
+    id: 'eceast',
+    title: '11D9N Eastern Europe Discovery',
+    description: 'Explore the hidden gems of Eastern Europe. Visit Prague, Budapest, Vienna and Krakow, discovering centuries of history and stunning architecture.',
+    price: 'fr $3,188/pax',
+    imageUrl: '/assets/tour-eastern-1.jpg',
+    tags: ['Heritage Sites', 'Value Deal']
+  }
+]
 
-const Tours = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 15;
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    console.log("Page changed to:", page);
-    // Here you would typically fetch new data based on the page
-  };
-
-  return (
-    <div className="min-h-screen">
-      {/* Tour Section */}
-      <div className="relative h-[643px] xl:h-[800px]">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src={"/assets/footerbanner.png"}
-            alt={"tours"}
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 1536px) 100vw, 1920px"
-          />
-          <div className="absolute inset-0 bg-black/20" />
-        </div>
-
-        {/* Hero Title */}
-        <div className="absolute bottom-8 w-full transform  z-20  px-10 lg:px-12 xl:px-26">
-          <div className="mx-auto max-w-[1500px] relative font-thunder ">
-            <span className="text-white text-[46px] font-[400] tracking-normal sm:text-[56px] md:text-[70px] lg:text-[90px] xl:text-[100px] 2xl:text-[110px] max-sm:max-w-[300px] max-[400px]:mx-0 max-[500px]:-mx-4 leading-[100%] sm:leading-normal">
-              {"Tours"}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Content Section */}
-      <div className="bg-white px-6 py-16 lg:px-12 xl:px-26">
-        <div className="mx-auto max-w-7xl px-2">
-          <FilterForm />
-        </div>
-      </div>
-
-      <div className="bg-white px-6 pb-16 lg:px-12 xl:px-26">
-        <div className="mx-auto max-w-[1500px] space-y-5">
-          <h1 className=" font-thunder font-medium text-4xl md:text-[50px] text-navbar">
-            {tourList.count} Tours
-          </h1>
-          <div className="flex flex-wrap gap-14  justify-center 2xl:justify-between ">
-            {tourList.tours.map((tour) => (
-              <TravelCard tour={tour} key={tour.id} customMobileWidth={325} />
-            ))}
-          </div>
-          <div className="flex justify-end mt-10 font-onest font-normal text-lg text-navbar">
-            {/* Pagination below content */}
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Tours;
+export default function ToursPage() {
+  return <ToursPageClient tours={mockTours} />
+}

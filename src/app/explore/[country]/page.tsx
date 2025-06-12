@@ -1,244 +1,199 @@
-import React from "react";
-import Image from "next/image";
-import { TravelCard } from "../../components/travel-card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import React from 'react'
+import { notFound } from 'next/navigation'
+import { CountryPageClient } from './country-page-client'
 
-const exploreDetails = {
-  tourImage: "/assets/lake.jpg",
-  mainTitle: " Explore Switzerland",
-  history: {
-    title: "Background of Switzerland",
-    body: "Switzerland is where history, culture, and natural beauty come together effortlessly. From the serene lakes of Lucerne to the colorful villages of the Alps, every view feels like a postcard. Explore world-class museums, hike through charming towns, or admire iconic peaks like the Matterhorn. Whether you're savoring Swiss chocolate, discovering art, or soaking in breathtaking landscapes, Switzerland offers unforgettable moments at every turn.",
-    image: "/assets/bicycle.jpg",
+// Mock data - in a real app, this would come from an API or database
+const countryData = {
+  switzerland: {
+    name: 'Switzerland',
+    description: 'Switzerland is where history, culture, and natural beauty come together effortlessly. From the serene lakes of Lucerne to the colorful villages of the Alps, every view feels like a postcard. Explore world-class museums, hike through charming towns, or admire iconic peaks like the Matterhorn. Whether you\'re savoring Swiss chocolate, discovering art, or soaking in breathtaking landscapes, Switzerland offers unforgettable moments at every turn.',
+    backgroundImages: [
+      '/assets/switzerland-bg-1.jpg',
+      '/assets/switzerland-bg-2.jpg',
+      '/assets/switzerland-bg-3.jpg'
+    ],
+    heroImage: '/assets/switzerland-hero.jpg',
+    tours: [
+      {
+        id: 'ecsbts',
+        title: '11D8N Switzerland Dream (APR - OCT)',
+        description: 'Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.',
+        price: 'fr $4,288/pax',
+        imageUrl: '/assets/tour-1.jpg',
+        tags: ['Best Seller', 'Early Bird', 'Limited Seats'],
+        badge: 'Best Seller'
+      },
+      {
+        id: 'ecgrat',
+        title: '12D10N Germany & Austria',
+        description: 'Journey through the heart of Central Europe, from fairy-tale castles to stunning Alpine landscapes. Experience the rich culture, history, and natural beauty of Germany and Austria.',
+        price: 'fr $4,188/pax',
+        imageUrl: '/assets/tour-3.jpg',
+        tags: ['Limited Seats', 'Castle Tours']
+      },
+      {
+        id: 'ecfrit',
+        title: '10D8N France & Italy Highlights',
+        description: 'Experience the best of France and Italy in one amazing journey. From the romantic streets of Paris to the ancient ruins of Rome, discover Europe\'s most iconic destinations.',
+        price: 'fr $3,888/pax',
+        imageUrl: '/assets/tour-2.jpg',
+        badge: 'Popular',
+        tags: ['1-for-1', 'Multi-Country']
+      },
+      {
+        id: 'ecnord',
+        title: '14D12N Scandinavian Capitals',
+        description: 'Discover the natural wonders and vibrant cities of Scandinavia. From the Northern Lights to magnificent fjords, experience the best of Norway, Sweden, Denmark and Finland.',
+        price: 'fr $5,888/pax',
+        imageUrl: '/assets/tour-4.jpg',
+        tags: ['Early Bird', 'Northern Lights']
+      },
+      {
+        id: 'ecrome',
+        title: '9D7N Classic Italy',
+        description: 'From Rome to Venice, experience Italy\'s most treasured cities. Indulge in world-class art, architecture, cuisine and wine in this comprehensive Italian adventure.',
+        price: 'fr $3,388/pax',
+        imageUrl: '/assets/tour-italy-1.jpg',
+        badge: 'Food & Wine',
+        tags: ['Food Tours', 'Art & Culture']
+      },
+      {
+        id: 'eceast',
+        title: '11D9N Eastern Europe Discovery',
+        description: 'Explore the hidden gems of Eastern Europe. Visit Prague, Budapest, Vienna and Krakow, discovering centuries of history and stunning architecture.',
+        price: 'fr $3,188/pax',
+        imageUrl: '/assets/tour-eastern-1.jpg',
+        tags: ['Heritage Sites', 'Value Deal']
+      }
+    ]
   },
-  tourTitle: " Switzerland Tours",
-  featureTours: [
-    {
-      id: 1,
-      image: "/assets/flowerfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-    {
-      id: 2,
-      image: "/assets/carfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: true,
-    },
-    {
-      id: 3,
-      image: "/assets/mountainfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-    {
-      id: 4,
-      image: "/assets/flowerfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-    {
-      id: 5,
-      image: "/assets/carfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: true,
-    },
-    {
-      id: 6,
-      image: "/assets/mountainfeature.png",
-      title: "10D7N Northern Italy & The Grand Dolomites",
-      price: "fr $438/pax",
-      descriptions:
-        "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
-      bestSeller: false,
-    },
-  ],
-  moreCountries: [
-    {
-      id: 1,
-      name: "France",
-      noOfTours: 56,
-      image: "/assets/japan.png",
-    },
-    {
-      id: 2,
-      name: "Italy",
-      noOfTours: 25,
-      image: "/assets/japan.png",
-    },
-    {
-      id: 3,
-      name: "Netherlands",
-      noOfTours: 60,
-      image: "/assets/japan.png",
-    },
-    {
-      id: 4,
-      name: "Switzerland",
-      noOfTours: 29,
-      image: "/assets/japan.png",
-    },
-    {
-      id: 5,
-      name: "Ireland",
-      noOfTours: 46,
-      image: "/assets/japan.png",
-    },
-    {
-      id: 6,
-      name: "Norway",
-      noOfTours: 23,
-      image: "/assets/japan.png",
-    },
-    {
-      id: 7,
-      name: "Potugal",
-      noOfTours: 12,
-      image: "/assets/japan.png",
-    },
-    {
-      id: 8,
-      name: "Spain",
-      noOfTours: 32,
-      image: "/assets/japan.png",
-    },
-  ],
-};
+  france: {
+    name: 'France',
+    description: 'France captivates with its rich history, world-renowned cuisine, and breathtaking landscapes. From the romantic streets of Paris to the lavender fields of Provence, every corner tells a story. Explore magnificent châteaux, sample exquisite wines, and immerse yourself in art and culture that has inspired the world for centuries.',
+    backgroundImages: [
+      '/assets/france-bg-1.jpg',
+      '/assets/france-bg-2.jpg',
+      '/assets/france-bg-3.jpg'
+    ],
+    heroImage: '/assets/france-hero.jpg',
+    tours: [
+      {
+        id: 'ecfrit',
+        title: '10D8N France & Italy Highlights',
+        description: 'Experience the best of France and Italy in one amazing journey. From the romantic streets of Paris to the ancient ruins of Rome, discover Europe\'s most iconic destinations.',
+        price: 'fr $3,888/pax',
+        imageUrl: '/assets/tour-2.jpg',
+        badge: 'Popular',
+        tags: ['1-for-1', 'Multi-Country']
+      },
+      {
+        id: 'ecparis',
+        title: '8D6N Paris & Surroundings',
+        description: 'Immerse yourself in the City of Light and its enchanting surroundings. Visit Versailles, Loire Valley castles, and experience the essence of French culture and cuisine.',
+        price: 'fr $2,988/pax',
+        imageUrl: '/assets/tour-france-1.jpg',
+        tags: ['City Break', 'Cultural']
+      }
+    ]
+  },
+  italy: {
+    name: 'Italy',
+    description: 'Italy enchants with its artistic treasures, culinary delights, and stunning coastlines. From the ancient ruins of Rome to the romantic canals of Venice, and the Renaissance art of Florence, Italy offers an unforgettable journey through history, culture, and natural beauty.',
+    backgroundImages: [
+      '/assets/italy-bg-1.jpg',
+      '/assets/italy-bg-2.jpg',
+      '/assets/italy-bg-3.jpg'
+    ],
+    heroImage: '/assets/italy-hero.jpg',
+    tours: [
+      {
+        id: '1',
+        title: '14D11N Grand Italy Explorer',
+        description: 'Journey through Italy\'s most iconic cities and regions. From the eternal city of Rome to the fashion capital Milan, experience the diversity and beauty of Italy in one comprehensive tour.',
+        price: 'fr $698/pax',
+        imageUrl: '/assets/tour-italy-1.jpg',
+        tags: ['Multi-City', 'Food Tours']
+      },
+      {
+        id: '2',
+        title: '8D5N Tuscan Romance',
+        description: 'Fall in love with the rolling hills of Tuscany, charming medieval towns, and world-class wines. This intimate tour is perfect for couples and wine enthusiasts.',
+        price: 'fr $458/pax',
+        imageUrl: '/assets/tour-italy-2.jpg',
+        badge: 'Romantic',
+        tags: ['Wine Tasting']
+      }
+    ]
+  },
+  netherlands: {
+    name: 'Netherlands',
+    description: 'The Netherlands charms with its picturesque canals, vibrant tulip fields, and rich maritime history. From the artistic treasures of Amsterdam to the colorful flower markets and historic windmills, discover a country where tradition meets innovation.',
+    backgroundImages: [
+      '/assets/netherlands-bg-1.jpg',
+      '/assets/netherlands-bg-2.jpg',
+      '/assets/netherlands-bg-3.jpg'
+    ],
+    heroImage: '/assets/netherlands-hero.jpg',
+    tours: [
+      {
+        id: '1',
+        title: '9D6N Dutch Delights & Tulips',
+        description: 'Experience the best of the Netherlands during tulip season. Visit world-famous Keukenhof gardens, explore Amsterdam\'s canals, and discover the country\'s rich cultural heritage.',
+        price: 'fr $398/pax',
+        imageUrl: '/assets/tour-netherlands-1.jpg',
+        tags: ['Seasonal', 'Garden Tours']
+      },
+      {
+        id: '2',
+        title: '7D4N Amsterdam & Countryside',
+        description: 'Combine the urban delights of Amsterdam with the pastoral beauty of the Dutch countryside. Visit traditional villages, historic windmills, and experience local culture.',
+        price: 'fr $368/pax',
+        imageUrl: '/assets/tour-netherlands-2.jpg',
+        badge: 'Local Experience',
+        tags: ['Cultural']
+      }
+    ]
+  }
+}
 
-const Explore = () => {
+const otherCountries = [
+  { id: '1', name: 'France', tourCount: 56, imageUrl: '/assets/countries/france.jpg', slug: 'france' },
+  { id: '2', name: 'Italy', tourCount: 25, imageUrl: '/assets/countries/italy.jpg', slug: 'italy' },
+  { id: '3', name: 'Netherlands', tourCount: 60, imageUrl: '/assets/countries/netherlands.jpg', slug: 'netherlands' },
+  { id: '4', name: 'Switzerland', tourCount: 29, imageUrl: '/assets/countries/switzerland.jpg', slug: 'switzerland' },
+  { id: '5', name: 'Ireland', tourCount: 52, imageUrl: '/assets/countries/ireland.jpg', slug: 'ireland' },
+  { id: '6', name: 'Norway', tourCount: 56, imageUrl: '/assets/countries/norway.jpg', slug: 'norway' },
+  { id: '7', name: 'Portugal', tourCount: 28, imageUrl: '/assets/countries/portugal.jpg', slug: 'portugal' },
+  { id: '8', name: 'Spain', tourCount: 78, imageUrl: '/assets/countries/spain.jpg', slug: 'spain' }
+]
+
+interface CountryPageProps {
+  params: Promise<{
+    country: string
+  }>
+}
+
+export default async function CountryPage({ params }: CountryPageProps) {
+  const { country: countrySlug } = await params
+  
+  // Get country data
+  const country = countryData[countrySlug as keyof typeof countryData]
+  
+  if (!country) {
+    notFound()
+  }
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section with Navigation */}
-      <div className="relative h-[643px] xl:h-[800px]">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src={exploreDetails.tourImage}
-            alt={exploreDetails.mainTitle}
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 1536px) 100vw, 1920px"
-          />
-          <div className="absolute inset-0 bg-black/20" />
-        </div>
+    <CountryPageClient 
+      country={country}
+      otherCountries={otherCountries}
+    />
+  )
+}
 
-        {/* Hero Title */}
-        <div className="absolute bottom-8 w-full transform  z-20  px-10 lg:px-12 xl:px-26">
-          <div className="mx-auto max-w-[1500px] relative font-thunder ">
-            <span className="text-white text-[46px] font-[400] tracking-normal sm:text-[56px] md:text-[70px] lg:text-[90px] xl:text-[100px] 2xl:text-[110px] max-sm:max-w-[300px] max-[400px]:mx-0 max-[500px]:-mx-4 leading-[100%] sm:leading-normal">
-              {exploreDetails.mainTitle}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Content Section */}
-      <div className="bg-white px-6 py-16 lg:px-12 xl:px-26">
-        <div className="mx-auto max-w-[1500px]">
-          <div className="lg:grid flex flex-col-reverse lg:grid-cols-2 ">
-            {/* Left Column - Text Content */}
-            <div className=" space-y-3 bg-[#EFEFEF] px-8 py-10 lg:p-16  max-[1024px]:rounded-b-2xl lg:rounded-l-2xl">
-              <h2 className="text-3xl font-thunder font-normal text-navbar ">
-                {exploreDetails.history.title}
-              </h2>
-              <div className="font-onest text-lg font-normal text-navbar leading-[30px] h-auto overflow-auto">
-                <p>{exploreDetails.history.body}</p>
-              </div>
-            </div>
-
-            {/* Right Column - Image */}
-            <div className="relative  max-[1024px]:rounded-t-2xl lg:rounded-r-xl">
-              <Image
-                src={exploreDetails.history.image}
-                alt={exploreDetails.history.title}
-                width={600}
-                height={400}
-                className="h-full w-full object-cover  max-[1024px]:rounded-t-2xl lg:rounded-r-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white px-6 pb-16 lg:px-12 xl:px-26">
-        <div className="mx-auto max-w-[1500px] space-y-5">
-          <h1 className=" font-thunder font-medium text-4xl md:text-[50px] text-navbar">
-            {exploreDetails.tourTitle}
-          </h1>
-          <div className="flex flex-wrap gap-14  justify-center 2xl:justify-between ">
-            {exploreDetails.featureTours.map((tour) => (
-              <TravelCard tour={tour} key={tour.id} customMobileWidth={325} />
-            ))}
-          </div>
-          {/* View All Button */}
-          <div className="mt-16 text-center">
-            <Link href="/tours">
-            <Button className="bg-navbar hover:black/10 text-white px-6 py-2 font-onest font-normal text-lg">
-              View All
-              </Button>
-              </Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white px-6 pb-16 lg:px-12 xl:px-26">
-        <div className="mx-auto max-w-[1500px] space-y-5">
-          <div>
-            {/* View More Countries Section */}
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 font-thunder text-[32px] md:text-[50px] font-medium text-navbar ">
-                View More Countries
-              </h2>
-              <p className="mx-auto max-w-2xl text-navbar font-onest font-normal text-[13px] md:text-[25px]">
-                Join thousands of happy travellers who trust EU Holidays to make
-                their journey unforgettable.
-              </p>
-            </div>
-
-            {/* Countries Grid */}
-            <div className="grid grid-cols-3 gap-8 sm:grid-cols-4 lg:gap-12 ">
-              {exploreDetails.moreCountries.map((country) => (
-                <div className="text-center" key={country.id}>
-                  <div className="mx-auto mb-4 w-[93px] h-[93px]  2xl:h-[200px] 2xl:w-[200px] overflow-hidden rounded-full lg:h-40 lg:w-40">
-                    <Image
-                      src={country.image}
-                      alt={country.name}
-                      width={93}
-                      height={93}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <h3 className="mb-1 text-[20px] lg:text-[50px] font-medium text-navbar font-thunder">
-                    {country.name}
-                  </h3>
-                  <p className=" text-navbar font-onest font-medium text-[13px] lg:text-[20px]">
-                    {country.noOfTours} Tours
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Explore;
+// Generate static params for known countries
+export function generateStaticParams() {
+  return Object.keys(countryData).map((country) => ({
+    country
+  }))
+}

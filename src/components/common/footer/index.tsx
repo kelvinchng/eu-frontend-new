@@ -133,7 +133,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col gap-[53.61px]">
           {/* Divider */}
-          <div className="w-[1810px] h-0 border-t border-[#5C5C5C]" />
+          <div className="w-full h-0 border-t border-[#5C5C5C]" />
           
           {/* Copyright */}
           <p className="font-onest text-[18px] leading-[1.667]">

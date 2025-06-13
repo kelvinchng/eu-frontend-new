@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { DesktopNav } from '@/components/common/nav/desktop-nav'
@@ -31,12 +31,24 @@ import { cn } from '@/lib/utils'
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
-      {/* Scrolled Navigation Components */}
-      <DesktopScrolledNav />
-      <MobileScrolledNav onMenuClick={() => setMobileMenuOpen(true)} />
+      {/* Scrolled Navigation Components - Only visible when scrolled */}
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <DesktopScrolledNav />
+        <MobileScrolledNav onMenuClick={() => setMobileMenuOpen(true)} />
+      </div>
       
       <main>
         {/* Hero Section with Overlay Nav */}

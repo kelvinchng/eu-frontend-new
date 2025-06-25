@@ -74,8 +74,7 @@ export default function TravelClubPage() {
 
   const clubStats = {
     totalMembers: 12500,
-    yearsRunning: 8,
-    exclusiveExperiences: 150,
+    pointsRedeemed: 2500000,
     averageSavings: 750
   }
 
@@ -119,7 +118,7 @@ export default function TravelClubPage() {
               <span className="text-[24px] font-bold">{clubStats.totalMembers.toLocaleString()}+</span> members worldwide
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 text-[#0066CC] font-onest font-medium">
-              <span className="text-[24px] font-bold">{clubStats.yearsRunning}</span> years of excellence
+              <span className="text-[24px] font-bold">{(clubStats.pointsRedeemed / 1000000).toFixed(1)}M</span> points redeemed
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 text-[#0066CC] font-onest font-medium">
               <span className="text-[24px] font-bold">£{clubStats.averageSavings}</span> average annual savings
@@ -131,11 +130,7 @@ export default function TravelClubPage() {
       <TravelClubShowcase
         title="Choose Your Membership Level"
         subtitle="Select the membership tier that best fits your travel style and unlock exclusive benefits"
-        membershipTiers={membershipTiers}
         clubStats={clubStats}
-        testimonials={testimonials}
-        showBenefitsComparison={true}
-        showTestimonials={true}
         className="py-16 lg:py-24"
       />
 

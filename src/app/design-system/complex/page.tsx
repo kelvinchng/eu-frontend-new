@@ -20,18 +20,22 @@ const mockItinerary = [
   {
     day: 1,
     title: "SINGAPORE – LONDON - ZURICH - LUCERNE",
+    location: "Singapore - London - Zurich - Lucerne",
+    description: "Begin your Swiss adventure with flights from Singapore to Zurich via London, followed by a scenic transfer to Lucerne.",
     activities: [
       "Assemble at Changi Airport for your flight to London.",
       "Upon arrival in London, take a connecting flight to Zurich.",
       "Upon arrival in Zurich, you will be met and transferred to Lucerne.",
       "Enjoy the scenic journey through the Swiss countryside."
     ],
-    meals: { breakfast: false, lunch: false, dinner: true },
+    meals: ["Dinner"],
     accommodation: "Grand Hotel National or similar"
   },
   {
     day: 2,
     title: "LUCERNE - MT. TITLIS - LUCERNE",
+    location: "Lucerne - Mt. Titlis - Lucerne",
+    description: "Experience the spectacular Mt. Titlis with its revolving cable car and breathtaking alpine views.",
     activities: [
       "After breakfast, embark on an excursion to Mt. Titlis.",
       "Take the revolving Rotair cable car to the summit.",
@@ -39,19 +43,21 @@ const mockItinerary = [
       "Visit the Glacier Cave and walk across the Cliff Walk suspension bridge.",
       "Return to Lucerne for overnight stay."
     ],
-    meals: { breakfast: true, lunch: true, dinner: true },
+    meals: ["Breakfast", "Lunch", "Dinner"],
     accommodation: "Grand Hotel National or similar"
   },
   {
     day: 3,
     title: "LUCERNE - INTERLAKEN - GRINDELWALD",
+    location: "Lucerne - Interlaken - Grindelwald",
+    description: "Journey through the scenic Brünig Pass to Interlaken and continue to Grindelwald, nestled below the mighty Eiger.",
     activities: [
       "Morning departure to Interlaken via the scenic Brünig Pass.",
       "Stop at Interlaken for lunch and free time.",
       "Continue to Grindelwald, nestled below the Eiger North Face.",
       "Check in to your hotel and enjoy the alpine atmosphere."
     ],
-    meals: { breakfast: true, lunch: true, dinner: true },
+    meals: ["Breakfast", "Lunch", "Dinner"],
     accommodation: "Hotel Belvedere or similar"
   }
 ]
@@ -59,6 +65,7 @@ const mockItinerary = [
 export default function ComplexComponentsPage() {
   const [searchBarSize, setSearchBarSize] = useState('100%')
   const [filterBarSize, setFilterBarSize] = useState('100%')
+  const [activeTab, setActiveTab] = useState('itinerary')
 
   return (
     <div className="space-y-8">
@@ -524,7 +531,7 @@ export default function ComplexComponentsPage() {
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-gray-700">Live Tour Tabs</h4>
                 <div className="bg-gray-100 border-2 border-dashed border-teal-300 rounded-lg p-4">
-                  <TourTabs />
+                  <TourTabs activeTab={activeTab} onTabChange={setActiveTab} />
                 </div>
               </div>
             </div>

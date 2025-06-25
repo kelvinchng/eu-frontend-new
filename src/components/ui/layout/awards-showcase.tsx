@@ -252,7 +252,7 @@ export function AwardsShowcase({
                           )}
                         >
                           <option value="all">All Types</option>
-                          {types.map(type => (
+                          {types.map(type => type && (
                             <option key={type} value={type}>
                               {type.charAt(0).toUpperCase() + type.slice(1)}
                             </option>
@@ -308,12 +308,9 @@ export function AwardsShowcase({
                 >
                   <AwardCard
                     id={award.id}
-                    title={award.title}
-                    description={award.description}
                     image={award.image}
                     year={award.year}
-                    organization={award.organization}
-                    category={award.category}
+                    fitType="contain"
                     className={cn(
                       award.featured && "ring-2 ring-[#FFD700] ring-offset-4"
                     )}

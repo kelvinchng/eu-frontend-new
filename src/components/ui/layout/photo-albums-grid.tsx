@@ -221,7 +221,7 @@ export function PhotoAlbumsGrid({
                           )}
                         >
                           <option value="all">All Categories</option>
-                          {categories.map(category => (
+                          {categories.map(category => category && (
                             <option key={category} value={category}>
                               {category.charAt(0).toUpperCase() + category.slice(1)}
                             </option>

@@ -275,7 +275,7 @@ export function TestimonialsGrid({
                           )}
                         >
                           <option value="all">All Platforms</option>
-                          {platforms.map(platform => (
+                          {platforms.map(platform => platform && (
                             <option key={platform} value={platform}>
                               {platform.charAt(0).toUpperCase() + platform.slice(1)}
                             </option>
@@ -359,13 +359,14 @@ export function TestimonialsGrid({
                 >
                   <TestimonialCard
                     id={testimonial.id}
-                    name={testimonial.name}
-                    location={testimonial.location}
-                    avatar={testimonial.avatar}
+                    customerName={testimonial.name}
+                    customerLocation={testimonial.location}
+                    customerImage={testimonial.avatar}
                     rating={testimonial.rating}
-                    review={testimonial.review}
-                    date={testimonial.date}
+                    reviewText={testimonial.review}
+                    reviewDate={testimonial.date}
                     tourName={testimonial.tourName}
+                    platform={testimonial.platform === 'tripadvisor' || testimonial.platform === 'website' ? 'internal' : testimonial.platform}
                     className={cn(
                       testimonial.featured && "ring-2 ring-[#0066CC] ring-offset-4"
                     )}

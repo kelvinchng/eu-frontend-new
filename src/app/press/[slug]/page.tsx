@@ -45,6 +45,12 @@ interface ArticlePageProps {
   }>
 }
 
+export async function generateStaticParams() {
+  return Object.keys(articles).map((slug) => ({
+    slug: slug,
+  }))
+}
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params
   const article = articles[slug]

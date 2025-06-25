@@ -190,14 +190,14 @@ export function ExpertGrid({
                   onClick={() => onExpertClick?.(expert)}
                 >
                   <ExpertCard
-                    id={expert.id}
                     name={expert.name}
-                    title={expert.title}
+                    description={expert.title}
+                    reviews={0}
                     image={expert.image}
-                    bio={expert.bio}
-                    email={expert.email}
-                    phone={expert.phone}
-                    specialization={expert.specialization}
+                    imageWidth={300}
+                    imageHeight={400}
+                    imageTop={0}
+                    imageLeft={0}
                     className={cn(
                       expert.featured && "ring-2 ring-[#0066CC] ring-offset-4"
                     )}

@@ -9,7 +9,7 @@ import { OurPeople } from '@/components/common/about/our-people'
 
 export default function AboutPage() {
   return (
-    <LayoutWithHero heroSection={<AboutHero />}>
+    <LayoutWithHero hero={<AboutHero />}>
       {/* Main Content Container */}
       <div className="flex flex-col items-center gap-[41px] md:gap-[127px] pt-[41px] md:pt-[127px] pb-[62px] md:pb-[140px] px-[34px] md:px-0">
         {/* Content Sections */}

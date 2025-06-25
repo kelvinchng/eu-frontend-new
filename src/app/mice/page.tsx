@@ -8,7 +8,7 @@ import { MICEContactSection } from '@/components/common/mice/mice-contact-sectio
 
 export default function MicePage() {
   return (
-    <LayoutWithHero heroSection={<MICEHeroFigma />}>
+    <LayoutWithHero hero={<MICEHeroFigma />}>
       {/* Main Content Container */}
       <div className="flex flex-col items-center gap-[41px] md:gap-[120px] py-[41px] md:py-[120px]">
         {/* Intro Section */}

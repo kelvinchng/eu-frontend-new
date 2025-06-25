@@ -136,7 +136,7 @@ export default function TestimonialsPage() {
   const testimonialStats = {
     totalReviews: 1247,
     averageRating: 4.8,
-    fiveStarPercentage: 89,
+    fiveStarPercent: 89,
     platforms: ['TripAdvisor', 'Google Reviews', 'Facebook', 'Cruise Critic']
   }
 
@@ -152,14 +152,27 @@ export default function TestimonialsPage() {
       />
       
       <TestimonialsGrid
-        testimonials={testimonials}
+        testimonials={testimonials.map(t => ({
+          id: t.id,
+          name: t.customerName,
+          location: t.customerLocation,
+          avatar: t.customerAvatar,
+          rating: t.rating,
+          review: t.reviewText,
+          date: t.tourDate,
+          tourName: t.tourName,
+          destination: t.destination,
+          verifiedBooking: t.verified,
+          helpful: t.helpful,
+          platform: t.platform.toLowerCase().replace(' reviews', '') as 'google' | 'facebook' | 'tripadvisor' | 'website'
+        }))}
         title="Customer Reviews & Testimonials"
         subtitle="Discover why thousands of travelers choose EU Holidays for their European adventures"
         columns={2}
         showFilters={true}
         showSearch={true}
         showLoadMore={true}
-        initialCount={6}
+        itemsPerPage={6}
         className="py-16 lg:py-24"
       />
 

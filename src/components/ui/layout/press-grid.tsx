@@ -253,7 +253,7 @@ export function PressGrid({
                           )}
                         >
                           <option value="all">All Types</option>
-                          {types.map(type => (
+                          {types.map(type => type && (
                             <option key={type} value={type}>
                               {type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
                             </option>
@@ -365,13 +365,10 @@ export function PressGrid({
                   <PressArticleCard
                     id={article.id}
                     title={article.title}
-                    excerpt={article.excerpt}
-                    image={article.image}
-                    publication={article.publication}
-                    publishedDate={article.publishedDate}
-                    readTime={article.readTime}
-                    category={article.category}
-                    href={article.href}
+                    description={article.excerpt || ''}
+                    date={article.publishedDate}
+                    thumbnail={article.image}
+                    articleUrl={article.href}
                     className={cn(
                       article.featured && "ring-2 ring-[#0066CC] ring-offset-4"
                     )}

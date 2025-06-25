@@ -14,9 +14,9 @@ const defaultGallery = [
   '/assets/tour-details/bern-fountain-clock-tower.jpg',
   '/assets/tour-details/gornergrat-railway.jpg', 
   '/assets/tour-details/interlaken-lake-thun.jpg',
-  '/assets/tour-detail-4.jpg',
-  '/assets/tour-detail-5.jpg',
-  '/assets/tour-detail-6.jpg',
+  '/assets/tour-details/tour-album-1.jpg',
+  '/assets/tour-details/tour-album-2.jpg',
+  '/assets/tour-details/tour-album-3.jpg',
 ]
 
 export function TourImageGallery({ gallery = defaultGallery, className }: TourImageGalleryProps) {

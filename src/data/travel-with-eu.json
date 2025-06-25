@@ -1,0 +1,28 @@
+[
+  {
+    "id": "award",
+    "title": "Award-Winning Service",
+    "content": "Recognised by prestigious organisations and customers alike, EU Holidays has consistently been at the forefront of excellence in the travel industry. Accolades such as the Singapore Prestige Brand Award and Best Travel Agency for Europe and USA Tours reflect their dedication to creating extraordinary travel experiences. These awards underline their professionalism, trustworthiness, and ability to craft unforgettable journeys. When you choose EU Holidays, you're travelling with a brand synonymous with quality and excellence.",
+    "image": "/assets/images/award-winning-service.jpg",
+    "buttonText": "View Tours",
+    "buttonHref": "/tours"
+  },
+  {
+    "id": "experienced",
+    "title": "Experienced Tour Managers",
+    "content": "Our tour managers are the heart of every EU Holidays journey. With years of expertise and deep local knowledge, they transform trips into unforgettable experiences. Fluent in multiple languages and passionate about travel, they handle every detail with professionalism while sharing insider tips and stories that bring destinations to life.",
+    "image": "/assets/images/our-people-1.jpg"
+  },
+  {
+    "id": "tailored",
+    "title": "Tailored Travel Experiences",
+    "content": "Every traveller is unique, and so should be their journey. EU Holidays specializes in crafting personalized itineraries that match your interests, pace, and preferences. Whether you dream of exploring ancient ruins, indulging in culinary delights, or seeking thrilling adventures, our expert team designs experiences that resonate with your travel aspirations.",
+    "image": "/assets/images/our-people-2.jpg"
+  },
+  {
+    "id": "thousands",
+    "title": "Thousands of Happy Travellers",
+    "content": "With over 100,000 satisfied customers who have explored the world with EU Holidays, our track record speaks for itself. From families seeking adventure to couples looking for romantic getaways, we've created countless memories across continents. Our travellers consistently praise our attention to detail, seamless planning, and the genuine care we put into every journey.",
+    "image": "/assets/images/our-people-3.jpg"
+  }
+]

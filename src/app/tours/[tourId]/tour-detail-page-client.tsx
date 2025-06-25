@@ -1,13 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { DesktopNav } from '@/components/common/nav/desktop-nav'
-import { DesktopScrolledNav } from '@/components/common/nav/desktop-scrolled-nav'
-import { MobileNav } from '@/components/common/nav/mobile-nav'
-import { MobileScrolledNav } from '@/components/common/nav/mobile-scrolled-nav'
-import { MobileMenu } from '@/components/common/nav/mobile-menu'
-import { Footer } from '@/components/common/footer'
-import { WhatsAppButton } from '@/components/common/whatsapp-button'
+import React, { useState } from 'react'
+import { LayoutWithoutHero } from '@/components/layouts/layout-without-hero'
 import { TourBreadcrumb } from './components/tour-breadcrumb'
 import { TourTitleSection } from './components/tour-title-section'
 import { TourImageGallery } from './components/tour-image-gallery'
@@ -25,18 +19,7 @@ interface TourDetailPageClientProps {
 }
 
 export function TourDetailPageClient({ tour, relatedTours }: TourDetailPageClientProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('itinerary')
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -54,54 +37,44 @@ export function TourDetailPageClient({ tour, relatedTours }: TourDetailPageClien
   }
 
   return (
-    <>
-      {/* Both navigations rendered, controlled by opacity */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <DesktopScrolledNav />
-        <MobileScrolledNav onMenuClick={() => setMobileMenuOpen(true)} />
-      </div>
-      
-      <main>
-        {/* Regular Navigation */}
-        <div className={`sticky top-0 z-40 transition-opacity duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-          <DesktopNav />
-          <MobileNav onMenuClick={() => setMobileMenuOpen(true)} />
+    <LayoutWithoutHero>
+      {/* Main Content Container - Centered Responsively */}
+      <div className="max-w-[1920px] mx-auto">
+        {/* Mobile Breadcrumb */}
+        <div className="lg:hidden px-[34px] pt-[22px]">
+          <TourBreadcrumb tour={tour} />
         </div>
         
-        {/* Main Content - No max width constraint */}
-        <div className="w-full">
-          {/* Mobile Breadcrumb */}
-          <div className="lg:hidden px-[34px] pt-[22px]">
-            <TourBreadcrumb tour={tour} />
+        {/* Title Section & Image Gallery */}
+        <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] pt-[22px] lg:pt-[80px]">
+          {/* Desktop: Title and Gallery in Column with 80px gap */}
+          <div className="hidden lg:flex lg:flex-col lg:gap-[80px] lg:max-w-[1480px] lg:mx-auto">
+            {/* Title Section */}
+            <TourTitleSection tour={tour} />
+            
+            {/* Image Gallery */}
+            <TourImageGallery gallery={tour.gallery} />
           </div>
           
-          {/* Title Section & Image Gallery */}
-          <section className="px-[34px] lg:px-[220px] pt-[22px] lg:pt-[80px]">
-            {/* Desktop: Title and Gallery in Column with 80px gap */}
-            <div className="hidden lg:flex lg:flex-col lg:gap-[80px] lg:w-[1480px] lg:mx-auto">
-              {/* Title Section */}
-              <TourTitleSection tour={tour} />
-              
-              {/* Image Gallery */}
+          {/* Mobile: Separate spacing */}
+          <div className="lg:hidden">
+            <TourTitleSection tour={tour} />
+            <div className="mt-[27px]">
               <TourImageGallery gallery={tour.gallery} />
             </div>
-            
-            {/* Mobile: Separate spacing */}
-            <div className="lg:hidden">
-              <TourTitleSection tour={tour} />
-              <div className="mt-[27px]">
-                <TourImageGallery gallery={tour.gallery} />
-              </div>
-            </div>
-          </section>
-          
-          {/* Tabs Navigation */}
-          <section className="px-[34px] lg:px-[220px] mt-[45px] lg:mt-[31px]">
+          </div>
+        </section>
+        
+        {/* Tabs Navigation */}
+        <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[45px] lg:mt-[31px]">
+          <div className="max-w-[1480px] mx-auto">
             <TourTabs activeTab={activeTab} onTabChange={setActiveTab} />
-          </section>
-          
-          {/* Content Area */}
-          <section className="px-[34px] lg:px-[220px] mt-[61px] lg:mt-[65px]">
+          </div>
+        </section>
+        
+        {/* Content Area */}
+        <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[61px] lg:mt-[65px]">
+          <div className="max-w-[1480px] mx-auto">
             {/* Desktop: Two Column Layout */}
             <div className="hidden lg:flex gap-[26px]">
               {/* Left Column - Tab Content */}
@@ -125,25 +98,16 @@ export function TourDetailPageClient({ tour, relatedTours }: TourDetailPageClien
             <div className="lg:hidden">
               {renderTabContent()}
             </div>
-          </section>
-          
-          {/* Related Tours */}
-          <section className="px-[34px] lg:px-[220px] mt-[61px] lg:mt-[80px]">
+          </div>
+        </section>
+        
+        {/* Related Tours */}
+        <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[61px] lg:mt-[80px] pb-[80px]">
+          <div className="max-w-[1480px] mx-auto">
             <RelatedTours tours={relatedTours} />
-          </section>
-        </div>
-      </main>
-
-      <Footer />
-      
-      {/* WhatsApp Floating Button */}
-      <WhatsAppButton />
-      
-      {/* Mobile Menu */}
-      <MobileMenu 
-        isOpen={mobileMenuOpen} 
-        onClose={() => setMobileMenuOpen(false)} 
-      />
-    </>
+          </div>
+        </section>
+      </div>
+    </LayoutWithoutHero>
   )
 }

@@ -18,7 +18,7 @@ export function Hero({ className }: HeroProps) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/assets/banner.png"
+          src="/assets/images/hero-banner.jpg"
           alt="Hero background"
           fill
           className="object-cover"

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "1",
+    "title": "7D6N Scenic Korea",
+    "price": "fr $1,438/pax",
+    "description": "Experience the vibrant culture of South Korea with visits to Seoul, Busan, and Jeju Island. Includes traditional markets and K-pop experiences.",
+    "image": "/assets/tours/savor-southern-france.jpg",
+    "tags": ["Best Seller"],
+    "badge": "Best Seller",
+    "href": "/tours/korea-scenic"
+  },
+  {
+    "id": "2",
+    "title": "10D8N Classic Japan",
+    "price": "fr $2,188/pax",
+    "description": "Discover Japan's perfect blend of ancient traditions and modern technology. Visit Tokyo, Kyoto, Osaka, and Mount Fuji.",
+    "image": "/assets/tours/europe-fantasy.jpg",
+    "tags": ["Popular"],
+    "href": "/tours/japan-classic"
+  },
+  {
+    "id": "3",
+    "title": "8D7N Taiwan Discovery",
+    "price": "fr $988/pax",
+    "description": "Explore Taiwan's night markets, hot springs, and stunning Taroko Gorge. A perfect mix of city life and natural wonders.",
+    "image": "/assets/tours/netherlands-germany-france.jpg",
+    "tags": ["Value Deal"],
+    "href": "/tours/taiwan-discovery"
+  },
+  {
+    "id": "4",
+    "title": "12D10N Turkey Wonders",
+    "price": "fr $1,888/pax",
+    "description": "Journey through Istanbul, Cappadocia, and Pamukkale. Experience hot air balloons, ancient ruins, and Turkish hospitality.",
+    "image": "/assets/tours/savor-southern-france.jpg",
+    "tags": ["Must See"],
+    "href": "/tours/turkey-wonders"
+  }
+]

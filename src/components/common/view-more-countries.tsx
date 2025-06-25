@@ -24,7 +24,7 @@ export function ViewMoreCountries({ countries, className }: ViewMoreCountriesPro
   const secondRow = countries.slice(4, 8)
 
   return (
-    <section className={cn("w-full max-w-[1480px] mx-auto", className)}>
+    <section className={cn("hidden lg:block w-full max-w-[1480px] mx-auto", className)}>
       {/* Title + Subtitle */}
       <div className="text-center mb-[75px]">
         <h2 className="font-thunder font-medium text-[50px] leading-[0.92] text-[#242424] mb-[30px]">
@@ -85,7 +85,7 @@ function CountryCard({ country }: { country: Country }) {
 // Mobile version
 export function ViewMoreCountriesMobile({ countries, className }: ViewMoreCountriesProps) {
   return (
-    <section className={cn("lg:hidden w-full max-w-[343px] mx-auto", className)}>
+    <section className={cn("lg:hidden w-full max-w-[324px] mx-auto px-[15px]", className)}>
       {/* Title + Subtitle */}
       <div className="text-center mb-[67px]">
         <h2 className="font-thunder font-medium text-[32px] leading-[0.92] text-[#242424] mb-[20px]">
@@ -96,9 +96,9 @@ export function ViewMoreCountriesMobile({ countries, className }: ViewMoreCountr
         </p>
       </div>
 
-      {/* Countries Grid - 2 columns */}
-      <div className="grid grid-cols-2 gap-x-[24px] gap-y-[49px] px-[7px]">
-        {countries.map((country) => (
+      {/* Countries Grid - 3 columns */}
+      <div className="grid grid-cols-3 gap-x-[15px] gap-y-[40px]">
+        {countries.slice(0, 9).map((country) => (
           <CountryCardMobile key={country.id} country={country} />
         ))}
       </div>
@@ -114,7 +114,7 @@ function CountryCardMobile({ country }: { country: Country }) {
       className="group flex flex-col items-center transition-transform hover:scale-105"
     >
       {/* Country Image */}
-      <div className="relative w-[92px] h-[92px] rounded-full overflow-hidden mb-[19.61px]">
+      <div className="relative w-[93px] h-[93px] rounded-full overflow-hidden mb-[19.61px]">
         <Image
           src={country.imageUrl}
           alt={country.name}

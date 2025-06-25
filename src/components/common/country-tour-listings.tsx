@@ -11,9 +11,10 @@ interface Tour {
   title: string
   description: string
   price: string
-  imageUrl: string
+  image: string
   tags: string[]
   badge?: string
+  href?: string
 }
 
 interface CountryTourListingsProps {
@@ -30,7 +31,7 @@ export function CountryTourListings({
   className 
 }: CountryTourListingsProps) {
   return (
-    <section className={cn("w-full max-w-[1478px] mx-auto", className)}>
+    <section className={cn("hidden lg:block w-full max-w-[1478px] mx-auto", className)}>
       {/* Section Title */}
       <div className="mb-[96px]">
         <h2 className="font-thunder font-medium text-[50px] leading-[0.92] text-[#242424]">
@@ -47,10 +48,10 @@ export function CountryTourListings({
             title={tour.title}
             price={tour.price}
             description={tour.description}
-            image={tour.imageUrl}
+            image={tour.image}
             tags={tour.tags}
             badge={tour.badge}
-            href={`/tours/${tour.id}`}
+            href={tour.href || `/tours/${tour.id}`}
           />
         ))}
       </TourGrid>
@@ -77,7 +78,7 @@ export function CountryTourListingsMobile({
   className 
 }: CountryTourListingsProps) {
   return (
-    <section className={cn("lg:hidden w-full max-w-[325px] mx-auto", className)}>
+    <section className={cn("lg:hidden w-full px-[34px]", className)}>
       {/* Section Title */}
       <div className="mb-[48px]">
         <h2 className="font-thunder font-medium text-[32px] leading-[0.92] text-[#242424]">
@@ -86,7 +87,7 @@ export function CountryTourListingsMobile({
       </div>
 
       {/* Tour List - Single Column on Mobile */}
-      <div className="flex flex-col gap-[77px] mb-[26px]">
+      <div className="flex flex-col gap-[37px] mb-[36px]">
         {tours.map((tour) => (
           <TourCard 
             key={tour.id}
@@ -94,11 +95,11 @@ export function CountryTourListingsMobile({
             title={tour.title}
             price={tour.price}
             description={tour.description}
-            image={tour.imageUrl}
+            image={tour.image}
             tags={tour.tags}
             badge={tour.badge}
-            href={`/tours/${tour.id}`}
-            className="w-full max-w-[324px] mx-auto"
+            href={tour.href || `/tours/${tour.id}`}
+className="mx-auto lg:hidden"
           />
         ))}
       </div>
@@ -106,8 +107,8 @@ export function CountryTourListingsMobile({
       {/* View All Button */}
       <div className="flex justify-center">
         <Button
-          variant="outline"
-          className="w-[118px] h-[36px] border border-[#242424] text-[#242424] bg-white font-onest text-[12px] leading-[1.275] rounded-[4px] hover:bg-[#f5f5f5]"
+          variant="primary"
+          className="w-[118px] h-[36px] bg-[#242424] text-white font-onest text-[12px] leading-[1.275] rounded-[4px] hover:bg-[#1a1a1a]"
         >
           View All
         </Button>

@@ -8,22 +8,23 @@ import { cn } from '@/lib/utils'
 interface MobileScrolledNavProps {
   className?: string
   onMenuClick?: () => void
+  viewAsComponent?: boolean
 }
 
-export function MobileScrolledNav({ className, onMenuClick }: MobileScrolledNavProps) {
+export function MobileScrolledNav({ className, onMenuClick, viewAsComponent = false }: MobileScrolledNavProps) {
 
   return (
     <nav
       className={cn(
-        "lg:hidden fixed top-0 left-0 right-0 z-50 w-full h-[81px] flex items-center transition-all duration-300 bg-[#242424]",
+        viewAsComponent ? "w-[393px] h-[81px] flex items-center transition-all duration-300 bg-[#242424]" : "lg:hidden fixed top-0 left-0 right-0 z-50 w-full h-[81px] flex items-center transition-all duration-300 bg-[#242424]",
         className
       )}
     >
       <div className="w-full px-[35px] flex items-center justify-between">
-        <Link href="/" className="flex-shrink-0">
+        <Link href={viewAsComponent ? "#" : "/"} className="flex-shrink-0" onClick={viewAsComponent ? (e) => e.preventDefault() : undefined}>
           <div className="relative w-[71.52px] h-[50.33px]">
             <Image
-              src="/assets/eulogo.png"
+              src="/assets/logos/eu-logo.png"
               alt="EU Holidays"
               fill
               className="object-contain"
@@ -33,7 +34,7 @@ export function MobileScrolledNav({ className, onMenuClick }: MobileScrolledNavP
         </Link>
 
         <button
-          onClick={onMenuClick}
+          onClick={viewAsComponent ? () => {} : onMenuClick}
           className="w-[17.73px] h-[11.82px] flex flex-col justify-between"
           aria-label="Open menu"
         >

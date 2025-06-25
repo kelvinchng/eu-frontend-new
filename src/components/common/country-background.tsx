@@ -20,7 +20,7 @@ export function CountryBackground({
   const [currentImage, setCurrentImage] = useState(0)
 
   return (
-    <section className={cn("w-full max-w-[1480px] mx-auto", className)}>
+    <section className={cn("hidden lg:block w-full max-w-[1480px] mx-auto", className)}>
       <div className="flex bg-white rounded-[16px] overflow-hidden shadow-sm">
         {/* Left Content */}
         <div className="w-[612px] bg-[#EFEFEF] p-[67px_67px_97px_67px] flex flex-col justify-center">
@@ -74,10 +74,10 @@ export function CountryBackgroundMobile({
   const [currentImage, setCurrentImage] = useState(0)
 
   return (
-    <section className={cn("lg:hidden w-full max-w-[325px] mx-auto", className)}>
-      <div className="bg-white rounded-[9px] overflow-hidden shadow-sm">
+    <section className={cn("lg:hidden w-full px-[34px]", className)}>
+      <div className="bg-white rounded-[9px] overflow-hidden shadow-sm w-[324px] mx-auto">
         {/* Image Carousel */}
-        <div className="relative w-full h-[214px]">
+        <div className="relative w-full h-[172px] rounded-t-[9px] overflow-hidden">
           <Image
             src={images[currentImage]}
             alt={`${countryName} background ${currentImage + 1}`}
@@ -93,7 +93,7 @@ export function CountryBackgroundMobile({
                 onClick={() => setCurrentImage(index)}
                 className={cn(
                   "w-[4.68px] h-[4.68px] rounded-full border border-white transition-colors",
-                  index === currentImage ? "bg-white" : "bg-[#242424]"
+                  index === currentImage ? "bg-[#242424]" : "bg-white"
                 )}
               />
             ))}
@@ -101,7 +101,7 @@ export function CountryBackgroundMobile({
         </div>
 
         {/* Content */}
-        <div className="bg-[#EFEFEF] p-[43px_30px_87px_30px] space-y-[44px]">
+        <div className="bg-[#EFEFEF] rounded-b-[9px] p-[43px_30px_87px_30px] space-y-[44px]">
           <h2 className="font-thunder text-[30px] leading-[0.92] text-[#242424]">
             Background of {countryName}
           </h2>

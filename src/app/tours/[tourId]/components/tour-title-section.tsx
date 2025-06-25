@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 interface TourTitleSectionProps {
@@ -51,29 +52,28 @@ export function TourTitleSection({ tour, className }: TourTitleSectionProps) {
           {/* Action Buttons - Bottom right */}
           <div className="absolute right-0 bottom-0 flex gap-[11px]">
             {/* Download Itinerary Button - Position 813,225 */}
-            <button className="w-[243px] h-[51px] bg-[#D9D9D9] border border-[#242424] rounded-[9px] flex items-center justify-center hover:bg-[#cccccc] transition-colors">
-              <span className="font-onest text-[18px] leading-[1.275] text-[#242424]">
-                Download Itinerary
-              </span>
-            </button>
+            <Button 
+              variant="outline"
+              className="w-[243px] h-[51px] bg-[#D9D9D9] border border-[#242424] rounded-[9px] font-onest text-[18px] leading-[1.275] text-[#242424] hover:bg-[#cccccc]"
+            >
+              Download Itinerary
+            </Button>
             
             {/* Enquire More Button - Position 1067,225 */}
-            <button className="w-[222px] h-[51px] bg-[#D9D9D9] border border-[#242424] rounded-[9px] flex items-center justify-center hover:bg-[#cccccc] transition-colors">
-              <span className="font-onest text-[18px] leading-[1.275] text-[#242424]">
-                Enquire More
-              </span>
-            </button>
+            <Button 
+              variant="outline"
+              className="w-[222px] h-[51px] bg-[#D9D9D9] border border-[#242424] rounded-[9px] font-onest text-[18px] leading-[1.275] text-[#242424] hover:bg-[#cccccc]"
+            >
+              Enquire More
+            </Button>
             
             {/* Book Now Button - Position 1300,225 */}
-            <button className="relative w-[180.16px] h-[51px] overflow-hidden group hover:scale-105 transition-transform">
-              {/* Background SVG shape */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 180.16 51" fill="none">
-                <path d="M0 9C0 4.02944 4.02944 0 9 0H163.16C168.131 0 172.16 4.02944 172.16 9V42C172.16 46.9706 168.131 51 163.16 51H9C4.02943 51 0 46.9706 0 42V9Z" fill="#242424" className="group-hover:fill-[#1a1a1a] transition-colors"/>
-              </svg>
-              <span className="relative font-onest text-[18px] leading-[1.275] text-white z-10">
-                Book Now
-              </span>
-            </button>
+            <Button 
+              variant="primary"
+              className="w-[180.16px] h-[51px] bg-[#242424] text-white rounded-[9px] font-onest text-[18px] leading-[1.275] hover:bg-[#1a1a1a] hover:scale-105 transition-transform"
+            >
+              Book Now
+            </Button>
           </div>
         </div>
       </div>

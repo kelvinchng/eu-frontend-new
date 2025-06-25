@@ -1,76 +1,40 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
 import { cn } from '@/lib/utils'
 import { designTokens } from '@/lib/design-tokens'
 import { AdventureCard } from '@/components/ui/cards/adventure-card'
+import { YourNextAdventureData, fetchYourNextAdventureDataClient } from '@/lib/data-fetchers'
 
-interface Adventure {
-  id: string
-  title: string
-  image: string
-  href?: string
-  icon?: React.ReactNode
+
+interface YourNextAdventureProps {
+  className?: string
+  data?: YourNextAdventureData
 }
 
-const adventures: Adventure[] = [
-  {
-    id: 'trending',
-    title: 'Trending Now',
-    image: '/assets/adventure-trending.jpg',
-    href: '/trending',
-    icon: (
-      <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
-        <img src="/assets/trending-icon.svg" alt="Trending" />
-      </div>
-    )
-  },
-  {
-    id: 'deals',
-    title: 'Travel Deals',
-    image: '/assets/adventure-deals.jpg',
-    href: '/deals',
-    icon: (
-      <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
-        <img src="/assets/deals-icon.svg" alt="Deals" />
-      </div>
-    )
-  },
-  {
-    id: 'themed',
-    title: 'Themed Journeys', 
-    image: '/assets/adventure-themed.jpg',
-    href: '/themed-journeys',
-    icon: (
-      <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
-        <img src="/assets/themed-icon.svg" alt="Themed" />
-      </div>
-    )
-  },
-  {
-    id: 'cruises',
-    title: 'Cruises',
-    image: '/assets/adventure-cruises.jpg',
-    href: '/cruises',
-    icon: (
-      <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
-        <img src="/assets/cruises-icon.svg" alt="Cruises" />
-      </div>
-    )
-  }
-]
-
-export function YourNextAdventure({ className }: { className?: string }) {
+export function YourNextAdventure({ className, data: initialData }: YourNextAdventureProps) {
+  const [data, setData] = useState<YourNextAdventureData | null>(initialData || null)
+  const [loading, setLoading] = useState(!initialData)
+  
+  // All hooks must be called before any conditional returns
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     containScroll: 'trimSnaps',
-    slidesToScroll: 3,
+    slidesToScroll: 4,
   })
   
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+
+  useEffect(() => {
+    if (!initialData) {
+      fetchYourNextAdventureDataClient()
+        .then(setData)
+        .catch(console.error)
+        .finally(() => setLoading(false))
+    }
+  }, [initialData])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -92,38 +56,65 @@ export function YourNextAdventure({ className }: { className?: string }) {
     if (emblaApi) emblaApi.scrollTo(index)
   }
 
+  if (loading) {
+    return <div>Loading your next adventure...</div>
+  }
+
+  if (!data) {
+    return <div>Failed to load adventure data</div>
+  }
+
+  const adventures = data.adventures.map(adventure => ({
+    ...adventure,
+    icon: adventure.iconPath ? (
+      <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
+        <img src={adventure.iconPath} alt={adventure.title} />
+      </div>
+    ) : undefined
+  }))
+
   return (
     <section className={cn("w-full", className)}>
       <div className="max-w-[1920px] mx-auto">
         {/* Title and Subtitle - Centered */}
-        <div className="flex flex-col items-center gap-[10px] mb-[80px] px-[35px] md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px]">
-          <h2 className={cn(
-            "font-thunder font-medium text-[50px] leading-[0.92] text-center"
-          )}
-          style={{ color: designTokens.colors.primary }}
-          >
-            Your Next Adventure
-          </h2>
-          <p className={cn(
-            "font-onest text-[18px] leading-[1.275] text-center max-w-[750px]",
-            "tracking-[-0.025em]"
-          )}
-          style={{ color: designTokens.colors.primary }}
-          >
-            Join thousands of happy travellers who trust EU Holidays to make their journey unforgettable.
-          </p>
+        <div className="mb-[80px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+          <div className="flex justify-center">
+            <div className="w-full max-w-[750px] text-center">
+              <h2 className={cn(
+                "font-thunder font-medium text-[50px] leading-[0.92] mb-[10px]"
+              )}
+              style={{ color: designTokens.colors.primary }}
+              >
+                {data.section.title}
+              </h2>
+              <p className={cn(
+                "font-onest text-[18px] leading-[1.275]",
+                "tracking-[-0.025em]"
+              )}
+              style={{ color: designTokens.colors.primary }}
+              >
+                {data.section.subtitle}
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Carousel */}
-        <div className="overflow-hidden px-[35px] md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px]" ref={emblaRef}>
-          <div className="flex gap-[50px] py-2">
-            {adventures.map((adventure) => (
-              <div key={adventure.id} className="flex-shrink-0">
-                <AdventureCard 
-                  {...adventure}
-                />
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+            <div className="flex-shrink-0 w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-2">
+              <div className="flex justify-center">
+                <div className="flex gap-[50px]">
+                  {adventures.map((adventure) => (
+                    <div key={adventure.id}>
+                      <AdventureCard 
+                        {...adventure}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 

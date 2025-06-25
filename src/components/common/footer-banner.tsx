@@ -19,7 +19,7 @@ export function FooterBanner({ className }: { className?: string }) {
       {/* Background Image and Gradient */}
       <div className="absolute inset-0">
         <Image
-          src="/assets/footerbanner.png"
+          src="/assets/images/footer-banner-background.jpg"
           alt="Travel destination background"
           fill
           className="object-cover"
@@ -33,10 +33,11 @@ export function FooterBanner({ className }: { className?: string }) {
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center">
-        {/* Title + Subtitle */}
-        <div className="absolute left-[128px] top-[303px] w-[646px] flex flex-col gap-[17px]">
+      {/* Content Container */}
+      <div className="relative z-10 h-full max-w-[1920px] mx-auto">
+        <div className="h-full flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+          {/* Title + Subtitle */}
+          <div className="absolute left-[128px] md:left-auto md:relative top-[303px] md:top-auto w-[646px] md:w-full max-w-[646px] flex flex-col gap-[17px]">
           <h2 className="font-thunder font-medium text-[170px] leading-[0.92] text-white">
             Go places.
           </h2>
@@ -47,8 +48,8 @@ export function FooterBanner({ className }: { className?: string }) {
           </p>
         </div>
 
-        {/* Plane Illustration */}
-        <svg className="absolute left-[1.24px] top-[130.5px]" width="739" height="188" viewBox="0 0 739 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Plane Illustration */}
+          <svg className="absolute left-[1.24px] md:left-auto md:relative top-[130.5px] md:top-auto mb-8" width="739" height="188" viewBox="0 0 739 188" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.212532">
             <path d="M667.453 49.3616C665.654 48.4866 663.842 47.6356 662.021 46.8086" stroke="white" strokeWidth="5" strokeLinecap="round"/>
             <path d="M651.368 42.2763C634.998 35.7663 617.933 31.0023 600.644 27.6633C514.474 10.9933 422.104 25.8733 341.914 59.7133C341.555 59.8633 341.197 60.0153 340.839 60.1683" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="11.58 11.58"/>
@@ -61,8 +62,8 @@ export function FooterBanner({ className }: { className?: string }) {
           </g>
         </svg>
 
-        {/* Newsletter Form */}
-        <div className="absolute left-[128px] top-[778px] w-[829px] bg-white rounded-[12px] p-[44px_24px_44px_44px]" style={{ boxShadow: '0px 3px 3px 0px rgba(0, 0, 0, 0.16)' }}>
+          {/* Newsletter Form */}
+          <div className="absolute left-[128px] md:left-auto md:relative top-[778px] md:top-auto w-[829px] md:w-full max-w-[829px] bg-white rounded-[12px] p-[44px_24px_44px_44px] md:p-[24px]" style={{ boxShadow: '0px 3px 3px 0px rgba(0, 0, 0, 0.16)' }}>
           <form onSubmit={handleSubmit} className="flex flex-col gap-[12px]">
             {/* Labels */}
             <div className="flex gap-[157px] w-[387px]">
@@ -100,6 +101,7 @@ export function FooterBanner({ className }: { className?: string }) {
               </button>
             </div>
           </form>
+          </div>
         </div>
       </div>
     </section>

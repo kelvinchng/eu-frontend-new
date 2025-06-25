@@ -1,0 +1,38 @@
+[
+  {
+    "id": "japan",
+    "name": "Japan",
+    "image": "/assets/country/japan-destination.jpg",
+    "tourCount": 25
+  },
+  {
+    "id": "korea",
+    "name": "Korea",
+    "image": "/assets/country/korea-destination.jpg",
+    "tourCount": 15
+  },
+  {
+    "id": "taiwan",
+    "name": "Taiwan",
+    "image": "/assets/country/taiwan-destination.jpg",
+    "tourCount": 12
+  },
+  {
+    "id": "china",
+    "name": "China",
+    "image": "/assets/country/china-destination.jpg",
+    "tourCount": 20
+  },
+  {
+    "id": "switzerland",
+    "name": "Switzerland",
+    "image": "/assets/country/switzerland-destination.jpg",
+    "tourCount": 18
+  },
+  {
+    "id": "italy",
+    "name": "Italy",
+    "image": "/assets/country/italy-destination.jpg",
+    "tourCount": 22
+  }
+]

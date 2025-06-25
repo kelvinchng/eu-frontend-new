@@ -9,6 +9,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://euholidays.com'),
   title: 'EU Holidays - Premium Travel Experiences',
   description: 'Discover premium travel experiences across Europe with EU Holidays. Book guided tours, vacation packages, and explore trending destinations.',
   keywords: 'EU Holidays, Europe travel, guided tours, vacation packages, travel deals',

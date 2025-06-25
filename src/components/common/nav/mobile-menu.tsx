@@ -7,9 +7,10 @@ import { cn } from '@/lib/utils'
 interface MobileMenuProps {
   isOpen: boolean
   onClose: () => void
+  viewAsComponent?: boolean
 }
 
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export function MobileMenu({ isOpen, onClose, viewAsComponent = false }: MobileMenuProps) {
   const [expandedSections, setExpandedSections] = useState<string[]>(['plan-journey', 'europe'])
 
   const toggleSection = (section: string) => {
@@ -34,25 +35,27 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     }
   }, [isOpen])
 
-  if (!isOpen) return null
+  if (!isOpen && !viewAsComponent) return null
 
   return (
     <>
       {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/30 z-40 lg:hidden"
-        onClick={onClose}
-      />
+      {!viewAsComponent && (
+        <div 
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
       
       {/* Mobile Menu */}
       <div className={cn(
-        "fixed inset-0 w-full bg-[#242424] z-50 transform transition-transform duration-300 lg:hidden overflow-y-auto",
-        isOpen ? "translate-x-0" : "translate-x-full"
+        viewAsComponent ? "w-[393px] h-[600px] bg-[#242424] transform transition-transform duration-300 overflow-y-auto relative" : "fixed inset-0 w-full bg-[#242424] z-50 transform transition-transform duration-300 lg:hidden overflow-y-auto",
+        !viewAsComponent && (isOpen ? "translate-x-0" : "translate-x-full")
       )}>
         {/* Close Button */}
         <div className="absolute right-[19px] top-[58px] w-[31px] h-[27px]">
           <button
-            onClick={onClose}
+            onClick={viewAsComponent ? undefined : onClose}
             className="w-full h-full flex items-center justify-center"
           >
             <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
@@ -386,7 +389,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {/* About Us */}
           <div className="relative w-full h-[51px]">
             <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#5C5C5C] opacity-30" />
-            <Link href="/about" className="block w-full h-full relative">
+            <Link href="/about-us" className="block w-full h-full relative">
               <span className="absolute left-[24.81px] top-[11px] w-[69.47px] h-[30px] font-onest text-[14px] leading-[30px] text-white">
                 About Us
               </span>

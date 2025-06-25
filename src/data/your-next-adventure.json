@@ -1,0 +1,36 @@
+{
+  "section": {
+    "title": "Your Next Adventure",
+    "subtitle": "Join thousands of happy travellers who trust EU Holidays to make their journey unforgettable."
+  },
+  "adventures": [
+    {
+      "id": "trending",
+      "title": "Trending Now",
+      "image": "/assets/images/adventure-trending-now.jpg",
+      "href": "/trending",
+      "iconPath": "/assets/icons/trending-now-icon.svg"
+    },
+    {
+      "id": "deals",
+      "title": "Travel Deals",
+      "image": "/assets/images/adventure-travel-deals.jpg",
+      "href": "/deals",
+      "iconPath": "/assets/icons/travel-deals-icon.svg"
+    },
+    {
+      "id": "themed",
+      "title": "Themed Journeys",
+      "image": "/assets/images/adventure-themed-journeys.jpg",
+      "href": "/themed-journeys",
+      "iconPath": "/assets/icons/themed-journeys-icon.svg"
+    },
+    {
+      "id": "cruises",
+      "title": "Cruises",
+      "image": "/assets/images/adventure-cruises.jpg",
+      "href": "/cruises",
+      "iconPath": "/assets/icons/cruises-icon.svg"
+    }
+  ]
+}

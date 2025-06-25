@@ -13,28 +13,29 @@ interface InstagramPost {
 }
 
 const instagramPosts: InstagramPost[] = [
-  { id: '1', image: '/assets/instagram-1.jpg', width: 295.27, height: 301.64 },
-  { id: '2', image: '/assets/instagram-2.jpg', width: 291.61, height: 302.59 },
-  { id: '3', image: '/assets/instagram-3.jpg', width: 292.53, height: 302.59 },
-  { id: '4', image: '/assets/instagram-4.jpg', width: 291.61, height: 301.64 },
-  { id: '5', image: '/assets/instagram-5.jpg', width: 295.27, height: 301.64 },
-  { id: '6', image: '/assets/instagram-6.jpg', width: 291.61, height: 302.59 },
-  { id: '7', image: '/assets/instagram-7.jpg', width: 292.53, height: 302.59 },
-  { id: '8', image: '/assets/instagram-8.jpg', width: 291.61, height: 301.64 },
-  { id: '9', image: '/assets/instagram-9.png', width: 294.35, height: 301.64 },
-  { id: '10', image: '/assets/instagram-10.png', width: 294.35, height: 301.64 },
+  { id: '1', image: '/assets/social/instagram-post-1.jpg', width: 295.27, height: 301.64 },
+  { id: '2', image: '/assets/social/instagram-post-2.jpg', width: 291.61, height: 302.59 },
+  { id: '3', image: '/assets/social/instagram-post-3.jpg', width: 292.53, height: 302.59 },
+  { id: '4', image: '/assets/social/instagram-post-4.jpg', width: 291.61, height: 301.64 },
+  { id: '5', image: '/assets/social/instagram-post-5.jpg', width: 295.27, height: 301.64 },
+  { id: '6', image: '/assets/social/instagram-post-6.jpg', width: 291.61, height: 302.59 },
+  { id: '7', image: '/assets/social/instagram-post-7.jpg', width: 292.53, height: 302.59 },
+  { id: '8', image: '/assets/social/instagram-post-8.jpg', width: 291.61, height: 301.64 },
+  { id: '9', image: '/assets/social/instagram-post-9.jpg', width: 294.35, height: 301.64 },
+  { id: '10', image: '/assets/social/instagram-post-10.jpg', width: 294.35, height: 301.64 },
 ]
 
 export function InstagramSection({ className }: { className?: string }) {
   return (
     <section className={cn("w-full", className)}>
-      <div className="max-w-[1480px] mx-auto flex flex-col items-center gap-[43px]">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="flex flex-col items-center gap-[43px]">
         {/* Instagram Header */}
         <div className="flex items-center gap-[39px]">
           {/* Profile Picture */}
           <div className="relative w-[80px] h-[80px] rounded-full overflow-hidden">
             <Image
-              src="/assets/eu-logo.png"
+              src="/assets/logos/eu-logo.png"
               alt="EU Holidays"
               fill
               className="object-cover"
@@ -149,6 +150,7 @@ export function InstagramSection({ className }: { className?: string }) {
               <Image src={instagramPosts[9].image} alt="Instagram post" fill className="object-cover" />
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

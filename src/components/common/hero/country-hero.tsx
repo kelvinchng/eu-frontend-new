@@ -17,7 +17,7 @@ export function CountryHero({
   return (
     <section 
       className={cn(
-        "relative w-full h-[838px] flex items-end",
+        "hidden lg:flex relative w-full h-[838px] items-end",
         "bg-cover bg-center bg-no-repeat",
         className
       )}
@@ -44,7 +44,7 @@ export function CountryHeroMobile({
   return (
     <section 
       className={cn(
-        "lg:hidden relative w-full h-[409px] flex items-end",
+        "block lg:hidden relative w-full h-[409px] min-h-[300px] flex items-end",
         "bg-cover bg-center bg-no-repeat",
         className
       )}
@@ -53,8 +53,8 @@ export function CountryHeroMobile({
       }}
     >
       {/* Hero Title */}
-      <div className="absolute left-[34px] bottom-[42px]">
-        <h1 className="font-thunder text-[46px] leading-[0.92] tracking-[1%] text-white">
+      <div className="absolute left-[8.65vw] bottom-[10.27vw] px-4 sm:px-6">
+        <h1 className="font-thunder text-white leading-[0.92] tracking-[1%] text-[11.7vw] sm:text-[46px] md:text-[52px] max-w-[85vw]">
           Explore {countryName}
         </h1>
       </div>

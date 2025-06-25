@@ -9,23 +9,27 @@ import { MegaMenu } from './mega-menu'
 interface DesktopNavProps {
   className?: string
   variant?: 'default' | 'overlay'
+  viewAsComponent?: boolean
 }
 
-export function DesktopNav({ className, variant = 'default' }: DesktopNavProps) {
+export function DesktopNav({ className, variant = 'default', viewAsComponent = false }: DesktopNavProps) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
 
   return (
     <>
       {/* Navbar Container */}
       <div className={cn(
-        "hidden lg:block w-full relative",
-        variant === 'overlay' ? "absolute left-0 right-0 top-0 z-50" : ""
+        viewAsComponent ? "w-full relative" : "hidden lg:block w-full relative",
+        variant === 'overlay' ? (viewAsComponent ? "" : "absolute left-0 right-0 top-0 z-50") : ""
       )}>
         {/* Regular Navbar */}
         <nav
           className={cn(
-            "w-full h-[121.6px] transition-all duration-300",
-            variant === 'overlay' ? (isMegaMenuOpen ? "bg-[#242424]" : "bg-transparent") : "bg-[#242424]",
+            "w-full transition-all duration-300",
+            viewAsComponent ? "h-[121.6px]" : "h-[121.6px]",
+            variant === 'overlay' ? 
+              (viewAsComponent ? "bg-transparent" : (isMegaMenuOpen ? "bg-[#242424]" : "bg-transparent")) : 
+              "bg-[#242424]",
             className
           )}
         >
@@ -40,9 +44,10 @@ export function DesktopNav({ className, variant = 'default' }: DesktopNavProps) 
               "w-[80px] h-[56px] lg:w-[90px] lg:h-[63px] xl:w-[100px] xl:h-[70px] 2xl:w-[120px] 2xl:h-[84px] 3xl:w-[144.95px] 3xl:h-[102px]"
             )}>
               <Image
-                src="/assets/eulogo.png"
+                src="/assets/logos/eu-logo.png"
                 alt="EU Holidays"
                 fill
+                sizes="(max-width: 1024px) 80px, (max-width: 1280px) 90px, (max-width: 1536px) 100px, (max-width: 1920px) 120px, 145px"
                 className="object-contain"
                 priority
               />
@@ -50,10 +55,10 @@ export function DesktopNav({ className, variant = 'default' }: DesktopNavProps) 
           </Link>
 
           {/* Menu items */}
-          <div className="absolute inset-0 flex items-center justify-between w-full px-6 lg:px-8 xl:px-12 2xl:px-[50px]">
+          <div className="absolute inset-0 flex items-center justify-between w-full px-6 lg:px-8 xl:px-12 2xl:px-[50px]" style={{ paddingBottom: variant === 'overlay' && !viewAsComponent ? '20px' : '0' }}>
             {/* Left side - Menu with hamburger */}
             <button 
-              onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+              onClick={viewAsComponent ? () => {} : () => setIsMegaMenuOpen(!isMegaMenuOpen)}
               className="flex items-center group"
             >
               <span className="font-thunder text-[27px] leading-[0.92em] tracking-[0.03em] text-white group-hover:opacity-80 transition-opacity">
@@ -69,14 +74,16 @@ export function DesktopNav({ className, variant = 'default' }: DesktopNavProps) 
             {/* Right side - Travel Essentials and Travel Club */}
             <div className="flex items-center gap-[41px]">
               <Link 
-                href="/travel-essentials" 
+                href={viewAsComponent ? "#" : "/travel-essentials"} 
                 className="font-thunder text-[27px] leading-[0.92em] tracking-[0.03em] text-white hover:opacity-80 transition-opacity"
+                onClick={viewAsComponent ? (e) => e.preventDefault() : undefined}
               >
                 Travel Essentials
               </Link>
               <Link 
-                href="/travel-club" 
+                href={viewAsComponent ? "#" : "/travel-club"} 
                 className="font-thunder text-[27px] leading-[0.92em] tracking-[0.03em] text-white hover:opacity-80 transition-opacity"
+                onClick={viewAsComponent ? (e) => e.preventDefault() : undefined}
               >
                 Travel Club
               </Link>
@@ -86,15 +93,15 @@ export function DesktopNav({ className, variant = 'default' }: DesktopNavProps) 
         </nav>
         
         {/* Mega Menu */}
-        <MegaMenu 
-          isOpen={isMegaMenuOpen} 
-          onClose={() => setIsMegaMenuOpen(false)}
-          variant={variant}
-        />
+        {!viewAsComponent && (
+          <MegaMenu 
+            isOpen={isMegaMenuOpen} 
+            onClose={() => setIsMegaMenuOpen(false)}
+            variant={variant}
+          />
+        )}
       </div>
 
-      {/* Spacer when not overlay */}
-      {variant !== 'overlay' && <div className="hidden lg:block h-[121.6px]" />}
     </>
   )
 }

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "title": "The Cherry Blossoms are Calling",
+    "price": "fr $438/pax",
+    "description": "Enjoy an unforgettable spring getaway to Japan during peak sakura season! This limited-time deal includes airport taxes, baggage allowance and even a free gift.",
+    "image": "/assets/deals/cherry-blossoms.jpg",
+    "tags": ["1-for-1"],
+    "href": "/tours/japan-sakura"
+  },
+  {
+    "id": "2",
+    "title": "13D10N Aurora Norway, Finland and Sweden (OCT-MAR)",
+    "price": "fr $438/pax",
+    "description": "Sunkissed Switzerland is an equally dreamy destination to explore in summer – with its incredible scenery filled in with color, spectacularly blue lakes and awesome weather to boot.",
+    "image": "/assets/deals/aurora-norway.jpg",
+    "tags": ["1-for-1"],
+    "href": "/tours/iceland-aurora"
+  },
+  {
+    "id": "3",
+    "title": "Swiss Alps Summer Special",
+    "price": "fr $558/pax",
+    "description": "Discover the breathtaking Swiss Alps this summer. Includes scenic train rides, mountain excursions, and traditional Swiss dining experiences.",
+    "image": "/assets/deals/northern-italy.jpg",
+    "tags": ["Limited Offer"],
+    "href": "/tours/swiss-summer"
+  },
+  {
+    "id": "4",
+    "title": "Mediterranean Cruise Special",
+    "price": "fr $888/pax",
+    "description": "Set sail on a luxurious Mediterranean cruise visiting Greece, Italy, and Spain. All-inclusive package with premium dining and entertainment.",
+    "image": "/assets/deals/cherry-blossoms.jpg",
+    "tags": ["Early Bird"],
+    "href": "/tours/med-cruise"
+  },
+  {
+    "id": "5",
+    "title": "Eastern Europe Discovery",
+    "price": "fr $688/pax",
+    "description": "Explore the hidden gems of Eastern Europe including Prague, Budapest, and Vienna. Rich history, stunning architecture, and local cuisine await.",
+    "image": "/assets/deals/aurora-norway.jpg",
+    "tags": ["Group Discount"],
+    "href": "/tours/eastern-europe"
+  },
+  {
+    "id": "6",
+    "title": "Scandinavia Northern Lights",
+    "price": "fr $988/pax",
+    "description": "Chase the Aurora Borealis across Norway, Sweden, and Finland. Includes husky sledding, ice hotels, and traditional Sami experiences.",
+    "image": "/assets/deals/northern-italy.jpg",
+    "tags": ["Limited Seats"],
+    "href": "/tours/scandinavia-lights"
+  }
+]

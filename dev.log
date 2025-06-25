@@ -2,11 +2,12 @@
 > travelandtour-public-frontend@0.1.0 dev
 > next dev --turbopack
 
- ⚠ Port 3000 is in use, using available port 3001 instead.
    ▲ Next.js 15.3.3 (Turbopack)
-   - Local:        http://localhost:3001
-   - Network:      http://192.168.50.108:3001
+   - Local:        http://localhost:3000
+   - Network:      http://10.9.9.69:3000
 
  ✓ Starting...
- ✓ Ready in 831ms
-[?25h
+ ✓ Ready in 701ms
+ ○ Compiling /tours/[tourId] ...
+ ✓ Compiled /tours/[tourId] in 1243ms
+ GET /tours/korea-scenic/ 200 in 1681ms

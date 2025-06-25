@@ -11,6 +11,14 @@
 
 @font-face {
   font-family: 'Thunder';
+  src: url('/fonts/Thunder-LC.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thunder';
   src: url('/fonts/Thunder-LightLC.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;

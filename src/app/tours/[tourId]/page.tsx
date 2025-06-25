@@ -21,10 +21,31 @@ export default async function TourDetailPage({ params }: TourDetailPageProps) {
 
 export async function generateStaticParams() {
   // In a real app, you would fetch all tour IDs from your API
+  // For now, including all tour IDs referenced in the application
   return [
+    // Original tour codes
     { tourId: 'ecsbts' },
     { tourId: 'ecfrit' },
     { tourId: 'ecgrat' },
     { tourId: 'ecnord' },
+    { tourId: 'eceast' },
+    
+    // Featured tours
+    { tourId: 'korea-scenic' },
+    { tourId: 'japan-classic' },
+    { tourId: 'taiwan-discovery' },
+    { tourId: 'turkey-wonders' },
+    
+    // Seasonal deals
+    { tourId: 'japan-sakura' },
+    { tourId: 'iceland-aurora' },
+    { tourId: 'swiss-summer' },
+    { tourId: 'med-cruise' },
+    { tourId: 'eastern-europe' },
+    { tourId: 'scandinavia-lights' },
+    
+    // Country specific tours
+    { tourId: 'switzerland-dream' },
+    { tourId: 'scandinavian-capitals' },
   ]
 }

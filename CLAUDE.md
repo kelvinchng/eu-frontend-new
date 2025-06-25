@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Git Commit Convention
+- Do NOT add co-authored-by lines to git commits
+- Keep commit messages clear and concise without attribution
+
 ## CRITICAL: Responsive Design Memory
 
 ### Always Remember When Implementing Components:

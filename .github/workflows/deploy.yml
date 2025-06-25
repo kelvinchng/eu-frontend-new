@@ -85,9 +85,6 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: 1
 
-      - name: Export static files
-        run: npm run export
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:

@@ -19,105 +19,122 @@ interface TourItineraryProps {
 }
 
 export function TourItinerary({ itinerary, className }: TourItineraryProps) {
-  const [expandedDay, setExpandedDay] = useState<number | null>(1)
+  const [expandedDays, setExpandedDays] = useState<Set<number>>(new Set([1]))
+  const [expandAll, setExpandAll] = useState(false)
 
   const toggleDay = (day: number) => {
-    setExpandedDay(expandedDay === day ? null : day)
+    const newExpanded = new Set(expandedDays)
+    if (newExpanded.has(day)) {
+      newExpanded.delete(day)
+    } else {
+      newExpanded.add(day)
+    }
+    setExpandedDays(newExpanded)
+  }
+
+  const handleExpandAll = () => {
+    if (expandAll) {
+      setExpandedDays(new Set())
+    } else {
+      setExpandedDays(new Set(itinerary.map(day => day.day)))
+    }
+    setExpandAll(!expandAll)
   }
 
   return (
     <div className={cn("w-full", className)}>
       {/* Desktop Itinerary */}
       <div className="hidden lg:block">
-        <h2 className="font-thunder text-[50px] leading-[0.92] text-[#242424] mb-[25px]">
-          Day by Day Itinerary
-        </h2>
+        <div className="flex items-center justify-between mb-[25px]">
+          <h2 className="font-thunder font-medium text-[50px] leading-[0.92] text-[#242424]">
+            Day by Day Itinerary
+          </h2>
+          
+          {/* Expand All button */}
+          <button
+            onClick={handleExpandAll}
+            className="font-onest font-normal text-[18px] leading-[1.275] text-[#242424] hover:underline"
+          >
+            {expandAll ? 'Collapse All' : 'Expand All'}
+          </button>
+        </div>
         
-        <div className="space-y-[8px]">
-          {itinerary.map((day, index) => (
-            <div key={day.day} className={cn(
-              "border border-[#DCDCDC] rounded-[9px] overflow-hidden",
-              expandedDay === day.day ? "border-[#242424]" : ""
-            )}>
-              {/* Day Header */}
-              <button
-                onClick={() => toggleDay(day.day)}
-                className={cn(
-                  "w-full h-[100px] flex items-center justify-between px-[32px] py-[24px] text-left transition-colors",
-                  expandedDay === day.day ? "bg-[#F9F9F9]" : "hover:bg-[#F9F9F9]"
+        <div className="space-y-[25px]">
+          {itinerary.map((day, index) => {
+            const isExpanded = expandedDays.has(day.day)
+            const isFirstDay = index === 0
+            
+            return (
+              <div key={day.day} className="relative">
+                {/* Expanded Day with black background */}
+                {isExpanded && (
+                  <div className={cn(
+                    "relative",
+                    isFirstDay ? "h-[148px]" : "h-[56px]"
+                  )}>
+                    {/* Black background bar */}
+                    <div className={cn(
+                      "absolute bg-[#242424] rounded-[8px]",
+                      isFirstDay ? "top-[44px] h-[56px]" : "top-0 h-[56px]",
+                      "left-0 right-0"
+                    )} />
+                    
+                    {/* Day Title - White text on black background */}
+                    <button
+                      onClick={() => toggleDay(day.day)}
+                      className={cn(
+                        "absolute flex items-center justify-between w-full h-[56px] px-[43px]",
+                        isFirstDay ? "top-[44px]" : "top-0"
+                      )}
+                    >
+                      <h3 className="font-onest font-bold text-[20px] leading-[1.275] text-white uppercase">
+                        Day {day.day} : {day.location}
+                      </h3>
+                      
+                      {/* Minus icon for expanded state */}
+                      <svg width="25" height="2" viewBox="0 0 25 2" fill="none">
+                        <line y1="1" x2="25" y2="1" stroke="white" strokeWidth="2"/>
+                      </svg>
+                    </button>
+                    
+                    {/* Description below black bar */}
+                    {isFirstDay && (
+                      <p className="absolute left-[68px] top-[125px] font-onest font-normal text-[18px] leading-[1.275] text-[#242424] max-w-[664px]">
+                        {day.description}
+                      </p>
+                    )}
+                  </div>
                 )}
-              >
-                <div className="flex items-center gap-[24px]">
-                  <div className="w-[48px] h-[48px] bg-[#242424] text-white rounded-full flex items-center justify-center font-thunder text-[18px]">
-                    {day.day}
-                  </div>
-                  <div>
-                    <h3 className="font-thunder text-[24px] leading-[0.92] text-[#242424] mb-[4px]">
-                      {day.title}
-                    </h3>
-                    <p className="font-onest text-[14px] text-[#666666]">
-                      {day.location}
-                    </p>
-                  </div>
-                </div>
                 
-                <svg 
-                  className={cn(
-                    "w-[24px] h-[24px] text-[#242424] transition-transform",
-                    expandedDay === day.day ? "rotate-180" : ""
-                  )} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {/* Day Content */}
-              {expandedDay === day.day && (
-                <div className="px-[68px] pb-[32px]">
-                  {/* Description */}
-                  <div className="mb-[24px]">
-                    <p className="font-onest text-[18px] leading-[1.275] text-[#242424] max-w-[664px]">
+                {/* Collapsed Day */}
+                {!isExpanded && (
+                  <button
+                    onClick={() => toggleDay(day.day)}
+                    className="w-full h-[56px] flex items-center justify-between px-[43px] border border-[#DCDCDC] rounded-[9px] hover:bg-[#F9F9F9] transition-colors"
+                  >
+                    <h3 className="font-onest font-bold text-[20px] leading-[1.275] text-[#242424] uppercase">
+                      Day {day.day} : {day.location}
+                    </h3>
+                    
+                    {/* Plus icon for collapsed state */}
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                      <line x1="12.5" y1="1" x2="12.5" y2="24" stroke="#242424" strokeWidth="2"/>
+                      <line y1="12.5" x2="25" y2="12.5" stroke="#242424" strokeWidth="2"/>
+                    </svg>
+                  </button>
+                )}
+                
+                {/* Expanded content for non-first days */}
+                {isExpanded && !isFirstDay && (
+                  <div className="mt-[16px] px-[68px]">
+                    <p className="font-onest font-normal text-[18px] leading-[1.275] text-[#242424] max-w-[664px]">
                       {day.description}
                     </p>
                   </div>
-                  
-                  {/* Activities */}
-                  {day.activities.length > 0 && (
-                    <div className="mb-[16px]">
-                      <h4 className="font-onest font-semibold text-[16px] text-[#242424] mb-[8px]">
-                        Activities:
-                      </h4>
-                      <ul className="space-y-[4px]">
-                        {day.activities.map((activity, idx) => (
-                          <li key={idx} className="font-onest text-[16px] text-[#666666] flex items-start gap-[8px]">
-                            <span className="text-[#242424]">•</span>
-                            {activity}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  
-                  {/* Meals & Accommodation */}
-                  <div className="flex gap-[32px] text-[14px]">
-                    {day.meals.length > 0 && (
-                      <div>
-                        <span className="font-onest font-semibold text-[#242424]">Meals: </span>
-                        <span className="font-onest text-[#666666]">{day.meals.join(', ')}</span>
-                      </div>
-                    )}
-                    <div>
-                      <span className="font-onest font-semibold text-[#242424]">Stay: </span>
-                      <span className="font-onest text-[#666666]">{day.accommodation}</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
       
@@ -152,7 +169,7 @@ export function TourItinerary({ itinerary, className }: TourItineraryProps) {
                 <svg 
                   className={cn(
                     "w-[16px] h-[16px] text-[#242424] transition-transform",
-                    expandedDay === day.day ? "rotate-180" : ""
+                    expandedDays.has(day.day) ? "rotate-180" : ""
                   )} 
                   fill="none" 
                   stroke="currentColor" 

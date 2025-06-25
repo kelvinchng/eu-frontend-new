@@ -11,3 +11,9 @@
  ○ Compiling /tours/[tourId] ...
  ✓ Compiled /tours/[tourId] in 1243ms
  GET /tours/korea-scenic/ 200 in 1681ms
+ ○ Compiling /_not-found/page ...
+ ✓ Compiled /_not-found/page in 792ms
+ GET /assets/related-tour-1.jpg 404 in 912ms
+ GET /assets/related-tour-2.jpg 404 in 888ms
+ GET /assets/related-tour-3.jpg 404 in 905ms
+ ✓ Compiled in 304ms

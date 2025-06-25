@@ -375,27 +375,30 @@ export const relatedTours = [
     title: '10D8N France & Italy Highlights',
     price: 'fr $3,888/pax',
     originalPrice: 'fr $4,288/pax',
-    image: '/assets/related-tour-1.jpg',
+    image: '/assets/tours/savor-southern-france.jpg',
     duration: '10D8N',
     departure: 'Apr - Oct',
-    tags: ['Best Seller']
+    tags: ['Best Seller'],
+    description: 'Experience the best of France and Italy. From Paris to Rome, savor world-class cuisine, art, and stunning Mediterranean coastlines.'
   },
   {
     id: 'ecgrat',
     title: '12D10N Germany & Austria',
     price: 'fr $4,188/pax',
-    image: '/assets/related-tour-2.jpg',
+    image: '/assets/tours/netherlands-germany-france.jpg',
     duration: '12D10N',
     departure: 'May - Sep',
-    tags: ['Limited Seats']
+    tags: ['Limited Seats'],
+    description: 'Journey through the heart of Europe visiting Munich, Vienna, and Salzburg. Experience castles, classical music, and Alpine beauty.'
   },
   {
     id: 'ecnord',
     title: '14D12N Scandinavian Capitals',
     price: 'fr $5,888/pax',
-    image: '/assets/related-tour-3.jpg',
+    image: '/assets/tours/europe-fantasy.jpg',
     duration: '14D12N',
     departure: 'Jun - Aug',
-    tags: ['Early Bird']
+    tags: ['Early Bird'],
+    description: 'Explore the Nordic capitals of Copenhagen, Stockholm, Oslo, and Helsinki. Experience midnight sun, Viking heritage, and Scandinavian design.'
   }
 ]

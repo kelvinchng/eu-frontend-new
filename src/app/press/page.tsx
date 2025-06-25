@@ -106,7 +106,7 @@ export default function PressPage() {
               Press & Media
             </h1>
             <p className="font-onest text-[13px] leading-[17px] md:text-[18px] md:leading-[23px] text-[#242424] max-w-[325px] md:max-w-[824px]">
-              Here's where we share our milestones, media mentions and travel stories that made the headlines.
+              Here&apos;s where we share our milestones, media mentions and travel stories that made the headlines.
             </p>
           </div>
 

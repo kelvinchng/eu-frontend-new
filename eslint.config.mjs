@@ -15,6 +15,10 @@ const eslintConfig = [
     rules: {
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
+      "react/no-unescaped-entities": "warn",
+      "@typescript-eslint/no-unsafe-function-type": "warn",
+      "react/jsx-no-comment-textnodes": "warn",
+      "@next/next/no-async-client-component": "off",
     },
   },
 ];

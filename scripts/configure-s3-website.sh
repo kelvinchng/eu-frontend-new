@@ -19,6 +19,17 @@ configure_bucket() {
         --error-document 404.html \
         --region $AWS_REGION
     
+    # Disable block public access settings FIRST
+    echo "  ➤ Updating public access settings..."
+    aws s3api put-public-access-block \
+        --bucket $BUCKET \
+        --public-access-block-configuration \
+        "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false" \
+        --region $AWS_REGION
+    
+    # Wait a moment for settings to propagate
+    sleep 2
+    
     # Create bucket policy for public read access
     echo "  ➤ Setting bucket policy for public access..."
     cat > /tmp/bucket-policy.json <<EOF
@@ -39,14 +50,6 @@ EOF
     aws s3api put-bucket-policy \
         --bucket $BUCKET \
         --policy file:///tmp/bucket-policy.json \
-        --region $AWS_REGION
-    
-    # Disable block public access settings
-    echo "  ➤ Updating public access settings..."
-    aws s3api put-public-access-block \
-        --bucket $BUCKET \
-        --public-access-block-configuration \
-        "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false" \
         --region $AWS_REGION
     
     # Set CORS configuration for the bucket

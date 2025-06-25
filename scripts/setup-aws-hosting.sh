@@ -26,7 +26,7 @@ fi
 echo ""
 echo "Step 2: Updating CloudFront distributions..."
 echo "--------------------------------------------"
-./scripts/update-cloudfront-origins.sh
+./scripts/update-cloudfront-origins-fixed.sh
 
 if [ $? -ne 0 ]; then
     echo "❌ CloudFront update failed"

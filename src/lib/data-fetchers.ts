@@ -61,51 +61,36 @@ export interface YourNextAdventureData {
   adventures: Adventure[]
 }
 
-// Client-side data fetchers (for use in client components)
+// Import static data
+import seasonalDealsData from '@/data/seasonal-deals.json'
+import featuredToursData from '@/data/featured-tours.json'
+import destinationsData from '@/data/destinations.json'
+import themedJourneysData from '@/data/themed-journeys.json'
+import travelWithEUData from '@/data/travel-with-eu.json'
+import yourNextAdventureData from '@/data/your-next-adventure.json'
+
+// Client-side data fetchers (now using static imports for static export)
 export async function fetchSeasonalDealsClient(): Promise<SeasonalDeal[]> {
-  const response = await fetch('/api/data/seasonal-deals')
-  if (!response.ok) {
-    throw new Error('Failed to fetch seasonal deals')
-  }
-  return response.json()
+  // Simulate async behavior for consistency
+  return Promise.resolve(seasonalDealsData as SeasonalDeal[])
 }
 
 export async function fetchFeaturedToursClient(): Promise<FeaturedTour[]> {
-  const response = await fetch('/api/data/featured-tours')
-  if (!response.ok) {
-    throw new Error('Failed to fetch featured tours')
-  }
-  return response.json()
+  return Promise.resolve(featuredToursData as FeaturedTour[])
 }
 
 export async function fetchDestinationsClient(): Promise<Destination[]> {
-  const response = await fetch('/api/data/destinations')
-  if (!response.ok) {
-    throw new Error('Failed to fetch destinations')
-  }
-  return response.json()
+  return Promise.resolve(destinationsData as Destination[])
 }
 
 export async function fetchThemedJourneysClient(): Promise<ThemedJourney[]> {
-  const response = await fetch('/api/data/themed-journeys')
-  if (!response.ok) {
-    throw new Error('Failed to fetch themed journeys')
-  }
-  return response.json()
+  return Promise.resolve(themedJourneysData as ThemedJourney[])
 }
 
 export async function fetchTravelWithEUTabsClient(): Promise<TravelWithEUTab[]> {
-  const response = await fetch('/api/data/travel-with-eu')
-  if (!response.ok) {
-    throw new Error('Failed to fetch travel with EU tabs')
-  }
-  return response.json()
+  return Promise.resolve(travelWithEUData as TravelWithEUTab[])
 }
 
 export async function fetchYourNextAdventureDataClient(): Promise<YourNextAdventureData> {
-  const response = await fetch('/api/data/your-next-adventure')
-  if (!response.ok) {
-    throw new Error('Failed to fetch your next adventure data')
-  }
-  return response.json()
+  return Promise.resolve(yourNextAdventureData as YourNextAdventureData)
 }

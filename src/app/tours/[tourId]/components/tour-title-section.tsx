@@ -7,9 +7,10 @@ import { cn } from '@/lib/utils'
 interface TourTitleSectionProps {
   tour: any
   className?: string
+  onBookNow?: () => void
 }
 
-export function TourTitleSection({ tour, className }: TourTitleSectionProps) {
+export function TourTitleSection({ tour, className, onBookNow }: TourTitleSectionProps) {
   return (
     <div className={cn("w-full", className)}>
       {/* Desktop Title Section - Exactly matching Figma */}
@@ -68,6 +69,7 @@ export function TourTitleSection({ tour, className }: TourTitleSectionProps) {
             {/* Book Now Button - Position 1300,225 */}
             <button 
               className="w-[180px] h-[51px] bg-[#242424] text-white rounded-[9px] font-onest font-normal text-[18px] leading-[1.275] hover:bg-[#1a1a1a] transition-colors relative overflow-hidden"
+              onClick={onBookNow}
             >
               <span className="relative z-10">Book Now</span>
             </button>
@@ -96,6 +98,28 @@ export function TourTitleSection({ tour, className }: TourTitleSectionProps) {
               {tag}
             </div>
           ))}
+        </div>
+        
+        {/* Action Buttons */}
+        <div className="flex items-center gap-[5.6px] mt-[18px] flex-wrap">
+          <button 
+            className="w-[151.4px] h-[36px] bg-white border border-[#242424] rounded-[4px] font-onest font-normal text-[12px] leading-[1.275] text-[#242424]"
+          >
+            Download Itinerary
+          </button>
+          
+          <button 
+            className="w-[118px] h-[36px] bg-white border border-[#242424] rounded-[4px] font-onest font-normal text-[12px] leading-[1.275] text-[#242424]"
+          >
+            Enquire More
+          </button>
+          
+          <button 
+            className="w-[118px] h-[36px] bg-[#242424] border border-[#242424] text-white rounded-[4px] font-onest font-normal text-[12px] leading-[1.275]"
+            onClick={onBookNow}
+          >
+            Book Now
+          </button>
         </div>
         
         {/* Description */}

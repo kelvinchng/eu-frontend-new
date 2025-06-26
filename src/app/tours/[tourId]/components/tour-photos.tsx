@@ -4,169 +4,130 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
-interface TourPhoto {
+interface TourAlbum {
   id: string
-  title: string
   image: string
-  description: string
+  date: string
+  tourManager: string
 }
 
 interface TourPhotosProps {
-  photos: TourPhoto[]
+  photos: any[] // Keep for compatibility but will transform to albums
   className?: string
 }
 
 export function TourPhotos({ photos, className }: TourPhotosProps) {
-  const [selectedPhoto, setSelectedPhoto] = useState<TourPhoto | null>(null)
+  const [displayCount, setDisplayCount] = useState(3)
 
-  const openLightbox = (photo: TourPhoto) => {
-    setSelectedPhoto(photo)
-  }
-
-  const closeLightbox = () => {
-    setSelectedPhoto(null)
-  }
-
-  const navigatePhoto = (direction: 'prev' | 'next') => {
-    if (!selectedPhoto) return
-    
-    const currentIndex = photos.findIndex(p => p.id === selectedPhoto.id)
-    let newIndex
-    
-    if (direction === 'prev') {
-      newIndex = currentIndex > 0 ? currentIndex - 1 : photos.length - 1
-    } else {
-      newIndex = currentIndex < photos.length - 1 ? currentIndex + 1 : 0
+  // Transform photos to album format or use default albums
+  const albums: TourAlbum[] = [
+    {
+      id: '1',
+      image: '/assets/tour-albums/switzerland-dream-1.jpg',
+      date: '10 December 2024',
+      tourManager: 'Connie Hay'
+    },
+    {
+      id: '2',
+      image: '/assets/tour-albums/switzerland-dream-2.jpg',
+      date: '17 December 2024',
+      tourManager: 'Luke Soh'
+    },
+    {
+      id: '3',
+      image: '/assets/tour-albums/switzerland-dream-3.jpg',
+      date: '27 January 2025',
+      tourManager: 'Peter Teh'
+    },
+    {
+      id: '4',
+      image: '/assets/tour-albums/switzerland-dream-1.jpg',
+      date: '3 February 2025',
+      tourManager: 'Sarah Chen'
+    },
+    {
+      id: '5',
+      image: '/assets/tour-albums/switzerland-dream-2.jpg',
+      date: '15 February 2025',
+      tourManager: 'Michael Wong'
+    },
+    {
+      id: '6',
+      image: '/assets/tour-albums/switzerland-dream-3.jpg',
+      date: '28 February 2025',
+      tourManager: 'Emily Tan'
     }
-    
-    setSelectedPhoto(photos[newIndex])
+  ]
+
+  const displayedAlbums = albums.slice(0, displayCount)
+  const hasMoreAlbums = displayCount < albums.length
+
+  const loadMoreAlbums = () => {
+    setDisplayCount(prev => Math.min(prev + 3, albums.length))
   }
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Desktop Tour Photos */}
-      <div className="hidden lg:block">
-        <h2 className="font-thunder text-[50px] leading-[0.92] text-[#242424] mb-[32px]">
-          Tour Photo Gallery
-        </h2>
-        
-        <div className="grid grid-cols-3 gap-[24px]">
-          {photos.map((photo) => (
-            <div
-              key={photo.id}
-              className="relative aspect-[4/3] rounded-[12px] overflow-hidden cursor-pointer group"
-              onClick={() => openLightbox(photo)}
-            >
+      {/* Title */}
+      <h2 className="font-thunder font-medium text-[32px] lg:text-[50px] leading-[0.92] text-[#242424] uppercase mb-[40px] lg:mb-[50px] text-center">
+        Tour Albums
+      </h2>
+
+      {/* Albums Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px] lg:gap-[32px]">
+        {displayedAlbums.map((album) => (
+          <div
+            key={album.id}
+            className="relative bg-white rounded-[9px] overflow-hidden cursor-pointer group"
+            style={{ boxShadow: '0px 3px 3px 0px rgba(0, 0, 0, 0.16)' }}
+          >
+            {/* Album Image */}
+            <div className="relative w-full h-[250px] lg:h-[303.51px] overflow-hidden">
               <Image
-                src={photo.image}
-                alt={photo.title}
+                src={album.image}
+                alt={`Tour managed by ${album.tourManager}`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="text-center text-white p-[16px]">
-                  <h3 className="font-thunder text-[18px] leading-[0.92] mb-[8px]">
-                    {photo.title}
-                  </h3>
-                  <p className="font-onest text-[14px] leading-[1.4]">
-                    {photo.description}
-                  </p>
+            </div>
+            
+            {/* Album Details */}
+            <div className="p-[25px] lg:p-[25.7px_25.7px_33px_25.7px]">
+              <div className="space-y-[5px] lg:space-y-[8px]">
+                <div className="flex items-start gap-[20px]">
+                  <span className="font-onest font-bold text-[13px] lg:text-[18px] leading-[1.275] text-[#242424]">
+                    Date:
+                  </span>
+                  <span className="font-onest font-normal text-[13px] lg:text-[18px] leading-[1.275] text-[#242424]">
+                    {album.date}
+                  </span>
+                </div>
+                <div className="flex items-start gap-[15px]">
+                  <span className="font-onest font-bold text-[13px] lg:text-[18px] leading-[1.275] text-[#242424]">
+                    Tour Manager:
+                  </span>
+                  <span className="font-onest font-normal text-[13px] lg:text-[18px] leading-[1.275] text-[#242424]">
+                    {album.tourManager}
+                  </span>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-      
-      {/* Mobile Tour Photos */}
-      <div className="lg:hidden">
-        <h2 className="font-thunder text-[24px] leading-[0.92] text-[#242424] mb-[24px]">
-          Tour Photo Gallery
-        </h2>
-        
-        <div className="grid grid-cols-2 gap-[12px]">
-          {photos.map((photo) => (
-            <div
-              key={photo.id}
-              className="relative aspect-[4/3] rounded-[8px] overflow-hidden"
-              onClick={() => openLightbox(photo)}
-            >
-              <Image
-                src={photo.image}
-                alt={photo.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-              
-              {/* Title Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-[12px]">
-                <h3 className="font-thunder text-[14px] leading-[0.92] text-white">
-                  {photo.title}
-                </h3>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      {/* Lightbox Modal */}
-      {selectedPhoto && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-[20px]">
-          <div className="relative max-w-[90vw] max-h-[90vh]">
-            {/* Close Button */}
-            <button
-              onClick={closeLightbox}
-              className="absolute top-[-40px] right-0 text-white hover:text-gray-300 z-10"
-            >
-              <svg className="w-[32px] h-[32px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            
-            {/* Navigation Buttons */}
-            <button
-              onClick={() => navigatePhoto('prev')}
-              className="absolute left-[-60px] top-1/2 -translate-y-1/2 text-white hover:text-gray-300 hidden lg:block"
-            >
-              <svg className="w-[32px] h-[32px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button
-              onClick={() => navigatePhoto('next')}
-              className="absolute right-[-60px] top-1/2 -translate-y-1/2 text-white hover:text-gray-300 hidden lg:block"
-            >
-              <svg className="w-[32px] h-[32px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-            
-            {/* Image */}
-            <div className="relative aspect-[16/10] w-full max-w-[800px]">
-              <Image
-                src={selectedPhoto.image}
-                alt={selectedPhoto.title}
-                fill
-                className="object-contain"
-                sizes="90vw"
-              />
-            </div>
-            
-            {/* Photo Info */}
-            <div className="text-center text-white mt-[16px]">
-              <h3 className="font-thunder text-[24px] leading-[0.92] mb-[8px]">
-                {selectedPhoto.title}
-              </h3>
-              <p className="font-onest text-[16px] leading-[1.4]">
-                {selectedPhoto.description}
-              </p>
-            </div>
           </div>
+        ))}
+      </div>
+
+      {/* Load More Button */}
+      {hasMoreAlbums && (
+        <div className="flex justify-center mt-[40px] lg:mt-[65px]">
+          <button
+            onClick={loadMoreAlbums}
+            className="relative w-[231px] h-[51px] bg-[#242424] rounded-full overflow-hidden group flex items-center justify-center"
+          >
+            <span className="font-onest font-normal text-[18px] leading-[1.275] text-white">
+              Load More
+            </span>
+          </button>
         </div>
       )}
     </div>

@@ -30,7 +30,7 @@ export function DesktopScrolledNav({ className, viewAsComponent = false }: Deskt
         "w-full h-[80px] lg:h-[90px] xl:h-[105px] 2xl:h-[121.6px] bg-[#242424] transition-all duration-300 shadow-lg"
       )}
     >
-      <div className="h-full flex items-center w-full px-[30px] lg:px-[40px] xl:px-[45px] 2xl:px-[50px] relative">
+      <div className="h-full flex items-center w-full px-[2.6%] relative">
         {/* Left side menu items */}
         <div className="flex items-center gap-x-[8px] lg:gap-x-[12px] xl:gap-x-[16px] 2xl:gap-x-[20px] 3xl:gap-x-[25px] flex-1">
           <button 

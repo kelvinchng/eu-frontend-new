@@ -55,7 +55,7 @@ export function DesktopNav({ className, variant = 'default', viewAsComponent = f
           </Link>
 
           {/* Menu items */}
-          <div className="absolute inset-0 flex items-center justify-between w-full px-6 lg:px-8 xl:px-12 2xl:px-[50px]" style={{ paddingBottom: variant === 'overlay' && !viewAsComponent ? '20px' : '0' }}>
+          <div className="absolute inset-0 flex items-center justify-between w-full px-[2.6%]" style={{ paddingBottom: variant === 'overlay' && !viewAsComponent ? '20px' : '0' }}>
             {/* Left side - Menu with hamburger */}
             <button 
               onClick={viewAsComponent ? () => {} : () => setIsMegaMenuOpen(!isMegaMenuOpen)}

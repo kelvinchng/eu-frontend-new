@@ -16,7 +16,7 @@ export function MobileNav({ className, onMenuClick, variant = 'overlay', viewAsC
   return (
     <nav
       className={cn(
-        viewAsComponent ? "flex items-center justify-between w-[393px] h-[81px] px-[35px]" : "lg:hidden absolute top-[30px] left-[35px] right-[35px] z-20 flex items-center justify-between",
+        viewAsComponent ? "flex items-center justify-between w-[393px] h-[81px] px-[35px]" : "lg:hidden absolute top-0 left-0 right-0 z-20 flex items-center justify-between h-[81px] px-[34px]",
         variant === 'overlay' ? "bg-transparent" : "bg-[#242424]",
         className
       )}

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { Plus, Minus } from 'lucide-react'
 
 interface ItineraryDay {
   day: number
@@ -41,22 +42,20 @@ export function TourItinerary({ itinerary, className }: TourItineraryProps) {
     setExpandAll(!expandAll)
   }
 
+  // Format the title with meals info
+  const formatDayTitle = (day: ItineraryDay) => {
+    const mealsInfo = day.meals.length > 0 ? ` (${day.meals.join(', ')})` : ''
+    return `Day ${day.day} : ${day.location}${mealsInfo}`
+  }
+
   return (
     <div className={cn("w-full", className)}>
       {/* Desktop Itinerary */}
       <div className="hidden lg:block">
-        <div className="flex items-center justify-between mb-[25px]">
+        <div className="mb-[25px]">
           <h2 className="font-thunder font-medium text-[50px] leading-[0.92] text-[#242424]">
             Day by Day Itinerary
           </h2>
-          
-          {/* Expand All button */}
-          <button
-            onClick={handleExpandAll}
-            className="font-onest font-normal text-[18px] leading-[1.275] text-[#242424] hover:underline"
-          >
-            {expandAll ? 'Collapse All' : 'Expand All'}
-          </button>
         </div>
         
         <div className="space-y-[25px]">
@@ -66,43 +65,61 @@ export function TourItinerary({ itinerary, className }: TourItineraryProps) {
             
             return (
               <div key={day.day} className="relative">
-                {/* Expanded Day with black background */}
-                {isExpanded && (
-                  <div className={cn(
-                    "relative",
-                    isFirstDay ? "h-[148px]" : "h-[56px]"
-                  )}>
-                    {/* Black background bar */}
-                    <div className={cn(
-                      "absolute bg-[#242424] rounded-[8px]",
-                      isFirstDay ? "top-[44px] h-[56px]" : "top-0 h-[56px]",
-                      "left-0 right-0"
-                    )} />
-                    
-                    {/* Day Title - White text on black background */}
+                {/* Expanded Day 1 - Special Layout */}
+                {isExpanded && isFirstDay && (
+                  <div className="relative h-[148px]">
+                    {/* Expand All button - positioned at top right */}
                     <button
-                      onClick={() => toggleDay(day.day)}
-                      className={cn(
-                        "absolute flex items-center justify-between w-full h-[56px] px-[43px]",
-                        isFirstDay ? "top-[44px]" : "top-0"
-                      )}
+                      onClick={handleExpandAll}
+                      className="absolute right-0 top-0 font-onest font-normal text-[18px] leading-[1.275] text-[#242424] hover:underline"
                     >
-                      <h3 className="font-onest font-bold text-[20px] leading-[1.275] text-white uppercase">
-                        Day {day.day} : {day.location}
-                      </h3>
-                      
-                      {/* Minus icon for expanded state */}
-                      <svg width="25" height="2" viewBox="0 0 25 2" fill="none">
-                        <line y1="1" x2="25" y2="1" stroke="white" strokeWidth="2"/>
-                      </svg>
+                      {expandAll ? 'Collapse All' : 'Expand All'}
                     </button>
                     
+                    {/* Black background bar at position 44px from top */}
+                    <div className="absolute top-[44px] left-0 right-0 h-[56px] bg-[#242424] rounded-[8px]" />
+                    
+                    {/* Day Title - White text on black background */}
+                    <div className="absolute top-[44px] left-0 right-0 h-[56px] flex items-center justify-between px-[43px]">
+                      <h3 className="font-onest font-bold text-[20px] leading-[1.275] text-white uppercase">
+                        {formatDayTitle(day)}
+                      </h3>
+                      
+                      {/* Minus icon */}
+                      <button onClick={() => toggleDay(day.day)} className="p-2">
+                        <Minus className="w-6 h-6 text-white" />
+                      </button>
+                    </div>
+                    
                     {/* Description below black bar */}
-                    {isFirstDay && (
-                      <p className="absolute left-[68px] top-[125px] font-onest font-normal text-[18px] leading-[1.275] text-[#242424] max-w-[664px]">
-                        {day.description}
-                      </p>
-                    )}
+                    <p className="absolute left-[68px] top-[125px] font-onest font-normal text-[18px] leading-[1.275] text-[#242424] max-w-[664px]">
+                      {day.description}
+                    </p>
+                  </div>
+                )}
+                
+                {/* Expanded Other Days */}
+                {isExpanded && !isFirstDay && (
+                  <div>
+                    {/* Black background bar */}
+                    <div className="relative h-[56px] bg-[#242424] rounded-[8px]">
+                      {/* Day Title - White text on black background */}
+                      <div className="absolute inset-0 flex items-center justify-between px-[43px]">
+                        <h3 className="font-onest font-bold text-[20px] leading-[1.275] text-white uppercase">
+                          {formatDayTitle(day)}
+                        </h3>
+                        
+                        {/* Minus icon */}
+                        <button onClick={() => toggleDay(day.day)} className="p-2">
+                          <Minus className="w-6 h-6 text-white" />
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="mt-[25px] ml-[68px] font-onest font-normal text-[18px] leading-[1.275] text-[#242424] max-w-[664px]">
+                      {day.description}
+                    </p>
                   </div>
                 )}
                 
@@ -110,27 +127,15 @@ export function TourItinerary({ itinerary, className }: TourItineraryProps) {
                 {!isExpanded && (
                   <button
                     onClick={() => toggleDay(day.day)}
-                    className="w-full h-[56px] flex items-center justify-between px-[43px] border border-[#DCDCDC] rounded-[9px] hover:bg-[#F9F9F9] transition-colors"
+                    className="w-full h-[56px] flex items-center justify-between px-[46px] border border-[#DCDCDC] rounded-[9px] hover:bg-[#F9F9F9] transition-colors"
                   >
                     <h3 className="font-onest font-bold text-[20px] leading-[1.275] text-[#242424] uppercase">
-                      Day {day.day} : {day.location}
+                      {formatDayTitle(day)}
                     </h3>
                     
-                    {/* Plus icon for collapsed state */}
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
-                      <line x1="12.5" y1="1" x2="12.5" y2="24" stroke="#242424" strokeWidth="2"/>
-                      <line y1="12.5" x2="25" y2="12.5" stroke="#242424" strokeWidth="2"/>
-                    </svg>
+                    {/* Plus icon */}
+                    <Plus className="w-5 h-5 text-[#242424]" />
                   </button>
-                )}
-                
-                {/* Expanded content for non-first days */}
-                {isExpanded && !isFirstDay && (
-                  <div className="mt-[16px] px-[68px]">
-                    <p className="font-onest font-normal text-[18px] leading-[1.275] text-[#242424] max-w-[664px]">
-                      {day.description}
-                    </p>
-                  </div>
                 )}
               </div>
             )
@@ -180,7 +185,7 @@ export function TourItinerary({ itinerary, className }: TourItineraryProps) {
               </button>
               
               {/* Day Content */}
-              {expandedDay === day.day && (
+              {expandedDays.has(day.day) && (
                 <div className="px-[16px] pb-[16px] border-t border-[#E8E8E8]">
                   <div className="pt-[16px]">
                     <h4 className="font-thunder text-[14px] leading-[0.92] text-[#242424] mb-[8px]">

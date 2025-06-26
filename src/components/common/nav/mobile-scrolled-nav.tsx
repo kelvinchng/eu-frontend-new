@@ -20,7 +20,7 @@ export function MobileScrolledNav({ className, onMenuClick, viewAsComponent = fa
         className
       )}
     >
-      <div className="w-full px-[35px] flex items-center justify-between">
+      <div className="w-full flex items-center justify-between px-[34px]">
         <Link href={viewAsComponent ? "#" : "/"} className="flex-shrink-0" onClick={viewAsComponent ? (e) => e.preventDefault() : undefined}>
           <div className="relative w-[71.52px] h-[50.33px]">
             <Image

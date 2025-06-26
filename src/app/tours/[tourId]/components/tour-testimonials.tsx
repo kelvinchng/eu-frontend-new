@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
-import Image from 'next/image'
+import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { TourReviewCard } from '@/components/ui/cards/tour-review-card'
 
 interface Testimonial {
   id: string
@@ -20,124 +20,68 @@ interface TourTestimonialsProps {
 }
 
 export function TourTestimonials({ testimonials, className }: TourTestimonialsProps) {
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <svg
-        key={index}
-        className={cn(
-          "w-[16px] h-[16px]",
-          index < rating ? "text-yellow-400" : "text-gray-300"
-        )}
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-      </svg>
-    ))
+  const [expandedReviews, setExpandedReviews] = useState<string[]>([])
+  const [displayCount, setDisplayCount] = useState(6)
+
+  const toggleReadMore = (reviewId: string) => {
+    setExpandedReviews(prev => 
+      prev.includes(reviewId) 
+        ? prev.filter(id => id !== reviewId)
+        : [...prev, reviewId]
+    )
+  }
+
+  const displayedTestimonials = testimonials.slice(0, displayCount)
+  const hasMoreTestimonials = displayCount < testimonials.length
+
+  const loadMoreTestimonials = () => {
+    setDisplayCount(prev => Math.min(prev + 6, testimonials.length))
   }
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Desktop Testimonials */}
-      <div className="hidden lg:block">
-        <h2 className="font-thunder text-[50px] leading-[0.92] text-[#242424] mb-[32px]">
-          What Our Travelers Say
-        </h2>
-        
-        <div className="grid gap-[32px]">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white border border-[#E8E8E8] rounded-[16px] p-[32px]">
-              <div className="flex items-start gap-[24px]">
-                {/* Avatar */}
-                <div className="w-[64px] h-[64px] relative rounded-full overflow-hidden flex-shrink-0">
-                  <Image
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                    sizes="64px"
-                  />
-                </div>
-                
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-[16px]">
-                    <div>
-                      <h3 className="font-onest font-semibold text-[18px] text-[#242424]">
-                        {testimonial.name}
-                      </h3>
-                      <p className="font-onest text-[14px] text-[#666666]">
-                        {testimonial.location} • {testimonial.date}
-                      </p>
-                    </div>
-                    
-                    {/* Rating */}
-                    <div className="flex items-center gap-[4px]">
-                      {renderStars(testimonial.rating)}
-                    </div>
-                  </div>
-                  
-                  {/* Comment */}
-                  <p className="font-onest text-[16px] leading-[1.5] text-[#242424]">
-                    "{testimonial.comment}"
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Title */}
+      <h2 className="font-thunder font-medium text-[32px] lg:text-[50px] leading-[0.92] text-[#242424] uppercase mb-[24px] lg:mb-[50px] text-center">
+        Testimonials
+      </h2>
+
+      {/* Testimonials Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[13px] lg:gap-[24px]">
+        {displayedTestimonials.map((testimonial) => (
+          <TourReviewCard
+            key={testimonial.id}
+            id={testimonial.id}
+            customerName={testimonial.name}
+            customerInitial={testimonial.name.charAt(0)}
+            rating={testimonial.rating}
+            date={testimonial.date}
+            reviewText={testimonial.comment}
+            fullText={testimonial.comment}
+            source="website"
+            verified={true}
+            avatar={testimonial.avatar}
+            isExpanded={expandedReviews.includes(testimonial.id)}
+            onToggleExpand={toggleReadMore}
+          />
+        ))}
       </div>
-      
-      {/* Mobile Testimonials */}
-      <div className="lg:hidden">
-        <h2 className="font-thunder text-[24px] leading-[0.92] text-[#242424] mb-[24px]">
-          What Our Travelers Say
-        </h2>
-        
-        <div className="space-y-[24px]">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white border border-[#E8E8E8] rounded-[12px] p-[20px]">
-              <div className="flex items-start gap-[16px]">
-                {/* Avatar */}
-                <div className="w-[48px] h-[48px] relative rounded-full overflow-hidden flex-shrink-0">
-                  <Image
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                    sizes="48px"
-                  />
-                </div>
-                
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="mb-[12px]">
-                    <div className="flex items-center justify-between mb-[8px]">
-                      <h3 className="font-onest font-semibold text-[14px] text-[#242424]">
-                        {testimonial.name}
-                      </h3>
-                      
-                      {/* Rating */}
-                      <div className="flex items-center gap-[2px]">
-                        {renderStars(testimonial.rating)}
-                      </div>
-                    </div>
-                    
-                    <p className="font-onest text-[12px] text-[#666666]">
-                      {testimonial.location} • {testimonial.date}
-                    </p>
-                  </div>
-                  
-                  {/* Comment */}
-                  <p className="font-onest text-[13px] leading-[1.4] text-[#242424]">
-                    "{testimonial.comment}"
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+
+      {/* Load More Button */}
+      {hasMoreTestimonials && (
+        <div className="flex justify-center mt-[35px] lg:mt-[50px]">
+          <button
+            onClick={loadMoreTestimonials}
+            className="px-[32px] py-[12px] bg-[#242424] rounded-[8px] text-white font-onest text-[14px] lg:text-[16px] hover:bg-[#333333] transition-colors"
+          >
+            Load More Reviews
+          </button>
         </div>
-      </div>
+      )}
+
+      {/* Results count */}
+      <p className="text-center mt-[20px] font-onest text-[13px] lg:text-[14px] text-[#666666]">
+        Showing {displayedTestimonials.length} of {testimonials.length} reviews
+      </p>
     </div>
   )
 }

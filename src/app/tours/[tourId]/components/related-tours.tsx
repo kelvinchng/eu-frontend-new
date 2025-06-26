@@ -32,27 +32,48 @@ export function RelatedTours({ tours, className }: RelatedToursProps) {
 
   return (
     <div className={cn("w-full", className)}>
-      <div className="mb-[50px]">
-        <h2 className="font-thunder text-[50px] leading-[0.92] text-[#242424] uppercase">
+      <div className="mb-[24px] lg:mb-[50px]">
+        <h2 className="font-thunder text-[32px] lg:text-[50px] leading-[0.92] text-[#242424] uppercase">
           Related Tours You Might Like
         </h2>
       </div>
       
-      {/* Use standard tour card grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] justify-items-center">
-        {transformedTours.map((tour) => (
-          <TourCard
-            key={tour.id}
-            id={tour.id}
-            title={tour.title}
-            price={tour.price}
-            description={tour.description}
-            image={tour.image}
-            tags={tour.tags}
-            badge={tour.badge}
-            href={`/tours/${tour.id}`}
-          />
-        ))}
+      {/* Desktop Layout */}
+      <div className="hidden lg:flex justify-center">
+        <div className="flex gap-[50px]">
+          {transformedTours.map((tour) => (
+            <TourCard
+              key={tour.id}
+              id={tour.id}
+              title={tour.title}
+              price={tour.price}
+              description={tour.description}
+              image={tour.image}
+              tags={tour.tags}
+              badge={tour.badge}
+              href={`/tours/${tour.id}`}
+            />
+          ))}
+        </div>
+      </div>
+      
+      {/* Mobile Layout - Single Column */}
+      <div className="lg:hidden">
+        <div className="flex flex-col gap-[24px]">
+          {transformedTours.map((tour) => (
+            <TourCard
+              key={tour.id}
+              id={tour.id}
+              title={tour.title}
+              price={tour.price}
+              description={tour.description}
+              image={tour.image}
+              tags={tour.tags}
+              badge={tour.badge}
+              href={`/tours/${tour.id}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

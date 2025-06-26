@@ -144,16 +144,79 @@ export const tourDetails = {
     '/assets/tour-detail-5.jpg',
     '/assets/tour-detail-6.jpg',
   ],
-  highlights: [
-    'Visit the iconic Matterhorn in Zermatt',
-    'Scenic train ride on the Glacier Express',
-    'Explore the charming city of Lucerne',
-    'Lake cruise on Lake Geneva',
-    'Traditional Swiss fondue dinner',
-    'Visit to Jungfraujoch - Top of Europe',
-    'Rhine Falls sightseeing',
-    'Cheese and chocolate factory tours',
-  ],
+  highlights: {
+    exclusives: [
+      'Top Mountain Excursion: Gorgergrat, Glacier 3000',
+      'Panoramic Train: In the French-Swiss Alps',
+      'Experience Cruise on the largest lake in the Bernese Oberland'
+    ],
+    destinations: {
+      'ZÜRICH': [
+        'Old Town',
+        'Münsterbrücke',
+        'Lindenhof',
+        'Fraumünster'
+      ],
+      'BERN': [
+        'Old Town',
+        'Bear Pit',
+        'Zytglogge Clock Tower',
+        'House of Parliament'
+      ],
+      'MONTREUX': [
+        'Chillon Castle'
+      ],
+      'LES DIABLERETS': [
+        'Glacier 3000',
+        'Peak Walk by Tissot',
+        'Ice Express chairlift',
+        'Fun Park',
+        'Alpine Coaster*'
+      ],
+      'MARTIGNY': [
+        'Thermal Baths',
+        'Mont-Blanc Express Train',
+        'Chamonix'
+      ],
+      'ZERMATT': [
+        'Gornergrat Bahn',
+        'View of Matterhorn',
+        'Zermatt Village'
+      ],
+      'BERNESE OBERLAND': [
+        'Spiez',
+        'Lake Thun Boat Ride',
+        'Interlaken'
+      ],
+      'LUCERNE': [
+        'Old Chapel Bridge',
+        'Lion Monument',
+        'Old Town',
+        'Bucherer'
+      ]
+    },
+    specialties: {
+      delicacies: [
+        'Raclette Tasting',
+        'Swiss Fondue & Wine'
+      ],
+      mealPlan: [
+        '8 Breakfasts',
+        '4 Dinners'
+      ]
+    },
+    hotels: {
+      rating: '4 to 5 ★ Hotels',
+      locations: [
+        { city: 'Bern:', hotel: 'Holiday Inn' },
+        { city: 'Martigny:', hotel: 'Les Bains de Saillon' },
+        { city: 'Saas Fee 5★:', hotel: 'Walliserhof Grand-Hotel & Spa' },
+        { city: 'Interken:', hotel: 'Metropole' },
+        { city: 'Zürick:', hotel: 'IntercityHotel' }
+      ],
+      note: 'Hotels are subject to final confirmation. Due to limited availability, relocation to another city or provision of a 4-star hotel may occur without prior notice.'
+    }
+  },
   inclusions: [
     'Return airfare with premium airline',
     '8 nights accommodation in 4-star hotels',
@@ -275,30 +338,111 @@ export const tourDetails = {
   testimonials: [
     {
       id: '1',
-      name: 'Sarah Chen',
+      name: 'Helen Y',
       location: 'Singapore',
       rating: 5,
       date: 'March 2024',
-      comment: 'Absolutely breathtaking tour! The organization was flawless and our guide was incredibly knowledgeable. The Matterhorn views were unforgettable.',
-      avatar: '/assets/testimonial-1.jpg'
+      comment: 'Really grateful to Ms Brenda Liu for her kind assistance throughout the tour. Will definitely recommend EU Holidays to family and friends.',
+      avatar: '/assets/testimonials/helen-y.jpg'
     },
     {
       id: '2',
-      name: 'Michael Wong',
+      name: 'Jean',
       location: 'Malaysia',
       rating: 5,
       date: 'May 2024',
-      comment: 'Best trip of my life! Every detail was perfectly planned. The scenic train rides and mountain views exceeded all expectations.',
-      avatar: '/assets/testimonial-2.jpg'
+      comment: 'Tour manager Sarah was excellent. Very patient and knowledgeable. The scenic train rides and mountain views exceeded all expectations.',
+      avatar: '/assets/testimonials/jean.jpg'
     },
     {
       id: '3',
-      name: 'Lisa Tan',
+      name: 'Shirley Lim',
       location: 'Singapore',
-      rating: 4,
+      rating: 5,
       date: 'June 2024',
-      comment: 'Wonderful experience with professional guides. The itinerary was well-paced and covered all the must-see attractions.',
-      avatar: '/assets/testimonial-3.jpg'
+      comment: 'We had an enjoyable and memorable journey. Thank you to Mr Chester Wong for making it happen!',
+      avatar: '/assets/testimonials/shirley-lim.jpg'
+    },
+    {
+      id: '4',
+      name: 'Lee Jane',
+      location: 'Singapore',
+      rating: 5,
+      date: 'April 2024',
+      comment: 'An amazing experience exploring Switzerland. Every detail was perfectly planned and executed. Would book with EU Holidays again!',
+      avatar: '/assets/testimonials/lee-jane.jpg'
+    },
+    {
+      id: '5',
+      name: 'Rachel Chua',
+      location: 'Singapore',
+      rating: 5,
+      date: 'March 2024',
+      comment: 'The Switzerland tour was absolutely fantastic! Beautiful scenery, great hotels, and wonderful tour arrangements.',
+      avatar: '/assets/testimonials/rachel-chua.jpg'
+    },
+    {
+      id: '6',
+      name: 'Irene Foo',
+      location: 'Malaysia',
+      rating: 5,
+      date: 'May 2024',
+      comment: 'Excellent tour guide who went above and beyond. The Swiss Alps were breathtaking and the whole trip was unforgettable.',
+      avatar: '/assets/testimonials/irene-foo.jpg'
+    },
+    {
+      id: '7',
+      name: 'Mee Ling Yip',
+      location: 'Singapore',
+      rating: 5,
+      date: 'June 2024',
+      comment: 'Very well organized tour with great attention to detail. Our tour manager was helpful and made sure everyone had a great time.',
+      avatar: '/assets/testimonials/mee-ling-yip.jpg'
+    },
+    {
+      id: '8',
+      name: 'Sherlyn Tan',
+      location: 'Singapore',
+      rating: 5,
+      date: 'April 2024',
+      comment: 'Switzerland exceeded all expectations! The mountain excursions were spectacular and the hotels were excellent.',
+      avatar: '/assets/testimonials/sherlyn-tan.jpg'
+    },
+    {
+      id: '9',
+      name: 'David Lee',
+      location: 'Singapore',
+      rating: 5,
+      date: 'May 2024',
+      comment: 'Professional tour management and excellent itinerary. The Jungfraujoch experience was the highlight of our trip!',
+      avatar: '/assets/testimonials/avatar-placeholder.jpg'
+    },
+    {
+      id: '10',
+      name: 'Michelle Ng',
+      location: 'Malaysia',
+      rating: 5,
+      date: 'June 2024',
+      comment: 'Wonderful Swiss adventure! Great mix of city tours and mountain excursions. Highly recommend EU Holidays.',
+      avatar: '/assets/testimonials/avatar-placeholder.jpg'
+    },
+    {
+      id: '11',
+      name: 'Thomas Lim',
+      location: 'Singapore',
+      rating: 5,
+      date: 'April 2024',
+      comment: 'Everything was perfectly arranged from start to finish. The scenic train rides were absolutely magical!',
+      avatar: '/assets/testimonials/avatar-placeholder.jpg'
+    },
+    {
+      id: '12',
+      name: 'Grace Wong',
+      location: 'Singapore',
+      rating: 5,
+      date: 'March 2024',
+      comment: 'Outstanding tour experience! The Swiss Alps were breathtaking and our tour guide was exceptional.',
+      avatar: '/assets/testimonials/avatar-placeholder.jpg'
     }
   ],
   tourPhotos: [
@@ -342,28 +486,28 @@ export const tourDetails = {
   faq: [
     {
       id: '1',
-      question: 'What is the best time to visit Switzerland?',
-      answer: 'Switzerland is beautiful year-round, but April to October offers the best weather for sightseeing and outdoor activities. This tour runs during the optimal summer season.'
+      question: "What's included in the tour package price?",
+      answer: 'The package includes accommodation, daily breakfasts, selected dinners, guided tours, entrance fees for listed attractions, and airport transfers. Flights and travel insurance are also typically bundled unless otherwise stated.'
     },
     {
       id: '2',
-      question: 'Is travel insurance included?',
-      answer: 'Basic travel insurance is included in the tour price. However, we recommend considering comprehensive travel insurance for additional coverage.'
+      question: 'What type of accommodations can I expect?',
+      answer: 'We provide 4 to 5-star hotel accommodations throughout the tour. Hotels are centrally located in each city for convenient access to attractions and amenities. All rooms feature modern facilities and comfortable bedding to ensure a restful stay.'
     },
     {
       id: '3',
-      question: 'What should I pack for this tour?',
-      answer: 'Pack comfortable walking shoes, layered clothing for varying temperatures, sunglasses, sunscreen, and a light rain jacket. Detailed packing list will be provided upon booking.'
+      question: 'Do I need a visa to join this tour?',
+      answer: 'Visa requirements depend on your nationality and the countries included in the tour. Singapore passport holders enjoy visa-free access to most European destinations. We will provide detailed visa information upon booking and assist with necessary documentation.'
     },
     {
       id: '4',
-      question: 'Are meals included in the tour?',
-      answer: 'Daily breakfast and 6 dinners are included. Lunches are mostly on your own, allowing flexibility to try local cuisines and explore different dining options.'
+      question: 'How physically demanding is the tour?',
+      answer: 'This tour involves moderate physical activity including walking tours of 2-3 hours and some uphill terrain. Participants should be able to walk comfortably and climb stairs. Mountain excursions are optional and suitable for most fitness levels.'
     },
     {
       id: '5',
-      question: 'What is the group size?',
-      answer: 'Our groups typically range from 15-25 participants, ensuring personalized attention while maintaining a friendly group atmosphere.'
+      question: 'Can I extend my stay or make customisations?',
+      answer: 'Yes, we offer pre and post-tour extensions at additional cost. Customizations such as room upgrades, special dietary requirements, or additional activities can be arranged. Please inform us at the time of booking to ensure availability.'
     }
   ]
 }

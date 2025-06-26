@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import { BookingStep3Client } from './booking-step-3-client'
 import { tourDetails, featuredTours, relatedTours } from '@/lib/mock-data'
 
@@ -44,5 +45,9 @@ export default async function BookingStep3Page({ params }: BookingStep3PageProps
     return <div>Tour not found</div>
   }
 
-  return <BookingStep3Client tour={tour} tourId={tourId} />
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <BookingStep3Client tour={tour} tourId={tourId} />
+    </Suspense>
+  )
 }

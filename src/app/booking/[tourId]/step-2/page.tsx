@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { BookingStep2Client } from './booking-step-2-client'
 import { tourDetails } from '@/lib/mock-data'
 
@@ -12,10 +13,12 @@ export default async function BookingStep2Page({ params }: BookingStep2PageProps
   // For now, we'll use the mock data
   
   return (
-    <BookingStep2Client 
-      tour={tourDetails}
-      tourId={tourId}
-    />
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <BookingStep2Client 
+        tour={tourDetails}
+        tourId={tourId}
+      />
+    </Suspense>
   )
 }
 

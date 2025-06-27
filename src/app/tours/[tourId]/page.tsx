@@ -23,6 +23,9 @@ export async function generateStaticParams() {
   // In a real app, you would fetch all tour IDs from your API
   // For now, including all tour IDs referenced in the application
   return [
+    // Country pages
+    { tourId: 'switzerland' },
+    
     // Original tour codes
     { tourId: 'ecsbts' },
     { tourId: 'ecfrit' },

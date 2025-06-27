@@ -217,7 +217,7 @@ export function BookingStep1Client({ tour, tourId }: BookingStep1ClientProps) {
               <div className="mb-[40px]">
                 <div className="flex items-center gap-[9px] md:gap-[12px] mb-[32px] md:mb-[40px]">
                   <Image 
-                    src="/assets/icons/single-bed-icon.svg"
+                    src="/assets/icons/single-bed-icon.png"
                     alt="Bed"
                     width={31}
                     height={35}

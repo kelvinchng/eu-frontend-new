@@ -11,6 +11,12 @@ import { ContactForm } from '@/components/ui/form/contact-form'
 import { ContactForm as FigmaContactForm } from '@/components/ui/forms/contact-form'
 import { SearchBarSpecialized } from '@/components/ui/form/search-bar-specialized'
 
+const searchSuggestions = [
+  { id: '1', title: 'Switzerland Tours', subtitle: 'Alpine adventures and scenic routes', category: 'Destination', type: 'destination' as const },
+  { id: '2', title: 'Family Friendly Europe', subtitle: 'Tours perfect for families with children', category: 'Theme', type: 'category' as const },
+  { id: '3', title: '7D6N Scenic Switzerland', subtitle: 'Alpine lakes and mountain railways', category: 'Tour', type: 'tour' as const }
+]
+
 export default function FormsPage() {
   const destinations = [
     { value: 'paris', label: 'Paris, France' },
@@ -467,11 +473,7 @@ export default function FormsPage() {
                 <h4 className="text-sm font-semibold text-gray-700 mb-4">Default Search with Suggestions</h4>
                 <SearchBarSpecialized
                   placeholder="Search destinations, tours, or experiences..."
-                  suggestions={[
-                    { id: '1', title: 'Switzerland Tours', subtitle: 'Alpine adventures and scenic routes', category: 'Destination', type: 'destination' },
-                    { id: '2', title: 'Family Friendly Europe', subtitle: 'Tours perfect for families with children', category: 'Theme', type: 'category' },
-                    { id: '3', title: '7D6N Scenic Switzerland', subtitle: 'Alpine lakes and mountain railways', category: 'Tour', type: 'tour' }
-                  ]}
+                  suggestions={searchSuggestions}
                   onSearch={(query) => console.log('Search:', query)}
                   onSuggestionSelect={(suggestion) => console.log('Selected:', suggestion)}
                 />

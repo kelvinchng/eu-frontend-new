@@ -13,12 +13,14 @@ import { PressArticleCard } from '@/components/ui/cards/press-article-card'
 import { AwardCard } from '@/components/ui/cards/award-card'
 import { BrochureCard } from '@/components/ui/cards/brochure-card'
 import { AlbumCard } from '@/components/ui/cards/album-card'
+import { TourReviewCard } from '@/components/ui/cards/tour-review-card'
 
 export default function CardsPage() {
   const [tourCardSize, setTourCardSize] = useState('100%')
   const [destinationCardSize, setDestinationCardSize] = useState('100%')
   const [themeCardSize, setThemeCardSize] = useState('100%')
   const [adventureCardSize, setAdventureCardSize] = useState('100%')
+  const [tourReviewCardSize, setTourReviewCardSize] = useState('100%')
 
   return (
     <div className="space-y-8">
@@ -519,9 +521,9 @@ export default function CardsPage() {
                         `
                       }} />
                       <DestinationCard
-                        id="japan"
-                        name="Japan"
-                        image="/assets/images/destination-japan.jpg"
+                        id="taiwan"
+                        name="Taiwan"
+                        image="/assets/images/destination-taiwan.jpg"
                         className="pointer-events-none"
                       />
                     </div>
@@ -773,10 +775,10 @@ export default function CardsPage() {
                         `
                       }} />
                       <ThemeCard
-                        id="luxury"
-                        title="Luxury Experiences"
-                        description="Exquisite moments await."
-                        image="/assets/images/theme-luxury-experiences.jpg"
+                        id="family"
+                        title="Family Friendly"
+                        description="Fun for the whole family."
+                        image="/assets/images/theme-family-friendly.jpg"
                         className="pointer-events-none"
                       />
                     </div>
@@ -1147,6 +1149,124 @@ export default function CardsPage() {
                 destination="Switzerland"
                 className="pointer-events-none max-w-[461px]"
               />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* TourReviewCard */}
+        <Card className="border-0 shadow-lg">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">TourReviewCard Component</h3>
+            <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+              <p className="text-sm text-green-800">
+                <strong>File:</strong> /src/components/ui/cards/tour-review-card.tsx<br/>
+                <strong>Purpose:</strong> Customer review cards for tour testimonials sections<br/>
+                <strong>Features:</strong> Avatar/initial display, star ratings, verified badge, expandable text<br/>
+                <strong>Dimensions:</strong> Mobile: 238px height | Desktop: min-height 250px<br/>
+                <strong>Variants:</strong> Facebook, Google, Website source indicators with different avatar styles
+              </p>
+            </div>
+            
+            {/* Individual Preview Size Selector */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-sm font-medium text-gray-700 mr-2">Preview Size:</span>
+              <button
+                onClick={() => setTourReviewCardSize('100%')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  tourReviewCardSize === '100%' 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-gray-200 hover:bg-gray-300'
+                }`}
+              >
+                2XL (100%)
+              </button>
+              <button
+                onClick={() => setTourReviewCardSize('1280px')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  tourReviewCardSize === '1280px' 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-gray-200 hover:bg-gray-300'
+                }`}
+              >
+                XL (1280px)
+              </button>
+              <button
+                onClick={() => setTourReviewCardSize('1024px')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  tourReviewCardSize === '1024px' 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-gray-200 hover:bg-gray-300'
+                }`}
+              >
+                LG (1024px)
+              </button>
+              <button
+                onClick={() => setTourReviewCardSize('768px')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  tourReviewCardSize === '768px' 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-gray-200 hover:bg-gray-300'
+                }`}
+              >
+                MD (768px)
+              </button>
+              <button
+                onClick={() => setTourReviewCardSize('320px')}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  tourReviewCardSize === '320px' 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-gray-200 hover:bg-gray-300'
+                }`}
+              >
+                Mobile (320px)
+              </button>
+            </div>
+            
+            <div className="space-y-6">
+              {/* Review Examples */}
+              <div className="space-y-4" style={{maxWidth: tourReviewCardSize}}>
+                <h4 className="text-sm font-semibold text-gray-700">Website Review (Default)</h4>
+                <TourReviewCard
+                  id="review-1"
+                  customerName="Dhevi Suppiah"
+                  customerInitial="D"
+                  rating={5}
+                  date="26 Nov 2024"
+                  reviewText="Highly recommend EU Holidays! The Innsbruck hotels were beautiful, and Switzerland was breathtaking..."
+                  fullText="Highly recommend EU Holidays! The Innsbruck hotels were beautiful, and Switzerland was breathtaking. Our tour guide was exceptional - knowledgeable, patient, and went above and beyond to ensure everyone had a great experience. The itinerary was well-planned with perfect timing at each destination."
+                  source="website"
+                  verified={true}
+                  onToggleExpand={(id) => console.log('Toggle expand:', id)}
+                />
+              </div>
+              
+              <div className="space-y-4" style={{maxWidth: tourReviewCardSize}}>
+                <h4 className="text-sm font-semibold text-gray-700">Facebook Review</h4>
+                <TourReviewCard
+                  id="review-2"
+                  customerName="Andy Tan"
+                  rating={5}
+                  date="15 Dec 2024"
+                  reviewText="Amazing tour experience! The Swiss Alps were spectacular and our guide made the trip unforgettable."
+                  source="facebook"
+                  verified={true}
+                />
+              </div>
+              
+              <div className="space-y-4" style={{maxWidth: tourReviewCardSize}}>
+                <h4 className="text-sm font-semibold text-gray-700">Google Review</h4>
+                <TourReviewCard
+                  id="review-3"
+                  customerName="Michelle Lee"
+                  customerInitial="M"
+                  rating={4}
+                  date="5 Jan 2025"
+                  reviewText="Great tour overall! The hotels were comfortable and the destinations were beautiful. Would recommend!"
+                  source="google"
+                  verified={true}
+                  avatar="/assets/testimonials/lee-jane.jpg"
+                />
+              </div>
             </div>
           </CardContent>
         </Card>

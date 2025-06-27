@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useMemo } from 'react'
 import { cn } from '@/lib/utils'
 
 interface SearchSuggestion {
@@ -39,7 +39,6 @@ export function SearchBarSpecialized({
 }: SearchBarSpecializedProps) {
   const [query, setQuery] = useState('')
   const [isOpen, setIsOpen] = useState(false)
-  const [filteredSuggestions, setFilteredSuggestions] = useState<SearchSuggestion[]>([])
   const [selectedIndex, setSelectedIndex] = useState(-1)
   const [recentSearches, setRecentSearches] = useState<string[]>([])
   
@@ -54,6 +53,17 @@ export function SearchBarSpecialized({
     'Mediterranean Cruise'
   ]
 
+  // Calculate filtered suggestions using useMemo to prevent unnecessary recalculations
+  const filteredSuggestions = useMemo(() => {
+    if (!query.trim()) return []
+    
+    return suggestions.filter(suggestion =>
+      suggestion.title.toLowerCase().includes(query.toLowerCase()) ||
+      suggestion.subtitle?.toLowerCase().includes(query.toLowerCase()) ||
+      suggestion.category?.toLowerCase().includes(query.toLowerCase())
+    )
+  }, [query, suggestions])
+
   useEffect(() => {
     // Load recent searches from localStorage
     const stored = localStorage.getItem('recentSearches')
@@ -62,19 +72,10 @@ export function SearchBarSpecialized({
     }
   }, [])
 
+  // Reset selected index when query changes
   useEffect(() => {
-    if (query.trim()) {
-      const filtered = suggestions.filter(suggestion =>
-        suggestion.title.toLowerCase().includes(query.toLowerCase()) ||
-        suggestion.subtitle?.toLowerCase().includes(query.toLowerCase()) ||
-        suggestion.category?.toLowerCase().includes(query.toLowerCase())
-      )
-      setFilteredSuggestions(filtered)
-    } else {
-      setFilteredSuggestions([])
-    }
     setSelectedIndex(-1)
-  }, [query, suggestions])
+  }, [query])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export function AboutHero() {
   return (
-    <div className="relative w-full h-[409px] md:h-[838px] overflow-hidden">
+    <div className="relative w-full h-[409px] lg:h-[590px] xl:h-[690px] 2xl:h-[790px] 3xl:h-[890px] overflow-hidden">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0">
         <Image

@@ -37,8 +37,10 @@ export function ExploreDestinationsSection({ className, destinations: initialDes
       viewAllLink="/destinations"
       items={displayDestinations}
       renderCard={(destination) => <DestinationCard {...destination} />}
+      itemsPerSlide={4}
       gap={30}
       sectionClassName={className}
+      titleAlignment="left"
     />
   )
 }

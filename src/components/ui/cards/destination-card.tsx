@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface DestinationCardProps {
@@ -24,12 +25,12 @@ export function DestinationCard({
     <Link
       href={href}
       className={cn(
-        "group relative block overflow-hidden",
-        // Responsive outer dimensions - Figma spec (344×499px at 2xl) - same as theme card
-        "w-[114px] sm:w-[251px] md:w-[229px] lg:w-[275px] xl:w-[320px] 2xl:w-[344px]",
-        "h-[166px] sm:h-[415px] md:h-[332px] lg:h-[399px] xl:h-[465px] 2xl:h-[499px]",
-        // Responsive border radius - matching theme card
-        "rounded-[4px] sm:rounded-[5px] md:rounded-[7px] lg:rounded-[9px] xl:rounded-[10px] 2xl:rounded-[11px]",
+        "group relative block overflow-hidden transition-all duration-300 hover:scale-[1.02]",
+        // Mobile-first responsive dimensions - Figma mobile spec 265×428px
+        "w-[265px] sm:w-[251px] md:w-[229px] lg:w-[275px] xl:w-[320px] 2xl:w-[344px]",
+        "h-[428px] sm:h-[415px] md:h-[332px] lg:h-[399px] xl:h-[465px] 2xl:h-[499px]",
+        // Mobile-first border radius
+        "rounded-[8px] sm:rounded-[5px] md:rounded-[7px] lg:rounded-[9px] xl:rounded-[10px] 2xl:rounded-[11px]",
         className
       )}
       style={{ 
@@ -59,56 +60,39 @@ export function DestinationCard({
         }}
       />
       
-      {/* Text and Arrow Container - positioned from bottom for consistent padding */}
+      {/* Text and Arrow Container - proportional to mobile 265x428 card */}
       <div className={cn(
         "absolute flex items-center justify-between z-20",
-        // Responsive bottom positioning - matching Figma
-        "bottom-[12px] sm:bottom-[32px] md:bottom-[25px] lg:bottom-[30px] xl:bottom-[35px] 2xl:bottom-[40px]",
-        // Responsive left positioning - matching Figma
-        "left-[7px] sm:left-[16px] md:left-[15px] lg:left-[18px] xl:left-[20px] 2xl:left-[22px]",
-        // Responsive right positioning - matching Figma
-        "right-[14px] sm:right-[38px] md:right-[30px] lg:right-[36px] xl:right-[42px] 2xl:right-[45px]"
+        // Mobile positioning proportional to 265x428 card
+        "bottom-[32px] sm:bottom-[32px] md:bottom-[25px] lg:bottom-[30px] xl:bottom-[35px] 2xl:bottom-[40px]",
+        // Mobile left positioning proportional to card width
+        "left-[20px] sm:left-[16px] md:left-[15px] lg:left-[18px] xl:left-[20px] 2xl:left-[22px]",
+        // Mobile right positioning proportional to card width
+        "right-[20px] sm:right-[38px] md:right-[30px] lg:right-[36px] xl:right-[42px] 2xl:right-[45px]"
       )}>
         {/* Destination Name */}
         <h3 className={cn(
           "font-thunder text-white overflow-hidden text-ellipsis whitespace-nowrap",
-          // Responsive font size - SM increased to 25px to match Figma
-          "text-[16px] sm:text-[25px] md:text-[22px] lg:text-[36px] xl:text-[42px] 2xl:text-[45px]",
-          // Responsive line height - adjusted for different font sizes
-          "leading-[18px] sm:leading-[23px] md:leading-[24px] lg:leading-[40px] xl:leading-[45px] 2xl:leading-[48px]",
-          // Responsive max width - increased to show full "Explore Japan." text
-          "max-w-[75px] sm:max-w-[105px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-[210px] 2xl:max-w-[225px]"
+          // Mobile typography proportional to 265x428 card
+          "text-[24px] sm:text-[25px] md:text-[22px] lg:text-[36px] xl:text-[42px] 2xl:text-[45px]",
+          // Mobile line heights proportional to font size
+          "leading-[26px] sm:leading-[23px] md:leading-[24px] lg:leading-[40px] xl:leading-[45px] 2xl:leading-[48px]",
+          // Mobile max width proportional to card width (265px - 40px padding)
+          "max-w-[180px] sm:max-w-[105px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-[210px] 2xl:max-w-[225px]"
         )}>
           Explore {name}.
         </h3>
         
-        {/* Arrow Icon - center-aligned with text */}
-        <div className={cn(
-          "flex-shrink-0",
-          // Responsive dimensions - arrow sizes to match Figma
-          "w-[11px] h-[7px] sm:w-[14px] sm:h-[13px] md:w-[13px] md:h-[9px] lg:w-[14px] lg:h-[9px] xl:w-[16px] xl:h-[11px] 2xl:w-[18px] 2xl:h-[12px]"
-        )}>
-          <svg 
-            className="w-full h-full" 
-            viewBox="0 0 18 12" 
-            fill="none"
-          >
-            <path 
-              d="M10.35 0L16.76 5.665L10.35 11.33" 
-              stroke="white" 
-              strokeWidth="1.4"
-              fill="none"
-            />
-            <line 
-              x1="0" 
-              y1="5.665" 
-              x2="17.66" 
-              y2="5.665" 
-              stroke="white" 
-              strokeWidth="1.4"
-            />
-          </svg>
-        </div>
+        {/* Arrow Icon - proportional to mobile card size */}
+        <ArrowRight 
+          className={cn(
+            "flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1",
+            // Mobile arrow dimensions proportional to card - bigger on desktop
+            "w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] md:w-[20px] md:h-[20px] lg:w-[24px] lg:h-[24px] xl:w-[28px] xl:h-[28px] 2xl:w-[32px] 2xl:h-[32px]"
+          )}
+          color="white"
+          strokeWidth={2}
+        />
       </div>
     </Link>
   )

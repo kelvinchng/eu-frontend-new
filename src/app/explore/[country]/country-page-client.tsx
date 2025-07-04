@@ -52,7 +52,7 @@ export function CountryPageClient({ country, otherCountries }: CountryPageClient
   )
 
   return (
-    <LayoutWithHero hero={heroContent}>
+    <LayoutWithHero hero={heroContent} enableScrolledNav={true}>
       {/* Country Background Section */}
       <section className="lg:py-[79px] py-[41px]">
         <CountryBackground 

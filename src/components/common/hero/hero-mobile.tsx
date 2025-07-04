@@ -12,7 +12,9 @@ interface HeroMobileProps {
 export function HeroMobile({ className }: HeroMobileProps) {
   return (
     <section className={cn(
-      "relative w-full h-[643px] overflow-hidden lg:hidden",
+      "relative w-full overflow-hidden lg:hidden",
+      // Responsive height: smaller screens get shorter height
+      "h-[500px] xs:h-[550px] sm:h-[600px] md:h-[643px]",
       className
     )}>
       {/* Background Image */}
@@ -37,17 +39,19 @@ export function HeroMobile({ className }: HeroMobileProps) {
       
       {/* Content */}
       <div className="relative z-10 w-full h-full">
-        {/* Hero Title & Icon - Fixed position from top */}
-        <div className="absolute left-[35px] top-[162px] right-[35px]">
+        {/* Hero Title & Icon - Responsive positioning */}
+        <div className="absolute left-4 right-4 xs:left-6 xs:right-6 sm:left-8 sm:right-8 md:left-[35px] md:right-[35px]
+                        top-[120px] xs:top-[140px] sm:top-[150px] md:top-[162px]">
           <div className="flex items-end justify-between">
-            {/* Title - 53px in mobile Figma */}
-            <h1 className="font-thunder text-white text-[53px] leading-[0.92] tracking-[0.01em] flex-1">
+            {/* Title - Responsive sizing */}
+            <h1 className="font-thunder text-white leading-[0.92] tracking-[0.01em] flex-1
+                           text-[32px] xs:text-[38px] sm:text-[45px] md:text-[53px]">
               Book the best<br/>travel deals
             </h1>
             
-            {/* SVG Icon - 26x26.13px in mobile */}
+            {/* SVG Icon - Responsive sizing */}
             <svg 
-              className="w-[26px] h-[26.13px] mb-2"
+              className="mb-2 w-[18px] h-[18px] xs:w-[20px] xs:h-[20px] sm:w-[23px] sm:h-[23px] md:w-[26px] md:h-[26px]"
               viewBox="0 0 26 26" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
@@ -58,10 +62,6 @@ export function HeroMobile({ className }: HeroMobileProps) {
           </div>
         </div>
         
-        {/* Search Form - Vertical layout, adjusted position for proper gap */}
-        <div className="absolute left-[28px] right-[28px] top-[280px] sm:top-[290px] md:top-[306px]">
-          <HeroSearchFormMobile className="shadow-lg" />
-        </div>
       </div>
     </section>
   )

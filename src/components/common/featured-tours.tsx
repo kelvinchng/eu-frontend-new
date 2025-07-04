@@ -35,9 +35,10 @@ export function FeaturedToursSection({ className, tours: initialTours }: Feature
       viewAllLink="/tours"
       items={tours}
       renderCard={(tour) => <TourCard {...tour} />}
-      itemsPerSlide={3}
-      gap={50}
+      itemsPerSlide={4}
+      gap={20}
       sectionClassName={cn("py-16 lg:py-20", className)}
+      titleAlignment="left"
     />
   )
 }

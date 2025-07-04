@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { TourCard } from '@/components/ui/cards/tour-card'
 import { CarouselSection } from '@/components/common/carousel-section'
 import { SeasonalDeal, fetchSeasonalDealsClient } from '@/lib/data-fetchers'
+import { cn } from '@/lib/utils'
 
 interface SeasonalDealsProps {
   className?: string
@@ -34,9 +35,10 @@ export function SeasonalDealsSection({ className, deals: initialDeals }: Seasona
       viewAllLink="/seasonal-deals"
       items={deals}
       renderCard={(deal) => <TourCard {...deal} />}
-      itemsPerSlide={3}
-      gap={50}
-      sectionClassName={className}
+      itemsPerSlide={4}
+      gap={20}
+      sectionClassName={cn("mt-[80px] lg:mt-[90px] xl:mt-[100px] 2xl:mt-[110px] 3xl:mt-[120px]", className)}
+      titleAlignment="left"
     />
   )
 }

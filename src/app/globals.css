@@ -100,6 +100,7 @@
   --height-hero-icon: 66px;
   
   /* Custom breakpoints */
+  --breakpoint-xs: 475px;
   --breakpoint-3xl: 1920px;
 }
 
@@ -133,8 +134,28 @@
   .text-hero-md { font-size: var(--font-size-hero-md) !important; }
   .text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
   .text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
+
+  /* Hide scrollbars for adventure card carousel */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
   
   /* Add responsive variants manually for now */
+  @media (min-width: 475px) {
+    .xs\:text-hero { font-size: var(--font-size-hero) !important; }
+    .xs\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
+    .xs\:text-hero-2xl { font-size: var(--font-size-hero-2xl) !important; }
+    .xs\:text-hero-xl { font-size: var(--font-size-hero-xl) !important; }
+    .xs\:text-hero-lg { font-size: var(--font-size-hero-lg) !important; }
+    .xs\:text-hero-md { font-size: var(--font-size-hero-md) !important; }
+    .xs\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
+    .xs\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
+  }
+  
   @media (min-width: 640px) {
     .sm\:text-hero { font-size: var(--font-size-hero) !important; }
     .sm\:text-hero-3xl { font-size: var(--font-size-hero-3xl) !important; }
@@ -200,4 +221,31 @@
     .\3xl\:text-hero-sm { font-size: var(--font-size-hero-sm) !important; }
     .\3xl\:text-hero-xs { font-size: var(--font-size-hero-xs) !important; }
   }
+}
+
+/* Add xs breakpoint utilities for general use */
+@media (min-width: 475px) {
+  .xs\:h-\[550px\] { height: 550px !important; }
+  .xs\:h-\[280px\] { height: 280px !important; }
+  .xs\:h-\[200px\] { height: 200px !important; }
+  .xs\:w-\[300px\] { width: 300px !important; }
+  .xs\:top-\[140px\] { top: 140px !important; }
+  .xs\:top-\[240px\] { top: 240px !important; }
+  .xs\:bottom-\[18px\] { bottom: 18px !important; }
+  .xs\:left-6 { left: 1.5rem !important; }
+  .xs\:left-\[14px\] { left: 14px !important; }
+  .xs\:right-6 { right: 1.5rem !important; }
+  .xs\:right-\[18px\] { right: 18px !important; }
+  .xs\:p-5 { padding: 1.25rem !important; }
+  .xs\:gap-8 { gap: 2rem !important; }
+  .xs\:text-\[38px\] { font-size: 38px !important; }
+  .xs\:text-\[20px\] { font-size: 20px !important; }
+  .xs\:text-\[13px\] { font-size: 13px !important; }
+  .xs\:w-\[20px\] { width: 20px !important; }
+  .xs\:w-\[15px\] { width: 15px !important; }
+  .xs\:h-\[20px\] { height: 20px !important; }
+  .xs\:h-\[10px\] { height: 10px !important; }
+  .xs\:rounded-\[10px\] { border-radius: 10px !important; }
+  .xs\:leading-\[22px\] { line-height: 22px !important; }
+  .xs\:max-w-\[220px\] { max-width: 220px !important; }
 }

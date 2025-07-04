@@ -17,7 +17,7 @@ export function CountryHero({
   return (
     <section 
       className={cn(
-        "hidden lg:flex relative w-full h-[838px] items-end",
+        "hidden lg:flex relative w-full lg:h-[590px] xl:h-[690px] 2xl:h-[790px] 3xl:h-[890px] items-end",
         "bg-cover bg-center bg-no-repeat",
         className
       )}

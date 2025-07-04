@@ -7,6 +7,7 @@ import { TourTitleSection } from './components/tour-title-section'
 import { TourImageGallery } from './components/tour-image-gallery'
 import { TourTabs } from './components/tour-tabs'
 import { TourHighlights } from './components/tour-highlights'
+import { TourActionButtons } from './components/tour-action-buttons'
 import { TourItinerary } from './components/tour-itinerary'
 import { TourTestimonials } from './components/tour-testimonials'
 import { TourPhotos } from './components/tour-photos'
@@ -48,8 +49,15 @@ export function TourDetailPageClient({ tour, relatedTours }: TourDetailPageClien
               </div>
             </section>
             
+            {/* Action Buttons */}
+            <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[60px]">
+              <div className="max-w-[1480px] mx-auto">
+                <TourActionButtons tourId={tour.id} onBookNow={handleBookNow} />
+              </div>
+            </section>
+            
             {/* Itinerary Content */}
-            <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[80px]">
+            <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[60px]">
               <div className="max-w-[1480px] mx-auto">
                 <TourItinerary itinerary={tour.itinerary} />
               </div>
@@ -92,8 +100,15 @@ export function TourDetailPageClient({ tour, relatedTours }: TourDetailPageClien
               </div>
             </section>
             
+            {/* Action Buttons */}
+            <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[60px]">
+              <div className="max-w-[1480px] mx-auto">
+                <TourActionButtons tourId={tour.id} onBookNow={handleBookNow} />
+              </div>
+            </section>
+            
             {/* Itinerary Content */}
-            <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[80px]">
+            <section className="px-[34px] sm:px-8 md:px-[5.73%] lg:px-[7.64%] xl:px-[9.17%] 2xl:px-[11.46%] 3xl:px-[220px] mt-[60px]">
               <div className="max-w-[1480px] mx-auto">
                 <TourItinerary itinerary={tour.itinerary} />
               </div>

@@ -1,0 +1,23 @@
+<svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="31.5" cy="31.5" r="31.5" fill="#242424"/>
+<g stroke="white" stroke-width="2" stroke-linecap="round">
+  <!-- Main cross -->
+  <line x1="31.5" y1="12" x2="31.5" y2="51" />
+  <line x1="12" y1="31.5" x2="51" y2="31.5" />
+  <!-- Diagonal lines -->
+  <line x1="20.5" y1="20.5" x2="42.5" y2="42.5" />
+  <line x1="42.5" y1="20.5" x2="20.5" y2="42.5" />
+  <!-- Top branches -->
+  <line x1="27" y1="16" x2="31.5" y2="12" />
+  <line x1="36" y1="16" x2="31.5" y2="12" />
+  <!-- Bottom branches -->
+  <line x1="27" y1="47" x2="31.5" y2="51" />
+  <line x1="36" y1="47" x2="31.5" y2="51" />
+  <!-- Left branches -->
+  <line x1="16" y1="27" x2="12" y2="31.5" />
+  <line x1="16" y1="36" x2="12" y2="31.5" />
+  <!-- Right branches -->
+  <line x1="47" y1="27" x2="51" y2="31.5" />
+  <line x1="47" y1="36" x2="51" y2="31.5" />
+</g>
+</svg>

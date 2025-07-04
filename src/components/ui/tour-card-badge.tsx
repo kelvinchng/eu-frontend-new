@@ -30,8 +30,8 @@ export function TourCardBadge({
     >
       <span className={cn(
         "text-white font-onest font-normal leading-[1.275]",
-        // Mobile-first font size - Base 12px for mobile readability
-        "text-[12px] md:text-[12px] lg:text-[14px] xl:text-[17px] 2xl:text-[18px]"
+        // Reduced font size for smaller cards
+        "text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[13px]"
       )}>
         {children}
       </span>

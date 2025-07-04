@@ -38,10 +38,12 @@ export function ThemedJourneysSection({ className, journeys: initialJourneys }: 
       viewAllLink="/themed-journeys"
       items={displayJourneys}
       renderCard={(journey) => <ThemeCard {...journey} />}
+      itemsPerSlide={4}
       gap={30}
       backgroundColor="bg-[#EFEFEF]"
       sectionClassName={className}
-      titleMarginBottom="mb-[63px]"
+      titleMarginBottom="mb-[40px]"
+      titleAlignment="center"
     />
   )
 }

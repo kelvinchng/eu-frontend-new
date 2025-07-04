@@ -1,10 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
-import { cn } from '@/lib/utils'
-import { designTokens } from '@/lib/design-tokens'
 import { AdventureCard } from '@/components/ui/cards/adventure-card'
+import { AdventureCardMobile } from '@/components/ui/cards/adventure-card-mobile'
+import { CarouselSection } from '@/components/common/carousel-section'
 import { YourNextAdventureData, fetchYourNextAdventureDataClient } from '@/lib/data-fetchers'
 
 
@@ -16,16 +15,6 @@ interface YourNextAdventureProps {
 export function YourNextAdventure({ className, data: initialData }: YourNextAdventureProps) {
   const [data, setData] = useState<YourNextAdventureData | null>(initialData || null)
   const [loading, setLoading] = useState(!initialData)
-  
-  // All hooks must be called before any conditional returns
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: 'start',
-    containScroll: 'trimSnaps',
-    slidesToScroll: 4,
-  })
-  
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
   useEffect(() => {
     if (!initialData) {
@@ -36,26 +25,6 @@ export function YourNextAdventure({ className, data: initialData }: YourNextAdve
     }
   }, [initialData])
 
-  useEffect(() => {
-    if (!emblaApi) return
-
-    const onSelect = () => {
-      setSelectedIndex(emblaApi.selectedScrollSnap())
-    }
-
-    setScrollSnaps(emblaApi.scrollSnapList())
-    emblaApi.on('select', onSelect)
-    onSelect()
-
-    return () => {
-      emblaApi.off('select', onSelect)
-    }
-  }, [emblaApi])
-
-  const scrollTo = (index: number) => {
-    if (emblaApi) emblaApi.scrollTo(index)
-  }
-
   if (loading) {
     return <div>Loading your next adventure...</div>
   }
@@ -64,79 +33,86 @@ export function YourNextAdventure({ className, data: initialData }: YourNextAdve
     return <div>Failed to load adventure data</div>
   }
 
-  const adventures = data.adventures.map(adventure => ({
-    ...adventure,
-    icon: adventure.iconPath ? (
-      <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
-        <img src={adventure.iconPath} alt={adventure.title} />
-      </div>
-    ) : undefined
-  }))
+  // Create consistent adventure data for both mobile and desktop
+  const adventures = [
+    {
+      id: 'trending',
+      title: 'Trending Now',
+      image: '/images/adventure-cards/trending-now.jpg',
+      href: '/tours?category=trending',
+      icon: (
+        <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
+          <img src="/assets/icons/trending-now-icon.svg" alt="Trending Now" className="w-[50px] h-[50px]" />
+        </div>
+      )
+    },
+    {
+      id: 'deals',
+      title: 'Travel Deals',
+      image: '/images/adventure-cards/travel-deals.jpg',
+      href: '/deals',
+      icon: (
+        <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
+          <img src="/assets/icons/travel-deals-icon.svg" alt="Travel Deals" className="w-[50px] h-[50px]" />
+        </div>
+      )
+    },
+    {
+      id: 'cruises',
+      title: 'Cruises',
+      image: '/assets/images/adventure-cruises.jpg',
+      href: '/tours?category=cruises',
+      icon: (
+        <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
+          <img src="/assets/icons/cruises-icon.svg" alt="Cruises" className="w-[50px] h-[50px]" />
+        </div>
+      )
+    },
+    {
+      id: 'themed',
+      title: 'Themed Journeys',
+      image: '/assets/images/adventure-themed-journeys.jpg',
+      href: '/themed-journeys',
+      icon: (
+        <div className="w-[63px] h-[63px] bg-[#242424] rounded-full flex items-center justify-center">
+          <img src="/assets/icons/snowflake-inner.svg" alt="Themed Journeys" className="w-[44px] h-[44px]" />
+        </div>
+      )
+    }
+  ]
 
   return (
-    <section className={cn("w-full", className)}>
-      <div className="max-w-[1920px] mx-auto">
-        {/* Title and Subtitle - Centered */}
-        <div className="mb-[80px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-          <div className="flex justify-center">
-            <div className="w-full max-w-[750px] text-center">
-              <h2 className={cn(
-                "font-thunder font-medium text-[50px] leading-[0.92] mb-[10px]"
-              )}
-              style={{ color: designTokens.colors.primary }}
-              >
-                {data.section.title}
-              </h2>
-              <p className={cn(
-                "font-onest text-[18px] leading-[1.275]",
-                "tracking-[-0.025em]"
-              )}
-              style={{ color: designTokens.colors.primary }}
-              >
-                {data.section.subtitle}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Carousel */}
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
-            <div className="flex-shrink-0 w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-2">
-              <div className="flex justify-center">
-                <div className="flex gap-[50px]">
-                  {adventures.map((adventure) => (
-                    <div key={adventure.id}>
-                      <AdventureCard 
-                        {...adventure}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Dots */}
-        {scrollSnaps.length > 1 && (
-          <div className="flex items-center justify-center gap-[13px] mt-16">
-            {scrollSnaps.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollTo(index)}
-                className={cn(
-                  "w-[9px] h-[9px] rounded-full border-2 transition-all duration-300",
-                  index === selectedIndex 
-                    ? "bg-primary border-primary" 
-                    : "bg-[#767676] border-[#767676] hover:border-primary"
-                )}
-                aria-label={`Go to page ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+    <CarouselSection
+      title={data.section.title}
+      subtitle={data.section.subtitle}
+      viewAllLink="/adventures"
+      items={adventures}
+      renderCard={(adventure) => {
+        // Check if we're on mobile (client-side detection)
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
+        
+        if (isMobile) {
+          // Return mobile adventure card
+          return (
+            <AdventureCardMobile
+              title={adventure.title}
+              image={adventure.image}
+              icon={adventure.id === 'trending' ? 'trending' : adventure.id === 'deals' ? 'deals' : adventure.id === 'cruises' ? 'cruises' : 'themed'}
+              href={adventure.href}
+              onViewMore={() => console.log(`View more: ${adventure.id}`)}
+            />
+          )
+        } else {
+          // Return desktop adventure card
+          return <AdventureCard {...adventure} />
+        }
+      }}
+      itemsPerSlide={4}
+      gap={30}
+      sectionClassName={className}
+      titleAlignment="center"
+      containerMaxWidth="max-w-[1600px]"
+      hideViewAll={true}
+    />
   )
 }

@@ -15,7 +15,7 @@ export function FooterBanner({ className }: { className?: string }) {
   }
 
   return (
-    <section className={cn("relative w-full h-[1080px]", className)}>
+    <section className={cn("relative w-full h-[1008px] lg:h-[1080px]", className)}>
       {/* Background Image and Gradient */}
       <div className="absolute inset-0">
         <Image
@@ -28,79 +28,144 @@ export function FooterBanner({ className }: { className?: string }) {
         <div 
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(270deg, rgba(7, 7, 7, 0.102) 0%, rgba(7, 7, 7, 0.502) 42.3%, rgba(7, 7, 7, 0.902) 100%)'
+            background: 'linear-gradient(270deg, rgba(7, 7, 7, 0.1) 0%, rgba(7, 7, 7, 0.5) 42.3%, rgba(7, 7, 7, 0.9) 100%)'
           }}
         />
       </div>
 
       {/* Content Container */}
       <div className="relative z-10 h-full max-w-[1920px] mx-auto">
-        <div className="h-full flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="h-full flex flex-col justify-center lg:px-0 px-[25px]">
           {/* Title + Subtitle */}
-          <div className="absolute left-[128px] md:left-auto md:relative top-[303px] md:top-auto w-[646px] md:w-full max-w-[646px] flex flex-col gap-[17px]">
-          <h2 className="font-thunder font-medium text-[170px] leading-[0.92] text-white">
-            Go places.
-          </h2>
-          <p className="font-onest font-medium text-[18px] leading-[1.667] text-white">
-            Whether you're dreaming of exploring Iceland's icy landscapes, Australia's sun-kissed beaches, or Japan's vibrant cityscapes, we've got the perfect itinerary for you. Our expertly curated travel experiences are designed to match your wanderlust, ensuring every moment is unforgettable.
-            <br /><br />
-            Sign up for our newsletter and be the first to receive exclusive travel deals, insider tips, and destination inspiration straight to your inbox.
-          </p>
-        </div>
+          <div className="absolute left-[25px] lg:left-[128px] top-[175px] lg:top-[303px] w-[339px] lg:w-[646px] flex flex-col gap-[17px]">
+            <h2 className="font-thunder font-medium text-[53px] lg:text-[170px] leading-[0.92] text-white">
+              Go places.
+            </h2>
+            <p className="font-onest font-medium text-[14px] lg:text-[18px] leading-[2.14] lg:leading-[1.667] text-white">
+              Whether you're dreaming of exploring Iceland's icy landscapes, Australia's sun-kissed beaches, or Japan's vibrant cityscapes, we've got the perfect itinerary for you. Our expertly curated travel experiences are designed to match your wanderlust, ensuring every moment is unforgettable.
+              <br /><br />
+              Sign up for our newsletter and be the first to receive exclusive travel deals, insider tips, and destination inspiration straight to your inbox.
+            </p>
+          </div>
 
           {/* Plane Illustration */}
-          <svg className="absolute left-[1.24px] md:left-auto md:relative top-[130.5px] md:top-auto mb-8" width="739" height="188" viewBox="0 0 739 188" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.212532">
-            <path d="M667.453 49.3616C665.654 48.4866 663.842 47.6356 662.021 46.8086" stroke="white" strokeWidth="5" strokeLinecap="round"/>
-            <path d="M651.368 42.2763C634.998 35.7663 617.933 31.0023 600.644 27.6633C514.474 10.9933 422.104 25.8733 341.914 59.7133C341.555 59.8633 341.197 60.0153 340.839 60.1683" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="11.58 11.58"/>
-            <path d="M335.54 62.5C333.722 63.328 331.912 64.181 330.113 65.06C330.363 67.025 330.508 69.02 330.544 71.042" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M329.488 83.0105C329.454 83.1875 329.419 83.3645 329.383 83.5415C326.073 100.142 315.943 115.452 301.453 123.002C296.403 125.562 289.413 127.212 284.973 123.242C274.373 112.132 288.573 93.3115 297.133 86.0515C304.055 80.1905 311.583 75.1145 319.471 70.6445" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="12.03 12.03"/>
-            <path d="M324.757 67.7671C326.529 66.8391 328.315 65.9381 330.113 65.0641C329.861 63.0651 329.501 61.0971 329.041 59.1641" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M325.102 47.9309C313.57 23.3289 285.492 6.15892 257.953 3.31092C220.113 -1.35908 183.514 14.8209 152.014 34.3909C94.314 70.6369 47.074 119.474 8.02502 175.162" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="11.92 11.92"/>
-            <path d="M4.62104 180.062C3.48804 181.71 2.36204 183.363 1.24304 185.021" stroke="white" strokeWidth="5" strokeLinecap="round"/>
-            <path d="M708.084 111.319C711.523 109.089 713.518 105.199 713.321 101.105L711.35 59.3843C711.215 56.5032 712.594 53.7601 714.989 52.1504L728.291 43.3802C731.605 41.209 734.383 38.3157 736.418 34.9171L737.728 32.7055C738.418 31.5138 738.01 29.9896 736.818 29.3003C736.367 29.0393 735.845 28.9266 735.325 28.9773L732.771 29.2571C728.837 29.707 725.056 31.0424 721.712 33.1628L708.229 41.6579C705.792 43.23 702.694 43.3567 700.137 41.9875L662.958 22.9596C659.309 21.0898 654.942 21.2992 651.49 23.5108C667.169 32.0688 681.918 46.0116 687.842 51.8668C688.532 52.5552 688.534 53.6718 687.845 54.362C687.756 54.4522 687.657 54.532 687.551 54.6005L684.968 52.2556C683.719 51.1287 681.82 51.1296 680.572 52.2566L677.289 55.349C676.83 55.7669 676.538 56.3369 676.466 56.9539C676.39 57.5972 676.071 58.187 675.573 58.603L674.326 59.6998L676.022 58.9974C676.535 58.757 677.112 58.6941 677.666 58.818L678.574 59.0143L680.05 59.3327L677.221 61.1573C675.407 62.3237 673.734 63.6976 672.239 65.2499L664.751 73.1965L655.067 66.0528C652.974 64.4742 650.065 64.5616 648.071 66.2641L645.093 68.7696L659.217 79.3091L657.131 81.531C656.949 81.7095 656.946 82.0015 657.124 82.1837C657.253 82.3152 657.449 82.3584 657.621 82.2908L660.507 81.3113L664.316 98.5925L667.897 96.8684C670.239 95.7227 671.508 93.1364 670.98 90.583L668.454 78.6292L678.714 75.1442C680.744 74.4174 682.685 73.4614 684.499 72.295L687.33 70.4713L687.01 71.9466L686.813 72.8547C686.699 73.4097 686.402 73.9103 685.971 74.2774L684.631 75.5321L686.137 74.8437C686.721 74.5629 687.391 74.5169 688.008 74.7132C688.603 74.8681 689.232 74.8381 689.809 74.6277L693.982 72.9148C695.549 72.2696 696.343 70.5182 695.798 68.9143L694.732 65.5946C695.547 65.0649 696.636 65.2959 697.166 66.1111C697.236 66.2191 697.295 66.3346 697.34 66.4548C700.204 74.3836 706.761 93.5064 708.084 111.319Z" fill="white"/>
-          </g>
-        </svg>
+          <div className="absolute left-[3px] lg:left-[1.24px] top-[70px] lg:top-[130.5px] opacity-[0.21]">
+            {/* Mobile Version - Scaled down */}
+            <div className="lg:hidden">
+              <svg width="324" height="86" viewBox="0 0 740 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path d="M669.324 49.3522C667.524 48.4764 665.71 47.6246 663.887 46.7969" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M653.225 42.2585C636.84 35.7425 619.759 30.9741 602.454 27.632C516.205 10.9467 423.75 25.8404 343.486 59.7115C343.127 59.8616 342.769 60.0137 342.41 60.1669" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="11.58 11.58"/>
+                  <path d="M337.107 62.5027C335.287 63.3314 333.475 64.1852 331.675 65.065C331.925 67.0318 332.07 69.0287 332.106 71.0525" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M331.049 83.0321C331.015 83.2092 330.98 83.3864 330.944 83.5635C327.631 100.179 317.491 115.503 302.988 123.06C297.934 125.622 290.937 127.274 286.493 123.3C275.883 112.18 290.096 93.3425 298.664 86.0758C305.593 80.2095 313.127 75.1288 321.023 70.6547" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="12.03 12.03"/>
+                  <path d="M326.314 67.7726C328.087 66.8438 329.875 65.9419 331.675 65.0671C331.422 63.0663 331.062 61.0965 330.602 59.1617" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M326.659 47.9202C315.116 23.2956 287.013 6.10984 259.448 3.25923C221.574 -1.41506 184.941 14.7798 153.412 34.3678C95.659 70.6471 48.3756 119.529 9.29076 175.268" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="11.92 11.92"/>
+                  <path d="M5.88365 180.173C4.74961 181.822 3.62258 183.476 2.50255 185.137" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M709.993 111.367C713.435 109.134 715.431 105.241 715.235 101.143L713.262 59.3841C713.127 56.5003 714.507 53.7547 716.904 52.1436L730.219 43.3653C733.535 41.1921 736.316 38.2961 738.353 34.8944L739.664 32.6808C740.354 31.488 739.946 29.9624 738.754 29.2725C738.301 29.0112 737.779 28.8984 737.259 28.9492L734.702 29.2293C730.765 29.6795 726.981 31.0161 723.633 33.1386L710.137 41.6414C707.699 43.2149 704.597 43.3418 702.039 41.9714L664.825 22.9259C661.173 21.0545 656.802 21.2641 653.347 23.4777C669.041 32.0435 683.803 45.9991 689.732 51.8597C690.423 52.5487 690.425 53.6663 689.736 54.3572C689.646 54.4475 689.547 54.5274 689.441 54.596L686.856 52.2489C685.605 51.1209 683.705 51.1219 682.456 52.2498L679.17 55.3451C678.71 55.7634 678.418 56.334 678.346 56.9515C678.27 57.5954 677.95 58.1857 677.452 58.6021L676.204 59.6999L677.902 58.9969C678.415 58.7562 678.993 58.6933 679.547 58.8173L680.455 59.0138L681.933 59.3324L679.101 61.1588C677.286 62.3262 675.612 63.7014 674.115 65.2551L666.62 73.209L656.927 66.0588C654.832 64.4787 651.92 64.5661 649.925 66.2703L646.944 68.7781L661.081 79.3272L658.993 81.5512C658.811 81.7298 658.808 82.0221 658.986 82.2045C659.115 82.3361 659.311 82.3793 659.483 82.3116L662.372 81.3312L666.185 98.6284L669.769 96.9026C672.113 95.7558 673.383 93.1672 672.855 90.6115L670.326 78.6467L680.595 75.1585C682.628 74.431 684.571 73.4741 686.387 72.3067L689.22 70.4813L688.899 71.958L688.703 72.8669C688.588 73.4224 688.291 73.9234 687.86 74.2909L686.518 75.5467L688.026 74.8577C688.611 74.5767 689.281 74.5306 689.898 74.7271C690.494 74.8822 691.123 74.8521 691.701 74.6415L695.877 72.9271C697.446 72.2813 698.241 70.5283 697.695 68.9228L696.628 65.6001C697.444 65.0699 698.535 65.3012 699.065 66.117C699.135 66.2251 699.194 66.3408 699.239 66.4611C702.106 74.3972 708.668 93.5375 709.993 111.367Z" fill="white"/>
+                </g>
+              </svg>
+            </div>
+            
+            {/* Desktop Version - Full size */}
+            <div className="hidden lg:block">
+              <svg width="737" height="183" viewBox="0 0 740 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path d="M669.324 49.3522C667.524 48.4764 665.71 47.6246 663.887 46.7969" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+                  <path d="M653.225 42.2585C636.84 35.7425 619.759 30.9741 602.454 27.632C516.205 10.9467 423.75 25.8404 343.486 59.7115C343.127 59.8616 342.769 60.0137 342.41 60.1669" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="11.58 11.58"/>
+                  <path d="M337.107 62.5027C335.287 63.3314 333.475 64.1852 331.675 65.065C331.925 67.0318 332.07 69.0287 332.106 71.0525" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M331.049 83.0321C331.015 83.2092 330.98 83.3864 330.944 83.5635C327.631 100.179 317.491 115.503 302.988 123.06C297.934 125.622 290.937 127.274 286.493 123.3C275.883 112.18 290.096 93.3425 298.664 86.0758C305.593 80.2095 313.127 75.1288 321.023 70.6547" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="12.03 12.03"/>
+                  <path d="M326.314 67.7726C328.087 66.8438 329.875 65.9419 331.675 65.0671C331.422 63.0663 331.062 61.0965 330.602 59.1617" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M326.659 47.9202C315.116 23.2956 287.013 6.10984 259.448 3.25923C221.574 -1.41506 184.941 14.7798 153.412 34.3678C95.659 70.6471 48.3756 119.529 9.29076 175.268" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="11.92 11.92"/>
+                  <path d="M5.88365 180.173C4.74961 181.822 3.62258 183.476 2.50255 185.137" stroke="white" strokeWidth="5" strokeLinecap="round"/>
+                  <path d="M709.993 111.367C713.435 109.134 715.431 105.241 715.235 101.143L713.262 59.3841C713.127 56.5003 714.507 53.7547 716.904 52.1436L730.219 43.3653C733.535 41.1921 736.316 38.2961 738.353 34.8944L739.664 32.6808C740.354 31.488 739.946 29.9624 738.754 29.2725C738.301 29.0112 737.779 28.8984 737.259 28.9492L734.702 29.2293C730.765 29.6795 726.981 31.0161 723.633 33.1386L710.137 41.6414C707.699 43.2149 704.597 43.3418 702.039 41.9714L664.825 22.9259C661.173 21.0545 656.802 21.2641 653.347 23.4777C669.041 32.0435 683.803 45.9991 689.732 51.8597C690.423 52.5487 690.425 53.6663 689.736 54.3572C689.646 54.4475 689.547 54.5274 689.441 54.596L686.856 52.2489C685.605 51.1209 683.705 51.1219 682.456 52.2498L679.17 55.3451C678.71 55.7634 678.418 56.334 678.346 56.9515C678.27 57.5954 677.95 58.1857 677.452 58.6021L676.204 59.6999L677.902 58.9969C678.415 58.7562 678.993 58.6933 679.547 58.8173L680.455 59.0138L681.933 59.3324L679.101 61.1588C677.286 62.3262 675.612 63.7014 674.115 65.2551L666.62 73.209L656.927 66.0588C654.832 64.4787 651.92 64.5661 649.925 66.2703L646.944 68.7781L661.081 79.3272L658.993 81.5512C658.811 81.7298 658.808 82.0221 658.986 82.2045C659.115 82.3361 659.311 82.3793 659.483 82.3116L662.372 81.3312L666.185 98.6284L669.769 96.9026C672.113 95.7558 673.383 93.1672 672.855 90.6115L670.326 78.6467L680.595 75.1585C682.628 74.431 684.571 73.4741 686.387 72.3067L689.22 70.4813L688.899 71.958L688.703 72.8669C688.588 73.4224 688.291 73.9234 687.86 74.2909L686.518 75.5467L688.026 74.8577C688.611 74.5767 689.281 74.5306 689.898 74.7271C690.494 74.8822 691.123 74.8521 691.701 74.6415L695.877 72.9271C697.446 72.2813 698.241 70.5283 697.695 68.9228L696.628 65.6001C697.444 65.0699 698.535 65.3012 699.065 66.117C699.135 66.2251 699.194 66.3408 699.239 66.4611C702.106 74.3972 708.668 93.5375 709.993 111.367Z" fill="white"/>
+                </g>
+              </svg>
+            </div>
+          </div>
 
           {/* Newsletter Form */}
-          <div className="absolute left-[128px] md:left-auto md:relative top-[778px] md:top-auto w-[829px] md:w-full max-w-[829px] bg-white rounded-[12px] p-[44px_24px_44px_44px] md:p-[24px]" style={{ boxShadow: '0px 3px 3px 0px rgba(0, 0, 0, 0.16)' }}>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-[12px]">
-            {/* Labels */}
-            <div className="flex gap-[157px] w-[387px]">
-              <label className="font-onest text-[18px] leading-[1.275] uppercase text-[#242424]">
-                Your Name*
-              </label>
-              <label className="font-onest text-[18px] leading-[1.275] uppercase text-[#242424]">
-                Your Email*
-              </label>
-            </div>
+          <div className="absolute left-[28px] lg:left-[128px] top-[608px] lg:top-[778px] w-[336px] lg:w-[829px] bg-white rounded-[12px] p-[27px] lg:p-[44px_24px_44px_44px]" style={{ boxShadow: '0px 3px 3px 0px rgba(0, 0, 0, 0.16)' }}>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-[12px] lg:gap-[12px]">
+              {/* Mobile Form Layout */}
+              <div className="lg:hidden flex flex-col gap-[17px]">
+                {/* Name Input */}
+                <div className="flex flex-col gap-[7px]">
+                  <label className="font-onest text-[14px] leading-[1.275] uppercase text-[#242424]">
+                    Your Name*
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="John Doe"
+                    className="w-[273px] h-[44px] px-[19px] bg-[#EFEFEF] rounded-[8px] font-onest text-[14px] leading-[1.275] text-[#242424] placeholder:text-[#242424]"
+                    required
+                  />
+                </div>
 
-            {/* Inputs and Button */}
-            <div className="flex items-center gap-[31px]">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="John Doe"
-                className="w-[240px] h-[51px] px-[19px] bg-[#EFEFEF] rounded-[8px] font-onest text-[18px] leading-[1.275] text-[#242424] placeholder:text-[#242424]"
-                required
-              />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="john@doe.com"
-                className="w-[242px] h-[51px] px-[19px] bg-[#EFEFEF] rounded-[8px] font-onest text-[18px] leading-[1.275] text-[#242424] placeholder:text-[#242424]"
-                required
-              />
-              <button
-                type="submit"
-                className="w-[217px] h-[51px] bg-[#242424] rounded-[8px] font-onest text-[18px] leading-[1.275] text-white hover:bg-gray-800 transition-colors"
-              >
-                Join Newsletter
-              </button>
-            </div>
-          </form>
+                {/* Email Input */}
+                <div className="flex flex-col gap-[7px]">
+                  <label className="font-onest text-[14px] leading-[1.275] uppercase text-[#242424]">
+                    Your Email*
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="john@doe.com"
+                    className="w-[273px] h-[44px] px-[19px] bg-[#EFEFEF] rounded-[8px] font-onest text-[14px] leading-[1.275] text-[#242424] placeholder:text-[#242424]"
+                    required
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-[167px] h-[36px] bg-[#242424] rounded-[8px] font-onest text-[12px] leading-[1.275] text-white hover:bg-gray-800 transition-colors mt-[31px]"
+                >
+                  Join Newsletter
+                </button>
+              </div>
+
+              {/* Desktop Form Layout */}
+              <div className="hidden lg:flex flex-col gap-[12px]">
+                {/* Labels */}
+                <div className="flex gap-[157px] w-[387px]">
+                  <label className="font-onest text-[18px] leading-[1.275] uppercase text-[#242424]">
+                    Your Name*
+                  </label>
+                  <label className="font-onest text-[18px] leading-[1.275] uppercase text-[#242424]">
+                    Your Email*
+                  </label>
+                </div>
+
+                {/* Inputs and Button */}
+                <div className="flex items-center gap-[31px]">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="John Doe"
+                    className="w-[240px] h-[51px] px-[19px] bg-[#EFEFEF] rounded-[8px] font-onest text-[18px] leading-[1.275] text-[#242424] placeholder:text-[#242424]"
+                    required
+                  />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="john@doe.com"
+                    className="w-[242px] h-[51px] px-[19px] bg-[#EFEFEF] rounded-[8px] font-onest text-[18px] leading-[1.275] text-[#242424] placeholder:text-[#242424]"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="w-[217px] h-[51px] bg-[#242424] rounded-[8px] font-onest text-[18px] leading-[1.275] text-white hover:bg-gray-800 transition-colors"
+                  >
+                    Join Newsletter
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

@@ -56,15 +56,6 @@ export function CountryTourListings({
         ))}
       </TourGrid>
 
-      {/* View All Button */}
-      <div className="flex justify-center">
-        <Button
-          variant="primary"
-          className="w-[180px] h-[51px] bg-[#242424] text-white font-onest text-[18px] leading-[1.275] rounded-[4px] hover:bg-[#1a1a1a]"
-        >
-          View All
-        </Button>
-      </div>
     </section>
   )
 }
@@ -104,15 +95,6 @@ className="mx-auto lg:hidden"
         ))}
       </div>
 
-      {/* View All Button */}
-      <div className="flex justify-center">
-        <Button
-          variant="primary"
-          className="w-[118px] h-[36px] bg-[#242424] text-white font-onest text-[12px] leading-[1.275] rounded-[4px] hover:bg-[#1a1a1a]"
-        >
-          View All
-        </Button>
-      </div>
     </section>
   )
 }

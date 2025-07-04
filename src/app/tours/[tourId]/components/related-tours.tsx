@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { TourCard } from '@/components/ui/cards/tour-card'
+import { TourGrid } from '@/components/common/layout/grid'
 import { cn } from '@/lib/utils'
 
 interface RelatedTour {
@@ -38,43 +39,22 @@ export function RelatedTours({ tours, className }: RelatedToursProps) {
         </h2>
       </div>
       
-      {/* Desktop Layout */}
-      <div className="hidden lg:flex justify-center">
-        <div className="flex gap-[50px]">
-          {transformedTours.map((tour) => (
-            <TourCard
-              key={tour.id}
-              id={tour.id}
-              title={tour.title}
-              price={tour.price}
-              description={tour.description}
-              image={tour.image}
-              tags={tour.tags}
-              badge={tour.badge}
-              href={`/tours/${tour.id}`}
-            />
-          ))}
-        </div>
-      </div>
-      
-      {/* Mobile Layout - Single Column */}
-      <div className="lg:hidden">
-        <div className="flex flex-col gap-[24px]">
-          {transformedTours.map((tour) => (
-            <TourCard
-              key={tour.id}
-              id={tour.id}
-              title={tour.title}
-              price={tour.price}
-              description={tour.description}
-              image={tour.image}
-              tags={tour.tags}
-              badge={tour.badge}
-              href={`/tours/${tour.id}`}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Tour Grid - 4 cards per row on desktop, responsive */}
+      <TourGrid>
+        {transformedTours.map((tour) => (
+          <TourCard
+            key={tour.id}
+            id={tour.id}
+            title={tour.title}
+            price={tour.price}
+            description={tour.description}
+            image={tour.image}
+            tags={tour.tags}
+            badge={tour.badge}
+            href={`/tours/${tour.id}`}
+          />
+        ))}
+      </TourGrid>
     </div>
   )
 }

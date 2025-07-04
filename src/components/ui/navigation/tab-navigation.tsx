@@ -39,7 +39,7 @@ export function TabNavigation({
       // Responsive padding
       "px-[12px] py-[6px] sm:px-[16px] sm:py-[8px] md:px-[14px] md:py-[7px] lg:px-[18px] lg:py-[10px] xl:px-[20px] xl:py-[12px] 2xl:px-[24px] 2xl:py-[14px]",
       // Responsive font size
-      "text-[10px] sm:text-[14px] md:text-[13px] lg:text-[16px] xl:text-[18px] 2xl:text-[19px]",
+      "text-[12px] sm:text-[14px] md:text-[13px] lg:text-[16px] xl:text-[18px] 2xl:text-[19px]",
       // Responsive line height
       "leading-[12px] sm:leading-[18px] md:leading-[16px] lg:leading-[20px] xl:leading-[22px] 2xl:leading-[23px]"
     )

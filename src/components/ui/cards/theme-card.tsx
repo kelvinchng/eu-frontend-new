@@ -25,12 +25,12 @@ export function ThemeCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden",
-        // Responsive outer dimensions - Figma spec (344×499px at 2xl)
-        "w-[114px] sm:w-[251px] md:w-[229px] lg:w-[275px] xl:w-[320px] 2xl:w-[344px]",
-        "h-[166px] sm:h-[415px] md:h-[332px] lg:h-[399px] xl:h-[465px] 2xl:h-[499px]",
-        // Responsive border radius
-        "rounded-[4px] sm:rounded-[5px] md:rounded-[7px] lg:rounded-[9px] xl:rounded-[10px] 2xl:rounded-[11px]",
+        "group relative overflow-hidden transition-all duration-300 hover:scale-[1.02]",
+        // Mobile-first responsive dimensions - matching destination card 265×428px
+        "w-[265px] sm:w-[251px] md:w-[229px] lg:w-[275px] xl:w-[320px] 2xl:w-[344px]",
+        "h-[428px] sm:h-[415px] md:h-[332px] lg:h-[399px] xl:h-[465px] 2xl:h-[499px]",
+        // Mobile-first border radius
+        "rounded-[8px] sm:rounded-[5px] md:rounded-[7px] lg:rounded-[9px] xl:rounded-[10px] 2xl:rounded-[11px]",
         className
       )}
       style={{ 
@@ -66,38 +66,38 @@ export function ThemeCard({
       {/* Title */}
       <h3 className={cn(
         "absolute font-thunder text-white overflow-hidden text-ellipsis z-20",
-        // Responsive positioning from left and top
-        "left-[10px] sm:left-[23px] md:left-[19px] lg:left-[23px] xl:left-[27px] 2xl:left-[29px]",
-        "top-[13px] sm:top-[26px] md:top-[26px] lg:top-[31px] xl:top-[36px] 2xl:top-[39px]",
-        "right-[18px] sm:right-[49px] md:right-[36px] lg:right-[44px] xl:right-[51px] 2xl:right-[55px]",
-        // Responsive font size - SM set to 25px to match Figma
-        "text-[16px] sm:text-[25px] md:text-[22px] lg:text-[36px] xl:text-[42px] 2xl:text-[45px]",
-        // Responsive line height
-        "leading-[15px] sm:leading-[23px] md:leading-[20px] lg:leading-[33px] xl:leading-[39px] 2xl:leading-[41px]",
+        // Mobile positioning proportional to 265x428 card
+        "left-[20px] sm:left-[23px] md:left-[19px] lg:left-[23px] xl:left-[27px] 2xl:left-[29px]",
+        "top-[25px] sm:top-[26px] md:top-[26px] lg:top-[31px] xl:top-[36px] 2xl:top-[39px]",
+        "right-[35px] sm:right-[49px] md:right-[36px] lg:right-[44px] xl:right-[51px] 2xl:right-[55px]",
+        // Mobile typography proportional to larger card
+        "text-[24px] sm:text-[25px] md:text-[22px] lg:text-[36px] xl:text-[42px] 2xl:text-[45px]",
+        // Mobile line height proportional to font size
+        "leading-[26px] sm:leading-[23px] md:leading-[20px] lg:leading-[33px] xl:leading-[39px] 2xl:leading-[41px]",
         // Max lines to prevent overflow
         "line-clamp-3"
       )}>
         {title}
       </h3>
       
-      {/* Bottom Content Container - positioned from bottom */}
+      {/* Bottom Content Container - proportional to mobile 265x428 card */}
       <div className={cn(
         "absolute z-20",
-        // Responsive bottom positioning
-        "bottom-[12px] sm:bottom-[32px] md:bottom-[25px] lg:bottom-[30px] xl:bottom-[35px] 2xl:bottom-[37px]",
-        // Responsive left and right positioning
-        "left-[10px] sm:left-[23px] md:left-[19px] lg:left-[23px] xl:left-[27px] 2xl:left-[29px]",
-        "right-[10px] sm:right-[23px] md:right-[19px] lg:right-[23px] xl:right-[27px] 2xl:right-[29px]"
+        // Mobile bottom positioning proportional to card height
+        "bottom-[32px] sm:bottom-[32px] md:bottom-[25px] lg:bottom-[30px] xl:bottom-[35px] 2xl:bottom-[37px]",
+        // Mobile left and right positioning proportional to card width
+        "left-[20px] sm:left-[23px] md:left-[19px] lg:left-[23px] xl:left-[27px] 2xl:left-[29px]",
+        "right-[20px] sm:right-[23px] md:right-[19px] lg:right-[23px] xl:right-[27px] 2xl:right-[29px]"
       )}>
         {/* Description */}
         <p className={cn(
           "font-onest font-medium text-white overflow-hidden text-ellipsis",
-          // Responsive font size for description - SM set to 13px to match Figma
-          "text-[8px] sm:text-[13px] md:text-[13px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]",
-          // Responsive line height
-          "leading-[10px] sm:leading-[17px] md:leading-[17px] lg:leading-[23px] xl:leading-[26px] 2xl:leading-[28px]",
-          // Responsive margin bottom
-          "mb-[7px] sm:mb-[21px] md:mb-[13px] lg:mb-[16px] xl:mb-[18px] 2xl:mb-[20px]",
+          // Mobile description font size proportional to card
+          "text-[16px] sm:text-[13px] md:text-[13px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px]",
+          // Mobile line height proportional to font size
+          "leading-[20px] sm:leading-[17px] md:leading-[17px] lg:leading-[23px] xl:leading-[26px] 2xl:leading-[28px]",
+          // Mobile margin bottom proportional to spacing
+          "mb-[18px] sm:mb-[21px] md:mb-[13px] lg:mb-[16px] xl:mb-[18px] 2xl:mb-[20px]",
           // Max lines to prevent overflow
           "line-clamp-2"
         )}>
@@ -108,20 +108,20 @@ export function ThemeCard({
         <Link 
           href={href}
           className={cn(
-            "inline-flex items-center justify-center",
-            // Responsive button dimensions - SM set to match Figma 82.37×36.02px
-            "w-[35px] h-[14px] sm:w-[82px] sm:h-[36px] md:w-[71px] md:h-[28px] lg:w-[85px] lg:h-[33px] xl:w-[99px] xl:h-[39px] 2xl:w-[107px] 2xl:h-[42px]",
-            "bg-white hover:bg-gray-100 transition-colors",
+            "inline-flex items-center justify-center group",
+            // Mobile button dimensions proportional to card
+            "w-[90px] h-[38px] sm:w-[82px] sm:h-[36px] md:w-[71px] md:h-[28px] lg:w-[85px] lg:h-[33px] xl:w-[99px] xl:h-[39px] 2xl:w-[107px] 2xl:h-[42px]",
+            "bg-white hover:bg-gray-100 transition-all duration-300 hover:scale-[1.05]",
             // Responsive border radius
             "rounded-[2px] sm:rounded-[3px] md:rounded-[4px] lg:rounded-[5px] xl:rounded-[6px] 2xl:rounded-[6px]"
           )}
         >
           <span className={cn(
-            "font-onest tracking-[-0.025em] text-[#242424]",
-            // Responsive button text size - SM set to 12px to match Figma
-            "text-[5px] sm:text-[12px] md:text-[10px] lg:text-[13px] xl:text-[15px] 2xl:text-[16px]",
-            // Responsive line height
-            "leading-[6px] sm:leading-[15px] md:leading-[13px] lg:leading-[17px] xl:leading-[19px] 2xl:leading-[20px]"
+            "font-onest tracking-[-0.025em] text-[#242424] transition-transform duration-300 group-hover:scale-105",
+            // Mobile button text size proportional to button
+            "text-[14px] sm:text-[12px] md:text-[12px] lg:text-[13px] xl:text-[15px] 2xl:text-[16px]",
+            // Mobile line height proportional to font size
+            "leading-[16px] sm:leading-[15px] md:leading-[13px] lg:leading-[17px] xl:leading-[19px] 2xl:leading-[20px]"
           )}>
             View More
           </span>

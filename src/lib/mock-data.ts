@@ -544,5 +544,16 @@ export const relatedTours = [
     departure: 'Jun - Aug',
     tags: ['Early Bird'],
     description: 'Explore the Nordic capitals of Copenhagen, Stockholm, Oslo, and Helsinki. Experience midnight sun, Viking heritage, and Scandinavian design.'
+  },
+  {
+    id: 'japan-classic',
+    title: '9D7N Classic Japan Discovery',
+    price: 'fr $3,288/pax',
+    originalPrice: 'fr $3,688/pax',
+    image: '/assets/tours/savor-southern-france.jpg',
+    duration: '9D7N',
+    departure: 'Year Round',
+    tags: ['Most Popular'],
+    description: 'Discover the essence of Japan from Tokyo to Kyoto. Experience traditional temples, modern cities, cherry blossoms, and authentic Japanese culture.'
   }
 ]

@@ -44,10 +44,10 @@ const Grid: React.FC<GridProps> = ({
     
     // Predefined grid variants based on design system
     const variants = {
-      // 3-column layout for tour cards (responsive)
+      // 4-column layout for tour cards (responsive)
       tours: cn(
         'grid',
-        'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+        'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
         'gap-x-[16px] gap-y-[24px] lg:gap-x-[32px] lg:gap-y-[48px]'
       ),
       

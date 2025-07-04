@@ -29,21 +29,31 @@ export function InstagramSection({ className }: { className?: string }) {
   return (
     <section className={cn("w-full", className)}>
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="flex flex-col items-center gap-[43px]">
+        <div className="flex flex-col items-center gap-[43px] lg:gap-[43px]">
         {/* Instagram Header */}
-        <div className="flex items-center gap-[39px]">
+        <div className="flex items-center gap-4 lg:gap-[39px] w-full justify-center">
           {/* Profile Picture */}
-          <div className="relative w-[80px] h-[80px] rounded-full overflow-hidden">
+          <div className="relative w-[73px] h-[73px] lg:w-[80px] lg:h-[80px] rounded-full overflow-hidden flex-shrink-0">
             <Image
-              src="/assets/logos/eu-logo.png"
+              src="/assets/social/instagram-profile.jpg"
               alt="EU Holidays"
               fill
               className="object-cover"
             />
           </div>
 
-          {/* Instagram Stats */}
-          <div className="relative w-[436px] h-[53px]">
+          {/* Mobile Instagram Stats */}
+          <div className="lg:hidden flex flex-col gap-1">
+            <h3 className="font-onest font-medium text-[13px] leading-[1.275] text-[#242424]">
+              EUHOLIDAYS
+            </h3>
+            <p className="font-onest text-[14px] leading-[1.275] text-[#242424]">
+              @euholidays
+            </p>
+          </div>
+
+          {/* Desktop Instagram Stats */}
+          <div className="hidden lg:block relative w-[436px] h-[53px]">
             {/* Username */}
             <h3 className="absolute left-0 top-[3px] font-onest font-medium text-[18px] leading-[1.275] text-[#242424]">
               EUHOLIDAYS
@@ -76,11 +86,26 @@ export function InstagramSection({ className }: { className?: string }) {
             href="https://instagram.com/euholidays"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-[139px] h-[51px] group"
+            className="relative w-[81px] h-[30px] lg:w-[139px] lg:h-[51px] group flex-shrink-0"
           >
-            {/* Button Background */}
+            {/* Mobile Button Background */}
             <svg 
-              className="absolute inset-0" 
+              className="absolute inset-0 lg:hidden" 
+              width="81" 
+              height="30" 
+              viewBox="0 0 81 30" 
+              fill="none"
+            >
+              <path 
+                d="M0 15C0 6.7 6.7 0 15 0H66C74.3 0 81 6.7 81 15C81 23.3 74.3 30 66 30H15C6.7 30 0 23.3 0 15Z" 
+                fill="#242424"
+                className="group-hover:fill-gray-800 transition-colors"
+              />
+            </svg>
+            
+            {/* Desktop Button Background */}
+            <svg 
+              className="absolute inset-0 hidden lg:block" 
               width="139" 
               height="51" 
               viewBox="0 0 139 51" 
@@ -92,15 +117,34 @@ export function InstagramSection({ className }: { className?: string }) {
                 className="group-hover:fill-gray-800 transition-colors"
               />
             </svg>
+            
             {/* Follow Text */}
-            <span className="absolute left-[42px] top-[13px] font-onest text-[18px] leading-[1.275] text-white">
+            <span className="absolute left-[22px] top-[7px] lg:left-[42px] lg:top-[13px] font-onest text-[12px] lg:text-[18px] leading-[1.275] text-white">
               Follow
             </span>
           </Link>
         </div>
 
         {/* Instagram Posts Grid */}
-        <div className="relative w-[1480px] h-[609px]">
+        
+        {/* Mobile Grid - 2 columns, 3 rows */}
+        <div className="lg:hidden w-full max-w-[346px]">
+          <div className="grid grid-cols-2 gap-[2px]">
+            {instagramPosts.slice(0, 6).map((post, index) => (
+              <div key={post.id} className="relative w-full aspect-[173/158] overflow-hidden">
+                <Image 
+                  src={post.image} 
+                  alt="Instagram post" 
+                  fill 
+                  className="object-cover" 
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Grid - 5 columns, 2 rows */}
+        <div className="hidden lg:block relative w-[1480px] h-[609px]">
           {/* First Column */}
           <div className="absolute left-0 top-0 flex flex-col gap-[3.82px]">
             <div className="relative w-[295.27px] h-[301.64px] overflow-hidden">

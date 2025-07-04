@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface AdventureCardProps {
@@ -137,36 +138,21 @@ export function AdventureCard({
           <span className={cn(
             "font-onest text-[#242424]",
             // Responsive font size
-            "text-[5px] sm:text-[14px] md:text-[15px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px]",
+            "text-[12px] sm:text-[14px] md:text-[15px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px]",
             // Responsive line height
-            "leading-[6px] sm:leading-[17px] md:leading-[18px] lg:leading-[15px] xl:leading-[17px] 2xl:leading-[20px]"
+            "leading-[14px] sm:leading-[17px] md:leading-[18px] lg:leading-[15px] xl:leading-[17px] 2xl:leading-[20px]"
           )}>
             View more
           </span>
-          <svg 
+          <ArrowRight 
             className={cn(
               "flex-shrink-0",
-              // Responsive arrow size
-              "w-[6px] h-[5px] sm:w-[10px] sm:h-[6px] md:w-[9px] md:h-[5px] lg:w-[13px] lg:h-[8px] xl:w-[15px] xl:h-[12px] 2xl:w-[17px] 2xl:h-[14px]"
+              // Responsive arrow size - smaller
+              "w-[6px] h-[6px] sm:w-[10px] sm:h-[10px] md:w-[12px] md:h-[12px] lg:w-[14px] lg:h-[14px] xl:w-[16px] xl:h-[16px] 2xl:w-[18px] 2xl:h-[18px]"
             )}
-            viewBox="0 0 17 14" 
-            fill="none"
-          >
-            <path 
-              d="M10.58 0L16.61 6.98L10.58 13.97" 
-              stroke="#242424" 
-              strokeWidth="1"
-              fill="none"
-            />
-            <line 
-              x1="0" 
-              y1="6.98" 
-              x2="16.61" 
-              y2="6.98" 
-              stroke="#242424" 
-              strokeWidth="1.4"
-            />
-          </svg>
+            color="#242424"
+            strokeWidth={1.5}
+          />
         </Link>
       </div>
     </div>
